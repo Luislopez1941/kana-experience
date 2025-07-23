@@ -1,0 +1,133 @@
+.about {
+    padding: 5rem 0;
+    background-color: var(--text-white);
+  }
+  
+  .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  .about-content {
+    max-width: 100%;
+  }
+  
+  .about-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  
+  .about-subtitle {
+    display: block;
+    color: var(--primary-color);
+  }
+  
+  .about-text {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--text-light);
+  }
+  
+  .about-image {
+    position: relative;
+  }
+  
+  .image-placeholder {
+    aspect-ratio: 1;
+    background: linear-gradient(
+      135deg,
+      rgba(147, 197, 253, 0.3),
+      rgba(255, 45, 84, 0.1)
+    );
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .image-placeholder .material-icons-round {
+    font-size: 5rem;
+    color: rgba(255, 45, 84, 0.3);
+  }
+  
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .about-grid {
+      gap: 3rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  
+    .about-title {
+      font-size: 2rem;
+    }
+  
+    .about-stats {
+      gap: 1.5rem;
+    }
+  
+    .stat-number {
+      font-size: 1.75rem;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .about {
+      padding: 3rem 0;
+    }
+  
+    .about-title {
+      font-size: 1.75rem;
+    }
+  
+    .about-text {
+      font-size: 1rem;
+    }
+  
+    .about-stats {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+  

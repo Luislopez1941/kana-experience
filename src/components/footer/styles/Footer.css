@@ -1,0 +1,248 @@
+/* CTA Section */
+.cta {
+    padding: 5rem 0;
+    background-color: var(--primary-color);
+    color: var(--text-white);
+  }
+  
+  .cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+  }
+  
+  .cta-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta-description {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+  }
+  
+  .cta-form {
+    max-width: 400px;
+    margin: 0 auto 3rem auto;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .cta-input {
+    flex: 1;
+    border: none;
+  }
+  
+  .cta-button {
+    flex-shrink: 0;
+  }
+  
+  .cta-contact {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+  }
+  
+  .contact-item {
+    text-align: center;
+  }
+  
+  .contact-label {
+    font-size: 1.25rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+  }
+  
+  .contact-value {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    padding: 4rem 0 2rem;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .footer-brand {
+    max-width: 100%;
+  }
+  
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-icon {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+  }
+  
+  .footer-brand-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  
+  .footer-brand-text {
+    color: #9ca3af;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #9ca3af;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .social-link:hover {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+  }
+  
+  .footer-section-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--text-white);
+  }
+  
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-link {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-link:hover {
+    color: var(--text-white);
+  }
+  
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .contact-info {
+    display: flex;
+    align-items: center;
+    color: #9ca3af;
+  }
+  
+  .contact-icon {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+  }
+  
+  .footer-bottom {
+    border-top: 1px solid #374151;
+    padding-top: 2rem;
+    text-align: center;
+    color: #9ca3af;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cta {
+      padding: 3rem 0;
+    }
+  
+    .cta-title {
+      font-size: 2rem;
+    }
+  
+    .cta-description {
+      font-size: 1rem;
+    }
+  
+    .cta-form {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  
+    .cta-contact {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  
+    .footer-social {
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .cta-title {
+      font-size: 1.75rem;
+    }
+  
+    .cta-contact {
+      gap: 1.5rem;
+    }
+  
+    .contact-label {
+      font-size: 1rem;
+    }
+  
+    .footer {
+      padding: 2rem 0 1rem;
+    }
+  
+    .footer-brand {
+      text-align: center;
+    }
+  
+    .footer-section {
+      text-align: center;
+    }
+  
+    .footer-contact {
+      align-items: center;
+    }
+  }
+  

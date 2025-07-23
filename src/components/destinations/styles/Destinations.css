@@ -1,0 +1,231 @@
+.destinations {
+    padding: 5rem 0;
+    background-color: var(--bg-light);
+  }
+  
+  .destinations-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .destinations-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .destinations-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+  
+  .destinations-description {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .destinations-slider {
+    position: relative;
+    padding: 0 3rem;
+  }
+  
+  .destinations-swiper {
+    padding-bottom: 2rem;
+    overflow: visible;
+  }
+  
+  .destination-card {
+    background-color: var(--text-white);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    height: 100%;
+  }
+  
+  .destination-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .destination-icon {
+    width: 4rem;
+    height: 4rem;
+    background-color: var(--primary-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .destination-icon .material-icons-round {
+    font-size: 2rem;
+    color: var(--primary-color);
+  }
+  
+  .destination-name {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+  }
+  
+  .destination-description {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+  
+  .destinations-prev,
+  .destinations-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+  }
+  
+  .destinations-prev {
+    left: 0;
+  }
+  
+  .destinations-next {
+    right: 0;
+  }
+  
+  .destinations-prev:hover,
+  .destinations-next:hover {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 45, 84, 0.4);
+  }
+  
+  .destinations-prev.swiper-button-disabled,
+  .destinations-next.swiper-button-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: translateY(-50%);
+  }
+  
+  .destinations-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  
+  .destinations-pagination {
+    display: flex;
+    gap: 0.4rem;
+    justify-content: center;
+  }
+  
+  /* Swiper Pagination Styles */
+  .destinations-pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 45, 84, 0.3);
+    opacity: 1;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+  }
+  
+  .destinations-pagination .swiper-pagination-bullet-active {
+    background-color: var(--primary-color);
+    transform: scale(1.4);
+    box-shadow: 0 2px 6px rgba(255, 45, 84, 0.4);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .destinations {
+      padding: 3rem 0;
+    }
+  
+    .destinations-title {
+      font-size: 2rem;
+    }
+  
+    .destinations-header {
+      margin-bottom: 2rem;
+    }
+  
+    .destination-card {
+      padding: 1.5rem;
+    }
+  
+    .destinations-slider {
+      padding: 0 2.5rem;
+    }
+  
+    .destinations-prev,
+    .destinations-next {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  
+    .destinations-prev .material-icons-round,
+    .destinations-next .material-icons-round {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .destinations-title {
+      font-size: 1.75rem;
+    }
+  
+    .destination-card {
+      padding: 1rem;
+    }
+  
+    .destination-icon {
+      width: 3rem;
+      height: 3rem;
+      margin-bottom: 1rem;
+    }
+  
+    .destination-icon .material-icons-round {
+      font-size: 1.5rem;
+    }
+  
+    .destinations-slider {
+      padding: 0 2rem;
+    }
+  
+    .destinations-prev,
+    .destinations-next {
+      width: 2rem;
+      height: 2rem;
+    }
+  
+    .destinations-prev .material-icons-round,
+    .destinations-next .material-icons-round {
+      font-size: 0.875rem;
+    }
+  
+    .destinations-pagination .swiper-pagination-bullet {
+      width: 6px;
+      height: 6px;
+    }
+  }
+  
