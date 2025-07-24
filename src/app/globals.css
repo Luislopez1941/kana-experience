@@ -123,7 +123,9 @@ p {
   --primary-color: #ff2d54;
   --primary-light: #fef2f4;
   --primary-dark: #e01b46;
-  --secondary-color: #6366f1;
+  --secondary-color: #122d52;
+  --secondary-light: #f1f5f9;
+  --secondary-dark: #0f1629;
   --text-dark: #1f2937;
   --text-light: #6b7280;
   --text-white: #ffffff;
@@ -131,7 +133,6 @@ p {
   --bg-dark: #111827;
   --border-light: #e5e7eb;
 }
-
 /* Buttons */
 .btn {
   display: inline-flex;

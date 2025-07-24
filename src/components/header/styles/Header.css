@@ -72,9 +72,10 @@
 }
 
 .btn-secondary {
-  background-color: transparent !important;
+  /* background-color: transparent !important; */
+  background-color: var(--secondary-color);
   color: var(--text-white) !important;
-  border: 2px solid var(--text-white) !important;
+  /* border: 2px solid var(--text-white) !important; */
 }
 
 .btn-secondary:hover {
