@@ -7,6 +7,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+    overflow: hidden;
   }
   
   .packages-header {
@@ -30,12 +31,12 @@
   
   .packages-slider {
     position: relative;
-    padding: 0 3rem;
+    padding: 0;
   }
   
   .packages-swiper {
     padding-bottom: 2rem;
-    overflow: visible;
+    overflow: hidden;
   }
   
   .package-card {
@@ -220,18 +221,12 @@
     }
   
     .packages-slider {
-      padding: 0 2.5rem;
+      padding: 0;
     }
   
-    .packages-prev,
+        .packages-prev,
     .packages-next {
-      width: 2.5rem;
-      height: 2.5rem;
-    }
-  
-    .packages-prev .material-icons-round,
-    .packages-next .material-icons-round {
-      font-size: 1.125rem;
+      display: none;
     }
   }
   
@@ -259,18 +254,12 @@
     }
   
     .packages-slider {
-      padding: 0 2rem;
+      padding: 0;
     }
   
-    .packages-prev,
+        .packages-prev,
     .packages-next {
-      width: 2rem;
-      height: 2rem;
-    }
-  
-    .packages-prev .material-icons-round,
-    .packages-next .material-icons-round {
-      font-size: 1rem;
+      display: none;
     }
   
     .packages-pagination .swiper-pagination-bullet {

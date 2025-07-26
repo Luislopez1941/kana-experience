@@ -9,51 +9,52 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./styles/Layout.css";
+// import yacht from '../../assets/yacht_01.jpg'
 
 interface SliderOption {
   id: number;
   title: string;
   description: string;
-  image: string;
+  image: any;
   category: string;
 }
 
 const sliderOptions: SliderOption[] = [
   {
     id: 1,
-    title: "Yates de Lujo",
-    description: "Experiencias exclusivas en embarcaciones premium",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop",
+    title: "Private Yachts",
+    description: "Navega por las hermosas aguas cristalinas del caribe mexicano",
+    image: "/yacht_01.jpg",
     category: "Flota"
   },
   {
     id: 2,
-    title: "Destinos Exclusivos",
-    description: "Los lugares más hermosos del Caribe mexicano",
-    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop",
+    title: "CLUBS",
+    description: "Los mejores Clubs Nocturnos de todo Cancún",
+    image: "https://venues.com.mx/wp-content/uploads/2024/03/Confessions-Cancun-2-1920x1536.jpeg",
     category: "Destinos"
   },
   {
     id: 3,
-    title: "Experiencias Gourmet",
-    description: "Chef privado y gastronomía de clase mundial",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+    title: "TOURS",
+    description: "Vive una nueva experiencia en Cancún y sus alrededores ",
+    image: "/tours_01.jpg",
     category: "Gastronomía"
   },
-  {
-    id: 4,
-    title: "Aventuras Acuáticas",
-    description: "Deportes y actividades en aguas cristalinas",
-    image: "https://images.unsplash.com/photo-1544737151-6e4b01d6f167?w=800&h=600&fit=crop",
-    category: "Actividades"
-  },
-  {
-    id: 5,
-    title: "Eventos Especiales",
-    description: "Celebraciones únicas en el mar",
-    image: "https://images.unsplash.com/photo-1519167758481-83f29c8d8d61?w=800&h=600&fit=crop",
-    category: "Eventos"
-  }
+  // {
+  //   id: 4,
+  //   title: "Aventuras Acuáticas",
+  //   description: "Deportes y actividades en aguas cristalinas",
+  //   image: "https://images.unsplash.com/photo-1544737151-6e4b01d6f167?w=800&h=600&fit=crop",
+  //   category: "Actividades"
+  // },
+  // {
+  //   id: 5,
+  //   title: "Eventos Especiales",
+  //   description: "Celebraciones únicas en el mar",
+  //   image: "https://images.unsplash.com/photo-1519167758481-83f29c8d8d61?w=800&h=600&fit=crop",
+  //   category: "Eventos"
+  // }
 ];
 
 export const Layout: React.FC = () => {
@@ -154,9 +155,9 @@ export const Layout: React.FC = () => {
                 />
                 <div className="layout-image-overlay">
                   <div ref={contentRef} className="layout-image-content">
-                    <span className="layout-category">
+                    {/* <span className="layout-category">
                       {sliderOptions[activeSlide].category}
-                    </span>
+                    </span> */}
                     <h2 className="layout-image-title">
                       {sliderOptions[activeSlide].title}
                     </h2>

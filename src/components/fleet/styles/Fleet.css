@@ -7,6 +7,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+    overflow: hidden;
   }
   
   .fleet-header {
@@ -30,12 +31,12 @@
   
   .fleet-slider {
     position: relative;
-    padding: 0 3rem;
+    padding: 0;
   }
   
   .fleet-swiper {
     padding-bottom: 2rem;
-    overflow: visible;
+    overflow: hidden;
   }
   
   .yacht-card {
@@ -236,18 +237,12 @@
     }
   
     .fleet-slider {
-      padding: 0 2.5rem;
+      padding: 0;
     }
   
-    .fleet-prev,
+        .fleet-prev,
     .fleet-next {
-      width: 2.5rem;
-      height: 2.5rem;
-    }
-  
-    .fleet-prev .material-icons-round,
-    .fleet-next .material-icons-round {
-      font-size: 1.125rem;
+      display: none;
     }
   }
   
@@ -275,18 +270,12 @@
     }
   
     .fleet-slider {
-      padding: 0 2rem;
+      padding: 0;
     }
   
-    .fleet-prev,
+        .fleet-prev,
     .fleet-next {
-      width: 2rem;
-      height: 2rem;
-    }
-  
-    .fleet-prev .material-icons-round,
-    .fleet-next .material-icons-round {
-      font-size: 1rem;
+      display: none;
     }
   
     .fleet-pagination .swiper-pagination-bullet {
