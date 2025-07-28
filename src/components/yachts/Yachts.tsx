@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { Menu } from "../menu/Menu";
 import "./Yachts.css";
 
 interface Yacht {
@@ -498,6 +499,9 @@ const Yates: React.FC = () => {
           )}
         </div>
       </section>
+      
+      {/* Mobile Menu */}
+      <Menu />
     </div>
   );
 };
