@@ -1,76 +1,39 @@
 'use client'
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./styles/ExperiencePackages.css";
+import APIs from "@/services/APIS";
+import useStore from "@/zustand/useStore";
 
 export const ExperiencePackages: React.FC = () => {
-  const packages = [
-    {
-      name: "Romance & Luna de Miel",
-      duration: "3 días / 2 noches",
-      price: "$45,000",
-      features: [
-        "Cena romántica bajo las estrellas",
-        "Spa privado a bordo",
-        "Snorkel en arrecifes privados",
-        "Fotografía profesional",
-      ],
-      icon: "favorite",
-    },
-    {
-      name: "Aventura Familiar",
-      duration: "5 días / 4 noches",
-      price: "$85,000",
-      features: [
-        "Actividades para todas las edades",
-        "Deportes acuáticos incluidos",
-        "Visita a cenotes y playas vírgenes",
-        "Chef especializado en cocina mexicana",
-      ],
-      icon: "family_restroom",
-    },
-    {
-      name: "Eventos Corporativos",
-      duration: "Personalizable",
-      price: "Desde $120,000",
-      features: [
-        "Salas de juntas flotantes",
-        "Catering gourmet",
-        "Actividades de team building",
-        "Tecnología de última generación",
-      ],
-      icon: "business_center",
-    },
-    {
-      name: "Celebración de Cumpleaños",
-      duration: "1 día / 1 noche",
-      price: "$35,000",
-      features: [
-        "Decoración personalizada",
-        "DJ y sistema de sonido",
-        "Pastel y catering especial",
-        "Actividades acuáticas",
-      ],
-      icon: "cake",
-    },
-    {
-      name: "Retiro de Bienestar",
-      duration: "4 días / 3 noches",
-      price: "$65,000",
-      features: [
-        "Clases de yoga al amanecer",
-        "Terapias de spa",
-        "Comida saludable gourmet",
-        "Meditación en mar abierto",
-      ],
-      icon: "spa",
-    },
-  ];
+  const { url_server } = useStore();
+  const [packages, setPackages] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetch = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await APIs.getTourByTourType(1);
+      console.log('Tours response:', response);
+      setPackages(response.data || []);
+    } catch (error) {
+      console.error('Error fetching tours:', error);
+      setError('Error al cargar los tours');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetch();
+  }, []);
 
   return (
     <section id="experiencias" className="packages">
@@ -82,8 +45,30 @@ export const ExperiencePackages: React.FC = () => {
           </p>
         </div>
 
-        <div className="packages-slider">
-          <Swiper
+        {loading && (
+          <div className="packages-loading">
+            <span className="material-icons-round spinning">refresh</span>
+            Cargando experiencias...
+          </div>
+        )}
+
+        {error && (
+          <div className="packages-error">
+            <span className="material-icons-round">error</span>
+            {error}
+          </div>
+        )}
+
+        {!loading && !error && packages.length === 0 && (
+          <div className="packages-empty">
+            <span className="material-icons-round">info</span>
+            No hay experiencias disponibles
+          </div>
+        )}
+
+        {!loading && !error && packages.length > 0 && (
+          <div className="packages-slider">
+            <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={30}
             slidesPerView={1}
@@ -109,31 +94,106 @@ export const ExperiencePackages: React.FC = () => {
             }}
             className="packages-swiper"
           >
-            {packages.map((pkg, index) => (
+            {packages.map((pkg: any, index: any) => (
               <SwiperSlide key={index}>
                 <div className="package-card">
-                  <div className="package-icon">
-                    <span className="material-icons-round">{pkg.icon}</span>
+                  <div className="package-image">
+                    {pkg.images && pkg.images.length > 0 ? (
+                      <Swiper
+                        modules={[Navigation, Pagination, Autoplay]}
+                        spaceBetween={0}
+                        slidesPerView={1}
+                        navigation={{
+                          nextEl: `.package-${pkg.id}-next`,
+                          prevEl: `.package-${pkg.id}-prev`,
+                        }}
+                        pagination={{
+                          clickable: true,
+                          el: `.package-${pkg.id}-pagination`,
+                        }}
+                        autoplay={{
+                          delay: 4000,
+                          disableOnInteraction: false,
+                        }}
+                        className="package-images-swiper"
+                      >
+                        {pkg.images.map((image: any, imageIndex: number) => (
+                          <SwiperSlide key={imageIndex}>
+                            <img
+                              src={`${url_server}/${image.url}`}
+                              alt={`${pkg.name} - Imagen ${imageIndex + 1}`}
+                              className="package-image-slide"
+                            />
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
+                    ) : (
+                      <div className="image-placeholder">
+                        <span className="material-icons-round">explore</span>
+                      </div>
+                    )}
+                    <div className="package-location">{pkg.location}</div>
+                    
+                    {/* Controles del carrusel de imágenes */}
+                    {pkg.images && pkg.images.length > 1 && (
+                      <>
+                        <button className={`package-image-prev package-${pkg.id}-prev`}>
+                          <span className="material-icons-round">arrow_back</span>
+                        </button>
+                        <button className={`package-image-next package-${pkg.id}-next`}>
+                          <span className="material-icons-round">arrow_forward</span>
+                        </button>
+                        <div className={`package-image-pagination package-${pkg.id}-pagination`}></div>
+                      </>
+                    )}
                   </div>
-                  <h3 className="package-name">{pkg.name}</h3>
-                  <div className="package-duration">{pkg.duration}</div>
-                  <div className="package-price">
-                    {pkg.price}
-                    <span className="package-currency"> MXN</span>
+                  
+                  <div className="package-info">
+                    <h3 className="package-name">{pkg.name}</h3>
+                    <div className="package-specs">
+                      <span className="package-spec">
+                        <span className="material-icons-round">people</span>
+                        {pkg.capacity} personas
+                      </span>
+                      <span className="package-spec">
+                        <span className="material-icons-round">place</span>
+                        {pkg.location}
+                      </span>
+                    </div>
+                    
+                    {pkg.description && (
+                      <p className="package-description">
+                        {pkg.description.length > 100 
+                          ? `${pkg.description.substring(0, 100)}...` 
+                          : pkg.description}
+                      </p>
+                    )}
+                    
+                    {pkg.characteristics && pkg.characteristics.length > 0 && (
+                      <div className="package-characteristics">
+                        {pkg.characteristics.slice(0, 3).map((characteristic: any, index: number) => (
+                          <span key={characteristic.id} className="characteristic-tag">
+                            {characteristic.name}
+                          </span>
+                        ))}
+                        {pkg.characteristics.length > 3 && (
+                          <span className="characteristic-more">
+                            +{pkg.characteristics.length - 3} más
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    
+                    <div className="package-footer">
+                      <span className="package-price">
+                        ${pkg.price?.toLocaleString() || pkg.price}
+                        <span className="package-currency"> MXN</span>
+                      </span>
+                      <button className="package-details-button">
+                        Ver Detalles
+                      </button>
+                    </div>
                   </div>
-                  <ul className="package-features">
-                    {pkg.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="package-feature">
-                        <span className="material-icons-round feature-check">
-                          check_circle
-                        </span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <button className="btn btn-primary package-button">
-                    Reservar Experiencia
-                  </button>
                 </div>
               </SwiperSlide>
             ))}
@@ -150,6 +210,7 @@ export const ExperiencePackages: React.FC = () => {
             <div className="packages-pagination"></div>
           </div>
         </div>
+        )}
       </div>
     </section>
   );

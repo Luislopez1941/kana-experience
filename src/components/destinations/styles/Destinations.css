@@ -31,11 +31,13 @@
   .destinations-slider {
     position: relative;
     padding: 0 3rem;
+    max-width: 100%;
+    overflow: hidden;
   }
   
   .destinations-swiper {
     padding-bottom: 2rem;
-    overflow: visible;
+    overflow: hidden;
   }
   
   .destination-card {
@@ -47,6 +49,10 @@
       transform 0.3s ease,
       box-shadow 0.3s ease;
     height: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
   .destination-card:hover {
@@ -169,12 +175,14 @@
       margin-bottom: 2rem;
     }
   
-    .destination-card {
+        .destination-card {
       padding: 1.5rem;
+      min-height: 180px;
     }
-  
+
     .destinations-slider {
       padding: 0 2.5rem;
+      max-width: 100%;
     }
   
     .destinations-prev,
@@ -196,6 +204,7 @@
   
     .destination-card {
       padding: 1rem;
+      min-height: 160px;
     }
   
     .destination-icon {
