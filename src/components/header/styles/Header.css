@@ -150,6 +150,13 @@
 
 /* Mobile Styles */
 @media (max-width: 768px) {
+
+  .header-container {
+
+  padding: 0 20px;
+
+}
+
   .header-container {
     justify-content: space-between;
   }
@@ -221,7 +228,7 @@
   }
 
   .header-logo-image {
-    height: 2rem;
+    height: 45px;
     width: auto;
     /* filter: brightness(0) invert(1); */
   }
