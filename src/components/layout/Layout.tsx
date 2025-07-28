@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { Header } from "../header/Header";
+import { Menu } from "../menu/Menu";
 import { gsap } from "gsap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
@@ -249,6 +250,8 @@ export const Layout: React.FC = () => {
           </div>
         </div>
       </div>
+      
+      <Menu />
     </section>
   );
 };

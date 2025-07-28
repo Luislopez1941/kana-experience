@@ -56,10 +56,8 @@ export const Footer: React.FC = () => {
           <div className="footer-grid">
             <div className="footer-brand">
               <div className="footer-logo">
-                <span className="material-icons-round footer-icon">
-                  sailing
-                </span>
-                <span className="footer-brand-name">LuxeYacht</span>
+                <img src="/kana.png" alt="Kana Logo" className="footer-logo-img" />
+           
               </div>
               <p className="footer-brand-text">
                 Experiencias de lujo en el Caribe mexicano desde 2008

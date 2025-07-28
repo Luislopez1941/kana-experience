@@ -57,7 +57,7 @@ export const FAQ: React.FC = () => {
     <section className="faq">
       <div className="faq-container">
         <div className="faq-header">
-          <h2 className="faq-title">❓ Preguntas Frecuentes</h2>
+          <h2 className="faq-title">Preguntas Frecuentes</h2>
           <p className="faq-description">
             Aquí encontrarás las siguientes preguntas frecuentes con sus respectivas respuestas
           </p>
