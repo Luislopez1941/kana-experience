@@ -11,30 +11,45 @@ import "./styles/Destinations.css";
 export const Destinations: React.FC = () => {
   const destinations = [
     {
-      name: "Yate de Lujo",
-      description: "El máximo confort y elegancia",
-      image: "/sections-main/yacht.jpg",
+      name: "Cancún & Isla Mujeres",
+      description: "Aguas cristalinas y arrecifes de coral",
+      icon: "beach_access",
     },
     {
-      name: "Tour Exclusivo",
-      description: "Experiencias únicas en aguas cristalinas",
-      image: "/sections-main/tour.jpg",
+      name: "Playa del Carmen",
+      description: "Cenotes y la Riviera Maya",
+      icon: "nature",
     },
     {
-      name: "Party en el Mar",
-      description: "Celebración y diversión en alta mar",
-      image: "/sections-main/party.jpg",
-    }
-  
+      name: "Los Cabos",
+      description: "El Arco y Mar de Cortés",
+      icon: "landscape",
+    },
+    {
+      name: "Puerto Vallarta",
+      description: "Bahías escondidas del Pacífico",
+      icon: "water",
+    },
+    {
+      name: "Tulum",
+      description: "Ruinas mayas y cenotes sagrados",
+      icon: "temple_hindu",
+    },
+    {
+      name: "Cozumel",
+      description: "Paraíso del buceo mundial",
+      icon: "scuba_diving",
+    },
   ];
 
   return (
     <section id="destinos" className="destinations">
       <div className="destinations-container">
         <div className="destinations-header">
-          <h2 className="destinations-title">Nuestros Servicios</h2>
+          <h2 className="destinations-title">Destinos Paradisíacos</h2>
           <p className="destinations-description">
-            Explora las diferentes experiencias que tenemos para ti en Cancún
+            Explora los destinos más exclusivos de México a bordo de nuestros
+            yates de lujo
           </p>
         </div>
 
@@ -63,7 +78,7 @@ export const Destinations: React.FC = () => {
                 slidesPerView: 3,
               },
               1024: {
-                slidesPerView: 3,
+                slidesPerView: 4,
               },
             }}
             className="destinations-swiper"
@@ -71,15 +86,15 @@ export const Destinations: React.FC = () => {
             {destinations.map((destination, index) => (
               <SwiperSlide key={index}>
                 <div className="destination-card">
-                  <div className="destination-image">
-                    <img src={destination.image} alt={destination.name} />
+                  <div className="destination-icon">
+                    <span className="material-icons-round">
+                      {destination.icon}
+                    </span>
                   </div>
-                  <div className="destination-content">
-                    <h3 className="destination-name">{destination.name}</h3>
-                    <p className="destination-description">
-                      {destination.description}
-                    </p>
-                  </div>
+                  <h3 className="destination-name">{destination.name}</h3>
+                  <p className="destination-description">
+                    {destination.description}
+                  </p>
                 </div>
               </SwiperSlide>
             ))}

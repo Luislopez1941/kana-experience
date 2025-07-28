@@ -39,7 +39,9 @@ export const About: React.FC = () => {
           </div>
           <div className="about-image">
             <div className="image-placeholder">
-              <span className="material-icons-round">sailing</span>
+              <div className="image-overlay">
+                <img src="/kana.png" alt="Kana Logo" className="overlay-logo" />
+              </div>
             </div>
           </div>
         </div>

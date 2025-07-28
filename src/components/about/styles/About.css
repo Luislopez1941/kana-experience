@@ -69,21 +69,59 @@
   
   .image-placeholder {
     aspect-ratio: 1;
-    background: linear-gradient(
-      135deg,
-      rgba(147, 197, 253, 0.3),
-      rgba(255, 45, 84, 0.1)
-    );
+    background-image: url('../../../../public/yacht-main.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-radius: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    position: relative;
   }
   
   .image-placeholder .material-icons-round {
     font-size: 5rem;
     color: rgba(255, 45, 84, 0.3);
+  }
+  
+  /* Overlay styles */
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    padding: 20px;
+    color: var(--text-white);
+    display: none;
+  }
+  
+  .overlay-logo {
+    max-width: 150px;
+    height: auto;
+    filter: brightness(0) invert(1) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6));
+  }
+  
+  .overlay-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  }
+  
+  .overlay-text {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
   }
   
   /* Responsive */
@@ -99,16 +137,28 @@
       gap: 2rem;
     }
   
-    .about-title {
+    .about-content {
+      display: none;
+    }
+  
+    .about-image {
+      grid-column: 1 / -1;
+    }
+
+    .image-overlay {
+      display: flex;
+    }
+
+    .overlay-logo {
+      max-width: 120px;
+    }
+
+    .overlay-title {
       font-size: 2rem;
     }
-  
-    .about-stats {
-      gap: 1.5rem;
-    }
-  
-    .stat-number {
-      font-size: 1.75rem;
+
+    .overlay-text {
+      font-size: 1rem;
     }
   }
   
@@ -116,18 +166,31 @@
     .about {
       padding: 3rem 0;
     }
-  
-    .about-title {
+
+    .overlay-logo {
+      max-width: 100px;
+    }
+
+    .overlay-title {
       font-size: 1.75rem;
     }
-  
-    .about-text {
-      font-size: 1rem;
+
+    .overlay-text {
+      font-size: 0.9rem;
     }
+  }
   
-    .about-stats {
-      grid-template-columns: 1fr;
-      gap: 1rem;
+  @media (max-width: 480px) {
+    .overlay-logo {
+      max-width: 80px;
+    }
+
+    .overlay-title {
+      font-size: 1.5rem;
+    }
+
+    .overlay-text {
+      font-size: 0.8rem;
     }
   }
   

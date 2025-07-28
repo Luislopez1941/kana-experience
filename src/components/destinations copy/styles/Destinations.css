@@ -44,51 +44,42 @@
   .destination-card {
     background-color: var(--text-white);
     border-radius: 1rem;
-    overflow: hidden;
+    padding: 2rem;
+    text-align: center;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease;
     height: 100%;
-    min-height: 300px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  }
-  
-  .destination-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  }
-  
-  .destination-image {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .destination-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-  
-  .destination-card:hover .destination-image img {
-    transform: scale(1.05);
-  }
-  
-  .destination-content {
-    padding: 1.5rem;
-    flex: 1;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
   
+  .destination-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .destination-icon {
+    width: 4rem;
+    height: 4rem;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .destination-icon .material-icons-round {
+    font-size: 2rem;
+    color: var(--primary-color);
+  }
+  
   .destination-name {
     font-size: 1.125rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-dark);
     margin-bottom: 0.5rem;
   }
@@ -185,16 +176,9 @@
       margin-bottom: 2rem;
     }
   
-    .destination-card {
-      min-height: 250px;
-    }
-
-    .destination-image {
-      height: 300px;
-    }
-
-    .destination-content {
-      padding: 1rem;
+        .destination-card {
+      padding: 1.5rem;
+      min-height: 180px;
     }
 
     .destinations-slider {
@@ -202,7 +186,7 @@
       max-width: 100%;
     }
   
-    .destinations-prev,
+        .destinations-prev,
     .destinations-next {
       display: none;
     }
@@ -214,22 +198,25 @@
     }
   
     .destination-card {
-      min-height: 220px;
+      padding: 1rem;
+      min-height: 160px;
     }
-
-    .destination-image {
-      height: 400px;
+  
+    .destination-icon {
+      width: 3rem;
+      height: 3rem;
+      margin-bottom: 1rem;
     }
-
-    .destination-content {
-      padding: 0.75rem;
+  
+    .destination-icon .material-icons-round {
+      font-size: 1.5rem;
     }
   
     .destinations-slider {
       padding: 10px 0;
     }
   
-    .destinations-prev,
+        .destinations-prev,
     .destinations-next {
       display: none;
     }
