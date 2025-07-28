@@ -14,9 +14,9 @@ const Home = () => {
         <Layout />
         <About />
         <Destinations />
-        <ExperiencePackages />
-        <WhyChooseUs />
         <Fleet />
+        <WhyChooseUs />
+        <ExperiencePackages />
         <FAQ />
         <Footer />
     </div>

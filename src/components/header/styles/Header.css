@@ -8,17 +8,24 @@
 .header-container {
   max-width: 1500px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 4rem;
+  height: 80px;
 }
 
 .header-brand {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.header-logo-image {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+ 
 }
 
 .header-icon {
@@ -145,6 +152,7 @@
 @media (max-width: 768px) {
   .header-container {
     justify-content: space-between;
+    padding: 0 20px;
   }
 
   .header-brand {
@@ -201,6 +209,10 @@
   .header-buttons {
     display: flex;
     z-index: 1001;
+  }
+
+  .header-menu-open ~ .header-buttons {
+    display: none;
   }
 
   .header-cta {

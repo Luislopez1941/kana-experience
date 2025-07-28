@@ -8,6 +8,8 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import "./styles/Layout.css";
 // import yacht from '../../assets/yacht_01.jpg'
 
@@ -63,6 +65,7 @@ export const Layout: React.FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<any>(null);
+  const router = useRouter();
 
   useEffect(() => {
     // Set initial visible state immediately
@@ -164,9 +167,9 @@ export const Layout: React.FC = () => {
                     <p className="layout-image-description">
                       {sliderOptions[activeSlide].description}
                     </p>
-                    <button className="btn btn-primary layout-cta">
+                    <Link href="/yachts" className="btn btn-primary layout-cta">
                       Explorar Más
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -197,10 +200,7 @@ export const Layout: React.FC = () => {
                       delay: 4000,
                       disableOnInteraction: true,
                     }}
-                    onSwiper={(swiper) => {
-                      swiperRef.current = swiper;
-                      setTimeout(() => swiper.update(), 100);
-                    }}
+                    onSwiper={(swiper) => { swiperRef.current = swiper; setTimeout(() => swiper.update(), 100); }}
                     onSlideChange={(swiper) => handleSlideChange(swiper.activeIndex)}
                     className="layout-swiper"
                   >

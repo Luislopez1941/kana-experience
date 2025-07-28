@@ -11,8 +11,11 @@ export const Header: React.FC = () => {
     <header className="header">
       <div className="header-container">
         <div className="header-brand">
-          <span className="material-icons-round header-icon">sailing</span>
-          <span className="header-logo">LuxeYacht</span>
+          <img 
+            src="/kana.png" 
+            alt="LuxeYacht Logo" 
+            className="header-logo-image"
+          />
         </div>
 
         <div className={`header-menu ${isMenuOpen ? "header-menu-open" : ""}`}>
@@ -31,7 +34,7 @@ export const Header: React.FC = () => {
         </div>
 
         <div className="header-buttons">
-          <Link href="/reservation" className="btn btn-primary header-cta">
+          <Link href="/consult-reservation" className="btn btn-primary header-cta">
             Consultar Reserva
           </Link>
         </div>

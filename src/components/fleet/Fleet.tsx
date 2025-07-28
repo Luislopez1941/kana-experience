@@ -1,58 +1,26 @@
 'use client'
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./styles/Fleet.css";
+import APIs from "@/services/APIS";
+import useStore from "@/zustand/useStore";
 
 export const Fleet: React.FC = () => {
-  const yachts = [
-    {
-      name: "Serenidad del Caribe",
-      length: "45m",
-      guests: "12",
-      price: "$380,000",
-      location: "Cancún",
-    },
-    {
-      name: "Perla de Cortés",
-      length: "38m",
-      guests: "10",
-      price: "$280,000",
-      location: "Los Cabos",
-    },
-    {
-      name: "Majestic Riviera",
-      length: "52m",
-      guests: "16",
-      price: "$520,000",
-      location: "Puerto Vallarta",
-    },
-    {
-      name: "Azul Mexicano",
-      length: "42m",
-      guests: "14",
-      price: "$350,000",
-      location: "Playa del Carmen",
-    },
-    {
-      name: "Sol Dorado",
-      length: "35m",
-      guests: "8",
-      price: "$220,000",
-      location: "Cancún",
-    },
-    {
-      name: "Viento del Mar",
-      length: "48m",
-      guests: "14",
-      price: "$450,000",
-      location: "Los Cabos",
-    },
-  ];
+  const [yachts, setYachts] = useState([])
+  const { url_server } = useStore();
+  const fetch = async () => {
+    const response = await APIs.getYachtByYachtType(1);
+    setYachts(response.data);
+  }
+
+  useEffect(() => {
+    fetch();
+  }, []);
 
   return (
     <section id="flota" className="fleet">
@@ -91,14 +59,58 @@ export const Fleet: React.FC = () => {
             }}
             className="fleet-swiper"
           >
-            {yachts.map((yacht, index) => (
+            {yachts.map((yacht: any, index) => (
               <SwiperSlide key={index}>
                 <div className="yacht-card">
                   <div className="yacht-image">
-                    <div className="image-placeholder">
-                      <span className="material-icons-round">sailing</span>
-                    </div>
+                    {yacht.images && yacht.images.length > 0 ? (
+                      <Swiper
+                        modules={[Navigation, Pagination, Autoplay]}
+                        spaceBetween={0}
+                        slidesPerView={1}
+                        navigation={{
+                          nextEl: `.yacht-${yacht.id}-next`,
+                          prevEl: `.yacht-${yacht.id}-prev`,
+                        }}
+                        pagination={{
+                          clickable: true,
+                          el: `.yacht-${yacht.id}-pagination`,
+                        }}
+                        autoplay={{
+                          delay: 4000,
+                          disableOnInteraction: false,
+                        }}
+                        className="yacht-images-swiper"
+                      >
+                        {yacht.images.map((image: any, imageIndex: number) => (
+                          <SwiperSlide key={imageIndex}>
+                            <img
+                              src={`${url_server}/${image.url}`}
+                              alt={`${yacht.name} - Imagen ${imageIndex + 1}`}
+                              className="yacht-image-slide"
+                            />
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
+                    ) : (
+                      <div className="image-placeholder">
+                        <span className="material-icons-round">sailing</span>
+                      </div>
+                    )}
                     <div className="yacht-location">{yacht.location}</div>
+                    
+                    {/* Controles del carrusel de imágenes */}
+                    {yacht.images && yacht.images.length > 1 && (
+                      <>
+                        <button className={`yacht-image-prev yacht-${yacht.id}-prev`}>
+                          <span className="material-icons-round">arrow_back</span>
+                        </button>
+                        <button className={`yacht-image-next yacht-${yacht.id}-next`}>
+                          <span className="material-icons-round">arrow_forward</span>
+                        </button>
+                        <div className={`yacht-image-pagination yacht-${yacht.id}-pagination`}></div>
+                      </>
+                    )}
                   </div>
                   <div className="yacht-info">
                     <h3 className="yacht-name">{yacht.name}</h3>
@@ -109,15 +121,42 @@ export const Fleet: React.FC = () => {
                       </span>
                       <span className="yacht-spec">
                         <span className="material-icons-round">people</span>
-                        {yacht.guests} huéspedes
+                        {yacht.capacity} huéspedes
+                      </span>
+                      <span className="yacht-spec">
+                        <span className="material-icons-round">place</span>
+                        {yacht.location}
                       </span>
                     </div>
+                    {yacht.description && (
+                      <p className="yacht-description">
+                        {yacht.description.length > 100 
+                          ? `${yacht.description.substring(0, 100)}...` 
+                          : yacht.description}
+                      </p>
+                    )}
+                    
+                    {yacht.characteristics && yacht.characteristics.length > 0 && (
+                      <div className="yacht-characteristics">
+                        {yacht.characteristics.slice(0, 3).map((characteristic: any, index: number) => (
+                          <span key={characteristic.id} className="characteristic-tag">
+                            {characteristic.name}
+                          </span>
+                        ))}
+                        {yacht.characteristics.length > 3 && (
+                          <span className="characteristic-more">
+                            +{yacht.characteristics.length - 3} más
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    
                     <div className="yacht-footer">
                       <span className="yacht-price">
-                        {yacht.price}
+                        ${yacht.pricePerDay?.toLocaleString() || yacht.pricePerDay}
                         <span className="yacht-currency"> MXN/día</span>
                       </span>
-                      <button className="btn btn-outline yacht-button">
+                      <button className="yacht-details-button">
                         Ver Detalles
                       </button>
                     </div>

@@ -1,12 +1,9 @@
-import React from 'react'
-import Reservation from '@/pages/reservation/ReservationLookup'
+'use client'
 
-const page = () => {
-  return (
-    <div>
-        <Reservation />
-    </div>
-  )
-}
+import ReservationProcess from '@/components/reservation/ReservationProcess';
 
-export default page
+const ReservationPage = () => {
+  return <ReservationProcess />;
+};
+
+export default ReservationPage;
