@@ -425,13 +425,7 @@
 
   .layout-carousel-prev,
   .layout-carousel-next {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .layout-carousel-prev .material-icons-round,
-  .layout-carousel-next .material-icons-round {
-    font-size: 0.75rem;
+    display: none;
   }
 
   .layout-option {

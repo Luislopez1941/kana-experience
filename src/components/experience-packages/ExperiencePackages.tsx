@@ -39,9 +39,9 @@ export const ExperiencePackages: React.FC = () => {
     <section id="experiencias" className="packages">
       <div className="packages-container">
         <div className="packages-header">
-          <h2 className="packages-title">Paquetes de Experiencia</h2>
+          <h2 className="packages-title">Nuestros Tours</h2>
           <p className="packages-description">
-            Experiencias curadas para cada ocasión especial
+            Tour de 4 horas en el mar.
           </p>
         </div>
 

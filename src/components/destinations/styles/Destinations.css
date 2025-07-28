@@ -7,6 +7,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+    overflow: hidden;
   }
   
   .destinations-header {
@@ -185,15 +186,9 @@
       max-width: 100%;
     }
   
-    .destinations-prev,
+        .destinations-prev,
     .destinations-next {
-      width: 2.5rem;
-      height: 2.5rem;
-    }
-  
-    .destinations-prev .material-icons-round,
-    .destinations-next .material-icons-round {
-      font-size: 1rem;
+      display: none;
     }
   }
   
@@ -218,18 +213,12 @@
     }
   
     .destinations-slider {
-      padding: 0 2rem;
+      padding: 0;
     }
   
-    .destinations-prev,
+        .destinations-prev,
     .destinations-next {
-      width: 2rem;
-      height: 2rem;
-    }
-  
-    .destinations-prev .material-icons-round,
-    .destinations-next .material-icons-round {
-      font-size: 0.875rem;
+      display: none;
     }
   
     .destinations-pagination .swiper-pagination-bullet {

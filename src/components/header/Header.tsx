@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from "react";
+import Link from "next/link";
 import "./styles/Header.css";
 
 export const Header: React.FC = () => {
@@ -10,41 +11,41 @@ export const Header: React.FC = () => {
     <header className="header">
       <div className="header-container">
         <div className="header-brand">
-          <span className="material-icons-round header-icon">sailing</span>
-          <span className="header-logo">LuxeYacht</span>
+          <img 
+            src="/kana.png" 
+            alt="LuxeYacht Logo" 
+            className="header-logo-image"
+          />
         </div>
 
         <div className={`header-menu ${isMenuOpen ? "header-menu-open" : ""}`}>
           <a href="#flota" className="header-link">
-            Flota
+            Inicio
           </a>
           <a href="#destinos" className="header-link">
-            Destinos
-          </a>
-          <a href="#experiencias" className="header-link">
             Experiencias
           </a>
-          <a href="#nosotros" className="header-link">
+          <a href="#experiencias" className="header-link">
             Nosotros
           </a>
-          <a href="#contacto" className="header-link">
+          <a href="#nosotros" className="header-link">
             Contacto
           </a>
         </div>
 
         <div className="header-buttons">
-          <button className="btn btn-secondary header-cta">Consultar Reserva</button>
-          <button className="btn btn-primary header-cta">Reservar Ahora</button>
+          <Link href="/consult-reservation" className="btn btn-primary header-cta">
+            Consultar Reserva
+          </Link>
         </div>
 
-        <button
-          className="header-toggle"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <span className="material-icons-round">
-            {isMenuOpen ? "close" : "menu"}
-          </span>
-        </button>
+        <div className='toggle' onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button className={`toggle__botton ${isMenuOpen ? 'activo' : ''}`}>
+            <span className="l1 span"></span>
+            <span className="l2 span"></span>
+            <span className="l3 span"></span>
+          </button>
+        </div>
       </div>
     </header>
   );

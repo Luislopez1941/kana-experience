@@ -7,35 +7,35 @@ export const About: React.FC = () => {
       <div className="about-container">
         <div className="about-grid">
           <div className="about-content">
-            <h2 className="about-title">
-              Más de 15 años navegando
-              <span className="about-subtitle">el Caribe Mexicano</span>
-            </h2>
+            <h2 className="about-title">SOBRE NOSOTROS</h2>
+            
             <p className="about-text">
-              Somos la empresa líder en alquiler de yates de lujo en México.
-              Desde nuestros inicios en 2008, hemos navegado más de 100,000
-              millas náuticas llevando a nuestros huéspedes a descubrir los
-              tesoros ocultos del Caribe mexicano.
+              En VIBECUN no solo ofrecemos tours o servicios…
             </p>
+            
             <p className="about-text">
-              Nuestra pasión por el mar y compromiso con la excelencia nos ha
-              convertido en la opción preferida de celebridades, ejecutivos y
-              familias que buscan experiencias únicas e inolvidables.
+              <strong>Creamos experiencias únicas</strong> en uno de los destinos más vibrantes del mundo: Cancún.
             </p>
-            <div className="about-stats">
-              <div className="stat">
-                <div className="stat-number">500+</div>
-                <div className="stat-label">Clientes Felices</div>
-              </div>
-              <div className="stat">
-                <div className="stat-number">25</div>
-                <div className="stat-label">Yates de Lujo</div>
-              </div>
-              <div className="stat">
-                <div className="stat-number">15</div>
-                <div className="stat-label">Años de Experiencia</div>
-              </div>
-            </div>
+            
+            <p className="about-text">
+              Somos una agencia especializada en experiencias exclusivas: yates, antros, jetski, tours y todo lo necesario para que vivas el viaje como siempre lo soñaste.
+            </p>
+            
+            <p className="about-text">
+              Nos mueve la vibra, la buena energía, los momentos épicos y sobre todo, el compromiso de que cada cliente se vaya con una historia que contar.
+            </p>
+            
+            <p className="about-text">
+              Sabemos lo que se necesita para hacer un día inolvidable:
+            </p>
+            
+            <p className="about-text">
+              <strong>servicio impecable, atención personalizada y una vibra que no se encuentra en otro lugar.</strong>
+            </p>
+            
+            <p className="about-text">
+              Y fotografías de nosotros, obviamente más profesionales o casuales (esto dara confianza de ver una cara humana)
+            </p>
           </div>
           <div className="about-image">
             <div className="image-placeholder">
