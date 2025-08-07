@@ -1,129 +1,53 @@
 'use client'
 
-
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu } from "../menu/Menu";
+import Loading from "../loading/Loading";
 import "./Yachts.css";
+import APIs from "@/services/APIS";
+import useStore from "@/zustand/useStore";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 interface Yacht {
   id: number;
   name: string;
   description: string;
   capacity: number;
-  price: string;
-  priceNumber: number;
-  image: string;
-  features: string[];
+  price?: string;
+  priceNumber?: number;
+  image?: string;
+  features?: string[];
   length: string;
-  type: string;
+  type?: string;
+  // Campos de la API real
+  characteristics?: string[];
+  images?: Array<{ url: string }>;
+  pricing?: Array<{ hora: number; precio: number }>;
+  yachtCategory?: { id: number; name: string };
+  yachtCategoryId: number;
+  location: string;
+  status: string;
 }
 
 interface Filters {
   type: string;
+  typeId: number; // Agregamos el ID de la categoría
   priceRange: string;
   capacity: string;
 }
 
-// Extended yacht data for demonstration
-const allYachts: Yacht[] = [
-  {
-    id: 1,
-    name: "Azimut Grande",
-    description: "Yacht de lujo con diseño italiano y tecnología de vanguardia",
-    capacity: 12,
-    price: "$8,500",
-    priceNumber: 8500,
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop",
-    features: ["Chef privado", "Jacuzzi", "Bar completo", "Equipo de snorkel"],
-    length: "95 pies",
-    type: "Motor Yacht"
-  },
-  {
-    id: 2,
-    name: "Sunseeker Predator",
-    description: "Velocidad y elegancia en perfecta armonía",
-    capacity: 8,
-    price: "$6,200",
-    priceNumber: 6200,
-    image: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&h=600&fit=crop",
-    features: ["Alta velocidad", "Deportes acuáticos", "Sonido premium", "Aire acondicionado"],
-    length: "82 pies",
-    type: "Sport Yacht"
-  },
-  {
-    id: 3,
-    name: "Princess V78",
-    description: "Lujo británico con espacios amplios y confort excepcional",
-    capacity: 10,
-    price: "$7,800",
-    priceNumber: 7800,
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
-    features: ["Cabinas VIP", "Flybridge", "Comedor exterior", "Plataforma de baño"],
-    length: "78 pies",
-    type: "Flybridge"
-  },
-  {
-    id: 4,
-    name: "Ferretti 920",
-    description: "La perfecta combinación de estilo italiano y rendimiento",
-    capacity: 14,
-    price: "$12,000",
-    priceNumber: 12000,
-    image: "https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&h=600&fit=crop",
-    features: ["Suite master", "Gimnasio", "Spa", "Helipuerto"],
-    length: "92 pies",
-    type: "Super Yacht"
-  },
-  {
-    id: 5,
-    name: "Pershing 82",
-    description: "Deportivo y elegante, perfecto para aventuras de alta velocidad",
-    capacity: 10,
-    price: "$9,500",
-    priceNumber: 9500,
-    image: "https://images.unsplash.com/photo-1551843073-4a9a5b6fcd5b?w=800&h=600&fit=crop",
-    features: ["Deportes acuáticos", "Bar premium", "Cabina master", "Sistema de navegación"],
-    length: "82 pies",
-    type: "Sport Yacht"
-  },
-  {
-    id: 6,
-    name: "Riva Aquarama",
-    description: "Clásico italiano con elegancia atemporal",
-    capacity: 6,
-    price: "$4,500",
-    priceNumber: 4500,
-    image: "https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=800&h=600&fit=crop",
-    features: ["Diseño clásico", "Maderas premium", "Motor twin", "Asientos de cuero"],
-    length: "27 pies",
-    type: "Classic Yacht"
-  },
-  {
-    id: 7,
-    name: "Benetti Oasis",
-    description: "Mega yacht con todas las comodidades de un resort",
-    capacity: 20,
-    price: "$25,000",
-    priceNumber: 25000,
-    image: "https://images.unsplash.com/photo-1564225045536-9b61d4c4dd90?w=800&h=600&fit=crop",
-    features: ["Piscina infinity", "Helipad", "Cinema", "Spa completo"],
-    length: "140 pies",
-    type: "Super Yacht"
-  },
-  {
-    id: 8,
-    name: "Sea Ray Sundancer",
-    description: "Perfecto para días familiares con comodidad y estilo",
-    capacity: 8,
-    price: "$3,800",
-    priceNumber: 3800,
-    image: "https://images.unsplash.com/photo-1574854719037-5b82b1b29c0a?w=800&h=600&fit=crop",
-    features: ["Cabina familiar", "Cocina completa", "Plataforma de baño", "Toldo retráctil"],
-    length: "45 pies",
-    type: "Flybridge"
-  }
-];
+interface YachtCategory {
+  id: number;
+  name: string;
+  description?: string;
+}
+
+
 
 const ITEMS_PER_PAGE = 4;
 
@@ -131,81 +55,139 @@ const Yates: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState<Filters>({
     type: "",
+    typeId: 0, // Por defecto "Todos" con ID 0
     priceRange: "",
     capacity: ""
   });
-  const [filteredYachts, setFilteredYachts] = useState<Yacht[]>(allYachts);
+  const { url_server } = useStore();
+  const [filteredYachts, setFilteredYachts] = useState<Yacht[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
+  const [yachtCategories, setYachtCategories] = useState<YachtCategory[]>([]);
+  const [loadingCategories, setLoadingCategories] = useState(true);
+  const [yachts, setYachts] = useState<Yacht[]>([]);
+  const [loadingYachts, setLoadingYachts] = useState(false);
+  const [selectedHours, setSelectedHours] = useState<{ [yachtId: number]: number }>({}); // Horas seleccionadas por yacht
+  const [totalYachts, setTotalYachts] = useState<number>(0);
+  const [serverTotalPages, setServerTotalPages] = useState<number>(0);
 
-  // Filter and search logic
+  const fetch = async () => {
+    try {
+      setLoadingCategories(true);
+      const response = await APIs.getYachtCategories();
+      console.log('Yacht Categories:', response);
+      
+      if (response && response.data) {
+        setYachtCategories(response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching yacht categories:', error);
+    } finally {
+      setLoadingCategories(false);
+    }
+  }
+
+  const fetchYachtsByCategory = async (categoryId: number, page: number = 1) => {
+    try {
+      setLoadingYachts(true);
+      const response = await APIs.getYachtByYachtType(categoryId, page);
+      console.log('Yachts by category:', response);
+      
+      if (response && response.data) {
+        setYachts(response.data);
+        // Usar la información de paginación del servidor
+        if (response.pagination) {
+          setTotalYachts(response.pagination.total);
+          setCurrentPage(response.pagination.page);
+          setServerTotalPages(response.pagination.totalPages);
+        } else {
+          setTotalYachts(response.data.length);
+          setServerTotalPages(1);
+        }
+      } else {
+        setYachts([]);
+        setTotalYachts(0);
+      }
+    } catch (error) {
+      console.error('Error fetching yachts by category:', error);
+      setYachts([]);
+      setTotalYachts(0);
+    } finally {
+      setLoadingYachts(false);
+    }
+  }
+
   useEffect(() => {
-    let filtered = allYachts;
+    fetch();
+  }, []);
+
+  // Disparar petición cuando cambie la categoría seleccionada
+  useEffect(() => {
+    setCurrentPage(1); // Reset a página 1 cuando cambie categoría
+    fetchYachtsByCategory(filters.typeId, 1);
+  }, [filters.typeId]);
+
+  // Actualizar las horas seleccionadas cuando cambien los yates
+  useEffect(() => {
+    if (yachts.length > 0) {
+      const newSelectedHours: { [yachtId: number]: number } = {};
+      
+      yachts.forEach(yacht => {
+        if (yacht.pricing && yacht.pricing.length > 0) {
+          // Si no hay hora seleccionada para este yacht, usar la primera disponible
+          if (!selectedHours[yacht.id]) {
+            newSelectedHours[yacht.id] = yacht.pricing[0].hora;
+          } else {
+            // Mantener la hora ya seleccionada
+            newSelectedHours[yacht.id] = selectedHours[yacht.id];
+          }
+        }
+      });
+      
+      setSelectedHours(prev => ({ ...prev, ...newSelectedHours }));
+    }
+  }, [yachts]);
+
+  // Filter and search logic - búsqueda local en los yates cargados
+  useEffect(() => {
+    console.log('Filtering yachts:', yachts.length, 'yachts available');
+    let filtered = yachts;
 
     // Search filter
-    if (searchTerm) {
+    if (searchTerm.trim()) {
       filtered = filtered.filter(yacht =>
         yacht.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         yacht.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        yacht.type.toLowerCase().includes(searchTerm.toLowerCase())
+        (yacht.yachtCategory?.name.toLowerCase().includes(searchTerm.toLowerCase()) || false) ||
+        yacht.location.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
-    // Type filter
-    if (filters.type) {
-      filtered = filtered.filter(yacht => yacht.type === filters.type);
-    }
-
-    // Price range filter
-    if (filters.priceRange) {
-      switch (filters.priceRange) {
-        case "low":
-          filtered = filtered.filter(yacht => yacht.priceNumber < 6000);
-          break;
-        case "medium":
-          filtered = filtered.filter(yacht => yacht.priceNumber >= 6000 && yacht.priceNumber < 10000);
-          break;
-        case "high":
-          filtered = filtered.filter(yacht => yacht.priceNumber >= 10000);
-          break;
-      }
-    }
-
-    // Capacity filter
-    if (filters.capacity) {
-      switch (filters.capacity) {
-        case "small":
-          filtered = filtered.filter(yacht => yacht.capacity <= 8);
-          break;
-        case "medium":
-          filtered = filtered.filter(yacht => yacht.capacity > 8 && yacht.capacity <= 12);
-          break;
-        case "large":
-          filtered = filtered.filter(yacht => yacht.capacity > 12);
-          break;
-      }
-    }
-
     setFilteredYachts(filtered);
-    setCurrentPage(1); // Reset to first page when filters change
-  }, [searchTerm, filters]);
+  }, [yachts, searchTerm]);
 
-  // Pagination logic
-  const totalPages = Math.ceil(filteredYachts.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  const currentYachts = filteredYachts.slice(startIndex, endIndex);
+  // Pagination logic - usando total del servidor
+  const currentYachts = filteredYachts; // Usar los yates filtrados
 
-  const handleFilterChange = (filterType: keyof Filters, value: string) => {
+  const handleFilterChange = (filterType: keyof Filters, value: string | number) => {
     setFilters(prev => ({
       ...prev,
       [filterType]: value
     }));
   };
 
+  const handleCategoryChange = (categoryId: number, categoryName: string) => {
+    setFilters(prev => ({
+      ...prev,
+      type: categoryName,
+      typeId: categoryId
+    }));
+  };
+
   const clearFilters = () => {
     setFilters({
       type: "",
+      typeId: 0,
       priceRange: "",
       capacity: ""
     });
@@ -214,7 +196,16 @@ const Yates: React.FC = () => {
 
   const goToPage = (page: number) => {
     setCurrentPage(page);
+    fetchYachtsByCategory(filters.typeId, page);
   };
+
+  console.log('Rendering Yachts component:', {
+    yachtsCount: yachts.length,
+    filteredCount: filteredYachts.length,
+    currentCount: currentYachts.length,
+    loadingYachts,
+    filters
+  });
 
   return (
     <div className="yates-page">
@@ -281,19 +272,21 @@ const Yates: React.FC = () => {
             </select>
           </div>
 
-          <div className="filter-group">
-            <label>Capacidad</label>
-            <select 
-              value={filters.capacity} 
-              onChange={(e) => handleFilterChange('capacity', e.target.value)}
-            >
-              <option value="">Todas las capacidades</option>
-              <option value="1-6">1-6 personas</option>
-              <option value="7-12">7-12 personas</option>
-              <option value="13-20">13-20 personas</option>
-              <option value="20+">20+ personas</option>
-            </select>
-          </div>
+                     <div className="filter-group">
+             <label>Capacidad</label>
+             <select 
+               value={filters.capacity} 
+               onChange={(e) => handleFilterChange('capacity', e.target.value)}
+             >
+               <option value="">Todas las capacidades</option>
+               <option value="1-6">1-6 personas</option>
+               <option value="7-12">7-12 personas</option>
+               <option value="13-20">13-20 personas</option>
+               <option value="20+">20+ personas</option>
+             </select>
+           </div>
+
+
 
           <button onClick={clearFilters} className="clear-filters">
             <span className="material-icons-round">clear</span>
@@ -307,42 +300,32 @@ const Yates: React.FC = () => {
       {/* Yacht Types Submenu */}
       <div className="yates-types-menu">
         <div className="yates-types-container">
-          <button 
-            className={`yacht-type-btn ${filters.type === "" ? 'active' : ''}`}
-            onClick={() => handleFilterChange('type', '')}
-          >
-            Todos
-          </button>
-          <button 
-            className={`yacht-type-btn ${filters.type === "Motor Yacht" ? 'active' : ''}`}
-            onClick={() => handleFilterChange('type', 'Motor Yacht')}
-          >
-            LUXURY
-          </button>
-          <button 
-            className={`yacht-type-btn ${filters.type === "Sport Yacht" ? 'active' : ''}`}
-            onClick={() => handleFilterChange('type', 'Sport Yacht')}
-          >
-            SPORT
-          </button>
-          <button 
-            className={`yacht-type-btn ${filters.type === "Flybridge" ? 'active' : ''}`}
-            onClick={() => handleFilterChange('type', 'Flybridge')}
-          >
-            FLYBRIDGE
-          </button>
-          <button 
-            className={`yacht-type-btn ${filters.type === "Super Yacht" ? 'active' : ''}`}
-            onClick={() => handleFilterChange('type', 'Super Yacht')}
-          >
-            GRANDES
-          </button>
-          <button 
-            className={`yacht-type-btn ${filters.type === "Classic Yacht" ? 'active' : ''}`}
-            onClick={() => handleFilterChange('type', 'Classic Yacht')}
-          >
-            CLÁSICOS
-          </button>
+                     {/* Botón "Todos" siempre presente */}
+           <button 
+             className={`yacht-type-btn ${filters.typeId === 0 ? 'active' : ''}`}
+             onClick={() => handleCategoryChange(0, '')}
+           >
+             Todos
+           </button>
+          
+                     {/* Categorías dinámicas de la API */}
+           {loadingCategories ? (
+             <div className="yacht-categories-loading">
+               <span className="material-icons-round">refresh</span>
+               Cargando categorías...
+             </div>
+           ) : (
+                         // Categorías dinámicas
+             yachtCategories.map((category) => (
+               <button 
+                 key={category.id}
+                 className={`yacht-type-btn ${filters.typeId === category.id ? 'active' : ''}`}
+                 onClick={() => handleCategoryChange(category.id, category.name)}
+               >
+                 {category.name.toUpperCase()}
+               </button>
+             ))
+          )}
         </div>
       </div>
 
@@ -364,18 +347,20 @@ const Yates: React.FC = () => {
                 </select>
               </div>
 
-              <div className="filter-group">
-                <label>Capacidad</label>
-                <select 
-                  value={filters.capacity} 
-                  onChange={(e) => handleFilterChange('capacity', e.target.value)}
-                >
-                  <option value="">Todas las capacidades</option>
-                  <option value="small">Hasta 8 personas</option>
-                  <option value="medium">9-12 personas</option>
-                  <option value="large">Más de 12 personas</option>
-                </select>
-              </div>
+                             <div className="filter-group">
+                 <label>Capacidad</label>
+                 <select 
+                   value={filters.capacity} 
+                   onChange={(e) => handleFilterChange('capacity', e.target.value)}
+                 >
+                   <option value="">Todas las capacidades</option>
+                   <option value="small">Hasta 8 personas</option>
+                   <option value="medium">9-12 personas</option>
+                   <option value="large">Más de 12 personas</option>
+                 </select>
+               </div>
+
+
 
               <button onClick={clearFilters} className="clear-filters">
                 <span className="material-icons-round">clear_all</span>
@@ -384,18 +369,49 @@ const Yates: React.FC = () => {
             </div>
           )}
 
-          {/* Results Counter */}
-          <div className="results-info">
-            <p>Mostrando {currentYachts.length} de {filteredYachts.length} yates</p>
-          </div>
+                     {/* Results Counter */}
+                       <div className="results-info">
+              <p>Mostrando {currentYachts.length} de {filteredYachts.length} yates {searchTerm && `(filtrados por "${searchTerm}")`}</p>
+            </div>
 
-          {/* Yachts Grid */}
-          <div className="yates-grid">
-            {currentYachts.map((yacht) => (
+                     {/* Yachts Grid */}
+           {loadingYachts ? (
+             <div className="yachts-loading-container">
+               <Loading 
+                 size="large" 
+                 text="Cargando yates..." 
+                 className="loading-yachts"
+               />
+             </div>
+           ) : (
+             <div className="yates-grid">
+               {currentYachts.map((yacht) => (
               <div key={yacht.id} className="yacht-card">
-                <div className="yacht-image">
-                  <img src={yacht.image} alt={yacht.name} />
-                  <div className="yacht-location">{yacht.type}</div>
+                                 <div className="yacht-image">
+                  {yacht.images && yacht.images.length > 0 ? (
+                    <Swiper
+                      modules={[Navigation, Pagination, Autoplay]}
+                      spaceBetween={0}
+                      slidesPerView={1}
+                      navigation={true}
+                      pagination={{ clickable: true }}
+                      autoplay={{ delay: 3000, disableOnInteraction: false }}
+                      loop={true}
+                      className="yacht-swiper"
+                    >
+                      {yacht.images.map((image, index) => (
+                        <SwiperSlide key={index}>
+                          <img 
+                            src={`${url_server}${image.url}`} 
+                            alt={`${yacht.name} - Imagen ${index + 1}`} 
+                          />
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  ) : (
+                    <img src={yacht.image || '/yacht_01.jpg'} alt={yacht.name} />
+                  )}
+                  <div className="yacht-location">{yacht.yachtCategory?.name || yacht.type || 'N/A'}</div>
                 </div>
                 
                 <div className="yacht-info">
@@ -409,94 +425,134 @@ const Yates: React.FC = () => {
                       <span className="material-icons-round">people</span>
                       {yacht.capacity} personas
                     </span>
-                    <span className="yacht-spec">
-                      <span className="material-icons-round">place</span>
-                      Puerto Banús
-                    </span>
+                                         <span className="yacht-spec">
+                       <span className="material-icons-round">place</span>
+                       {yacht.location}
+                     </span>
                   </div>
                   
-                  <p className="yacht-description">{yacht.description}</p>
                   
-                  <div className="yacht-characteristics">
-                    {yacht.features.slice(0, 3).map((feature, index) => (
-                      <span key={index} className="characteristic-tag">
-                        {feature}
-                      </span>
-                    ))}
-                    {yacht.features.length > 3 && (
-                      <span className="characteristic-more">
-                        +{yacht.features.length - 3} más
-                      </span>
-                    )}
-                  </div>
                   
-                  <div className="yacht-footer">
-                    <span className="yacht-price">
-                      {yacht.price}
-                      <span className="yacht-currency"> MXN/día</span>
-                    </span>
-                    <div className="yacht-actions">
-                      <Link href={`/yachts/${yacht.id}`} className="yacht-action-btn yacht-view-btn">
-                        <span className="material-icons-round">visibility</span>
-                        Ver
-                      </Link>
-                      <button className="yacht-action-btn yacht-message-btn">
-                        <span className="material-icons-round">chat</span>
-                        Mensaje
-                      </button>
+                                     <div className="yacht-characteristics">
+                     {(() => {
+                       const characteristics = Array.isArray(yacht.characteristics) ? yacht.characteristics : [];
+                       const features = Array.isArray(yacht.features) ? yacht.features : [];
+                       const allFeatures = [...characteristics, ...features];
+                       
+                       return (
+                         <>
+                           {allFeatures.slice(0, 3).map((feature, index) => (
+                             <span key={index} className="characteristic-tag">
+                               {feature}
+                             </span>
+                           ))}
+                           {allFeatures.length > 3 && (
+                             <span className="characteristic-more">
+                               +{allFeatures.length - 3} más
+                             </span>
+                           )}
+                         </>
+                       );
+                     })()}
+                   </div>
+                  
+                                     <div className="yacht-footer">
+                     <div className="yacht-pricing">
+                       {yacht.pricing && yacht.pricing.length > 0 ? (
+                         <div className="pricing-container">
+                           <div className="pricing-options">
+                             {yacht.pricing.map((price, index) => (
+                               <button
+                                 key={index}
+                                 className={`pricing-option ${selectedHours[yacht.id] === price.hora ? 'active' : ''}`}
+                                 onClick={() => setSelectedHours(prev => ({ ...prev, [yacht.id]: price.hora }))}
+                               >
+                                 <span className="option-hours">{price.hora}h</span>
+                               </button>
+                             ))}
+                           </div>
+                           <div className="selected-price">
+                             <span className="price-amount">
+                               ${yacht.pricing.find(p => p.hora === selectedHours[yacht.id])?.precio.toLocaleString() || 'N/A'}
+                             </span>
+                             <span className="price-duration">/{selectedHours[yacht.id] || yacht.pricing[0]?.hora || 0}h</span>
+                           </div>
+                         </div>
+                       ) : (
+                         <span className="yacht-price">
+                           {yacht.price || 'Consultar'}
+                           <span className="yacht-currency"> MXN</span>
+                         </span>
+                       )}
+                     </div>
+                                         <div className="yacht-actions">
+                       <Link href="/yachts/yacht" className="yacht-action-btn yacht-view-btn">
+                         <span className="material-icons-round">visibility</span>
+                         Ver
+                       </Link>
                       <Link href="/reservation" className="yacht-action-btn yacht-reserve-btn">
                         <span className="material-icons-round">calendar_month</span>
                         Reservar
                       </Link>
                     </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                                     </div>
+                 </div>
+               </div>
+             ))}
+             </div>
+           )}
 
-          {/* No Results Message */}
-          {filteredYachts.length === 0 && (
-            <div className="no-results">
-              <span className="material-icons-round">search_off</span>
-              <h3>No se encontraron yates</h3>
-              <p>Intenta ajustar tus filtros de búsqueda</p>
-              <button onClick={clearFilters} className="btn btn-primary">
-                Limpiar Filtros
-              </button>
-            </div>
-          )}
+                     {/* No Results Message */}
+                       {!loadingYachts && filteredYachts.length === 0 && (
+             <div className="no-results">
+               <div className="no-results-icon">
+                 <span className="material-icons-round">sailing</span>
+               </div>
+               <h3>No hay yates disponibles</h3>
+               <p>En este momento no tenemos yates que coincidan con tu búsqueda. Prueba con otros filtros o vuelve más tarde.</p>
+               <div className="no-results-actions">
+                 <button onClick={clearFilters} className="btn btn-primary">
+                   <span className="material-icons-round">refresh</span>
+                   Limpiar Filtros
+                 </button>
+                 <button onClick={() => handleCategoryChange(0, '')} className="btn btn-outline">
+                   <span className="material-icons-round">home</span>
+                   Ver Todos
+                 </button>
+               </div>
+             </div>
+           )}
 
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="pagination">
-              <button 
-                onClick={() => goToPage(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="pagination-btn"
-              >
-                <span className="material-icons-round">chevron_left</span>
-              </button>
-
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                <button
-                  key={page}
-                  onClick={() => goToPage(page)}
-                  className={`pagination-btn ${currentPage === page ? 'active' : ''}`}
-                >
-                  {page}
-                </button>
-              ))}
-
-              <button 
-                onClick={() => goToPage(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="pagination-btn"
-              >
-                <span className="material-icons-round">chevron_right</span>
-              </button>
-            </div>
-          )}
+                     {/* Pagination */}
+           {serverTotalPages > 0 && (
+             <div className="pagination">
+               <button 
+                 onClick={() => goToPage(currentPage - 1)}
+                 disabled={currentPage === 1}
+                 className="pagination-btn"
+               >
+                 <span className="material-icons-round">chevron_left</span>
+               </button>
+ 
+               {Array.from({ length: serverTotalPages }, (_, i) => i + 1).map((page) => (
+                 <button
+                   key={page}
+                   onClick={() => goToPage(page)}
+                   className={`pagination-btn ${currentPage === page ? 'active' : ''}`}
+                 >
+                   {page}
+                 </button>
+               ))}
+ 
+               <button 
+                 onClick={() => goToPage(currentPage + 1)}
+                 disabled={currentPage === serverTotalPages}
+                 className="pagination-btn"
+               >
+                 <span className="material-icons-round">chevron_right</span>
+               </button>
+             </div>
+           )}
         </div>
       </section>
       

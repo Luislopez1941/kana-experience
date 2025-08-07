@@ -25,7 +25,8 @@ interface UserStore {
 }
 
 const useStore = create<UserStore>((set) => ({
-  url_server: 'https://jllc-back.com/kana-experience/', // URL base de la imagen
+  // url_server: 'https://jllc-back.com/kana-experience/', 
+  url_server: 'http://localhost:3005/', // URL base de la imagen
 
 }));
 

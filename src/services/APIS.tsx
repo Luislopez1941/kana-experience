@@ -68,16 +68,55 @@ const APIs = {
         return ConfigurationAPIs.post(path, data);
     },
 
-    getYachtByYachtType: async (yachtTypeId: any) => {
-        const path = `yachts/by-type/${yachtTypeId}`;
+    getYachtByYachtType: async (yachtTypeId: any, page: number = 1) => {
+        const path = `yachts/by-category`;
+        return ConfigurationAPIs.post(path, { yachtCategoryId: yachtTypeId, page });
+    },
+
+
+    getYachtsById: async (id: any) => {
+        const path = `yachts/get-yacht-by-id/${id}`;
         return ConfigurationAPIs.get(path);
     },
 
 
-    getTourByTourType: async (tourTypeId: any) => {
-        const path = `tours/by-type/${tourTypeId}`;
+
+
+
+    ////////CATEGORIAS DE YACHTS ////////////
+
+
+    getYachtCategories: async () => {
+        const path = `yacht-types/get-all`;
         return ConfigurationAPIs.get(path);
     },
+
+
+
+    /////////////Tour ////////////
+
+    getTourByTourCategory: async (tourCategoryId: any) => {
+        const path = `tours/by-category/${tourCategoryId}`;
+        return ConfigurationAPIs.get(path);
+    },
+
+    getToursById: async (id: any) => {
+        const path = `tours/get-tour-by-id/${id}`;
+        return ConfigurationAPIs.get(path);
+    },
+
+
+
+    
+    /////////////Categories Tour ////////////
+
+    getTourCategories: async () => {
+        const path = `tour-categories/get-all`;
+        return ConfigurationAPIs.get(path);
+    },
+
+
+
 
     // http://localhost:3000/yachts/by-type/1
 

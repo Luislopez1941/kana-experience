@@ -20,7 +20,7 @@ export const ExperiencePackages: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await APIs.getTourByTourType(1);
+      const response = await APIs.getTourByTourCategory(1);
       console.log('Tours response:', response);
       setPackages(response.data || []);
     } catch (error) {
