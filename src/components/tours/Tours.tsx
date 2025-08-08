@@ -70,7 +70,7 @@ const Tours: React.FC = () => {
       const response = await APIs.getTourCategories();
       console.log('Tour Categories:', response);
       
-      if (response && response.data) {
+      if (response.data) {
         setTourCategories(response.data);
       }
     } catch (error) {
@@ -209,19 +209,19 @@ const Tours: React.FC = () => {
       {/* Search Row */}
       <div className="tours-search-row">
         <div className="tours-search-container">
-          <div className="search-input-wrapper">
-            <span className="material-icons-round search-icon">search</span>
+          <div className="tours-search-input-wrapper">
+            <span className="material-icons-round tours-search-icon">search</span>
             <input
               type="text"
               placeholder="Buscar tours por nombre, tipo o descripción..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
+              className="tours-search-input"
             />
             {searchTerm && (
               <button 
                 onClick={() => setSearchTerm("")}
-                className="clear-search"
+                className="tours-clear-search"
               >
                 <span className="material-icons-round">close</span>
               </button>
@@ -231,7 +231,7 @@ const Tours: React.FC = () => {
           {/* Mobile Filter Button */}
           <button 
             onClick={() => setShowFilters(!showFilters)}
-            className={`mobile-filter-toggle ${showFilters ? 'active' : ''}`}
+            className={`tours-mobile-filter-toggle ${showFilters ? 'active' : ''}`}
           >
             <span className="material-icons-round">tune</span>
           </button>
@@ -241,7 +241,7 @@ const Tours: React.FC = () => {
       {/* Desktop Filters - Always Visible */}
       <div className="tours-desktop-filters">
         <div className="tours-filters-container">
-          <div className="filter-group">
+          <div className="tours-filter-group">
             <label>Rango de Precio</label>
             <select 
               value={filters.priceRange} 
@@ -255,7 +255,7 @@ const Tours: React.FC = () => {
             </select>
           </div>
 
-          <div className="filter-group">
+          <div className="tours-filter-group">
             <label>Ubicación</label>
             <select 
               value={filters.location} 
@@ -269,7 +269,7 @@ const Tours: React.FC = () => {
             </select>
           </div>
 
-          <button onClick={clearFilters} className="clear-filters">
+          <button onClick={clearFilters} className="tours-clear-filters">
             <span className="material-icons-round">clear</span>
             Limpiar Filtros
           </button>
@@ -281,7 +281,7 @@ const Tours: React.FC = () => {
         <div className="tours-types-container">
           {/* Botón "Todos" siempre presente */}
           <button 
-            className={`tour-type-btn ${filters.typeId === 0 ? 'active' : ''}`}
+            className={`tours-type-btn ${filters.typeId === 0 ? 'active' : ''}`}
             onClick={() => handleCategoryChange(0, '')}
           >
             Todos
@@ -289,7 +289,7 @@ const Tours: React.FC = () => {
           
           {/* Categorías dinámicas de la API */}
           {loadingCategories ? (
-            <div className="tour-categories-loading">
+            <div className="tours-categories-loading">
               <span className="material-icons-round">refresh</span>
               Cargando categorías...
             </div>
@@ -298,7 +298,7 @@ const Tours: React.FC = () => {
             tourCategories.map((category) => (
               <button 
                 key={category.id}
-                className={`tour-type-btn ${filters.typeId === category.id ? 'active' : ''}`}
+                className={`tours-type-btn ${filters.typeId === category.id ? 'active' : ''}`}
                 onClick={() => handleCategoryChange(category.id, category.name)}
               >
                 {category.name.toUpperCase()}
@@ -309,11 +309,11 @@ const Tours: React.FC = () => {
       </div>
 
       <section className="tours-content">
-        <div className="container">
+        <div className="tours-container">
           {/* Filter Options */}
           {showFilters && (
-            <div className="filters-panel">
-              <div className="filter-group">
+            <div className="tours-filters-panel">
+              <div className="tours-filter-group">
                 <label>Rango de Precio</label>
                 <select 
                   value={filters.priceRange} 
@@ -326,7 +326,7 @@ const Tours: React.FC = () => {
                 </select>
               </div>
 
-              <div className="filter-group">
+              <div className="tours-filter-group">
                 <label>Ubicación</label>
                 <select 
                   value={filters.location} 
@@ -340,7 +340,7 @@ const Tours: React.FC = () => {
                 </select>
               </div>
 
-              <button onClick={clearFilters} className="clear-filters">
+              <button onClick={clearFilters} className="tours-clear-filters">
                 <span className="material-icons-round">clear_all</span>
                 Limpiar Filtros
               </button>
@@ -348,7 +348,7 @@ const Tours: React.FC = () => {
           )}
 
           {/* Results Counter */}
-          <div className="results-info">
+          <div className="tours-results-info">
             <p>Mostrando {currentTours.length} de {filteredTours.length} tours {searchTerm && `(filtrados por "${searchTerm}")`}</p>
           </div>
 
@@ -364,8 +364,8 @@ const Tours: React.FC = () => {
           ) : (
             <div className="tours-grid">
               {currentTours.map((tour) => (
-                <div key={tour.id} className="tour-card">
-                  <div className="tour-image">
+                <div key={tour.id} className="tours-card">
+                  <div className="tours-image">
                     {tour.images && tour.images.length > 0 ? (
                       <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
@@ -375,7 +375,7 @@ const Tours: React.FC = () => {
                         pagination={{ clickable: true }}
                         autoplay={{ delay: 3000, disableOnInteraction: false }}
                         loop={true}
-                        className="tour-swiper"
+                        className="tours-swiper"
                       >
                         {tour.images.map((image, index) => (
                           <SwiperSlide key={index}>
@@ -389,41 +389,41 @@ const Tours: React.FC = () => {
                     ) : (
                       <img src="/tour_01.jpg" alt={tour.name} />
                     )}
-                    <div className="tour-location">{tour.tourCategory?.name || 'N/A'}</div>
+                    <div className="tours-location">{tour.tourCategory?.name || 'N/A'}</div>
                   </div>
                   
-                  <div className="tour-info">
-                    <h3 className="tour-name">{tour.name}</h3>
-                    <div className="tour-specs">
-                      <span className="tour-spec">
+                  <div className="tours-info">
+                    <h3 className="tours-name">{tour.name}</h3>
+                    <div className="tours-specs">
+                      <span className="tours-spec">
                         <span className="material-icons-round">schedule</span>
                         {tour.duracion || 'Duración no especificada'}
                       </span>
-                      <span className="tour-spec">
+                      <span className="tours-spec">
                         <span className="material-icons-round">place</span>
                         {tour.location}
                       </span>
                       {tour.edadMinima && (
-                        <span className="tour-spec">
+                        <span className="tours-spec">
                           <span className="material-icons-round">person</span>
                           {tour.edadMinima}
                         </span>
                       )}
                     </div>
                     
-                    <div className="tour-characteristics">
+                    <div className="tours-characteristics">
                       {(() => {
                         const characteristics = Array.isArray(tour.characteristics) ? tour.characteristics : [];
                         
                         return (
                           <>
                             {characteristics.slice(0, 3).map((characteristic, index) => (
-                              <span key={index} className="characteristic-tag">
+                              <span key={index} className="tours-characteristic-tag">
                                 {characteristic.name}
                               </span>
                             ))}
                             {characteristics.length > 3 && (
-                              <span className="characteristic-more">
+                              <span className="tours-characteristic-more">
                                 +{characteristics.length - 3} más
                               </span>
                             )}
@@ -432,41 +432,41 @@ const Tours: React.FC = () => {
                       })()}
                     </div>
                     
-                    <div className="tour-footer">
-                      <div className="tour-pricing">
+                    <div className="tours-footer">
+                      <div className="tours-pricing">
                         {tour.pricing && tour.pricing.length > 0 ? (
-                          <div className="pricing-container">
-                            <div className="pricing-options">
+                          <div className="tours-pricing-container">
+                            <div className="tours-pricing-options">
                               {tour.pricing.map((price, index) => (
                                 <button
                                   key={index}
-                                  className={`pricing-option ${selectedPersons[tour.id] === price.personas ? 'active' : ''}`}
+                                  className={`tours-pricing-option ${selectedPersons[tour.id] === price.personas ? 'active' : ''}`}
                                   onClick={() => setSelectedPersons(prev => ({ ...prev, [tour.id]: price.personas }))}
                                 >
-                                  <span className="option-persons">{price.personas} personas</span>
+                                  <span className="tours-option-persons">{price.personas} personas</span>
                                 </button>
                               ))}
                             </div>
-                            <div className="selected-price">
-                              <span className="price-amount">
+                            <div className="tours-selected-price">
+                              <span className="tours-price-amount">
                                 ${tour.pricing.find(p => p.personas === selectedPersons[tour.id])?.precio.toLocaleString() || 'N/A'}
                               </span>
-                              <span className="price-persons">/{selectedPersons[tour.id] || tour.pricing[0]?.personas || 0} personas</span>
+                              <span className="tours-price-persons">/{selectedPersons[tour.id] || tour.pricing[0]?.personas || 0} personas</span>
                             </div>
                           </div>
                         ) : (
-                          <span className="tour-price">
+                          <span className="tours-price">
                             Consultar
-                            <span className="tour-currency"> MXN</span>
+                            <span className="tours-currency"> MXN</span>
                           </span>
                         )}
                       </div>
-                      <div className="tour-actions">
-                        <Link href="/tours/tour" className="tour-action-btn tour-view-btn">
+                      <div className="tours-actions">
+                        <Link href="/tours/tour" className="tours-action-btn tours-view-btn">
                           <span className="material-icons-round">visibility</span>
                           Ver
                         </Link>
-                        <Link href="/reservation" className="tour-action-btn tour-reserve-btn">
+                        <Link href="/reservation" className="tours-action-btn tours-reserve-btn">
                           <span className="material-icons-round">calendar_month</span>
                           Reservar
                         </Link>
@@ -480,13 +480,13 @@ const Tours: React.FC = () => {
 
           {/* No Results Message */}
           {!loadingTours && filteredTours.length === 0 && (
-            <div className="no-results">
-              <div className="no-results-icon">
+            <div className="tours-no-results">
+              <div className="tours-no-results-icon">
                 <span className="material-icons-round">explore</span>
               </div>
               <h3>No hay tours disponibles</h3>
               <p>En este momento no tenemos tours que coincidan con tu búsqueda. Prueba con otros filtros o vuelve más tarde.</p>
-              <div className="no-results-actions">
+              <div className="tours-no-results-actions">
                 <button onClick={clearFilters} className="btn btn-primary">
                   <span className="material-icons-round">refresh</span>
                   Limpiar Filtros
@@ -501,11 +501,11 @@ const Tours: React.FC = () => {
 
           {/* Pagination */}
           {serverTotalPages > 0 && (
-            <div className="pagination">
+            <div className="tours-pagination">
               <button 
                 onClick={() => goToPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="pagination-btn"
+                className="tours-pagination-btn"
               >
                 <span className="material-icons-round">chevron_left</span>
               </button>
@@ -514,7 +514,7 @@ const Tours: React.FC = () => {
                 <button
                   key={page}
                   onClick={() => goToPage(page)}
-                  className={`pagination-btn ${currentPage === page ? 'active' : ''}`}
+                  className={`tours-pagination-btn ${currentPage === page ? 'active' : ''}`}
                 >
                   {page}
                 </button>
@@ -523,7 +523,7 @@ const Tours: React.FC = () => {
               <button 
                 onClick={() => goToPage(currentPage + 1)}
                 disabled={currentPage === serverTotalPages}
-                className="pagination-btn"
+                className="tours-pagination-btn"
               >
                 <span className="material-icons-round">chevron_right</span>
               </button>

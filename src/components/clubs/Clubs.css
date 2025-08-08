@@ -1,5 +1,5 @@
-/* Tours Page Styles */
-.tours-page {
+/* Clubs Page Styles */
+.clubs-page {
   min-height: 100vh;
   background-color: var(--bg-light);
   overflow-x: hidden; /* Evitar scroll horizontal */
@@ -8,7 +8,7 @@
 }
 
 /* Header Styles */
-.tours-header {
+.clubs-header {
   background-color: var(--text-white);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
@@ -16,7 +16,7 @@
   z-index: 10;
 }
 
-.tours-header-container {
+.clubs-header-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
@@ -26,15 +26,15 @@
   height: 4rem;
 }
 
-.tours-back-btn {
+.clubs-back-btn {
   order: 1;
 }
 
-.tours-reserve-btn {
+.clubs-reserve-btn {
   order: 2;
 }
 
-.tours-header-btn {
+.clubs-header-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -46,12 +46,12 @@
   transition: all 0.3s ease;
 }
 
-.tours-header-btn .material-icons-round {
+.clubs-header-btn .material-icons-round {
   font-size: 1rem;
 }
 
 /* Estilos del botón Consultar Reserva igual al header principal */
-.tours-reserve-btn {
+.clubs-reserve-btn {
   padding: 0.5rem 1rem;
   background-color: var(--primary-color);
   color: var(--text-white);
@@ -64,19 +64,19 @@
   display: inline-block;
 }
 
-.tours-reserve-btn:hover {
+.clubs-reserve-btn:hover {
   background-color: var(--primary-dark);
   transform: translateY(-2px);
 }
 
 /* Search Row Styles */
-.tours-search-row {
+.clubs-search-row {
   background-color: var(--text-white);
   border-bottom: 1px solid var(--border-color);
   padding: 1rem 0;
 }
 
-.tours-search-container {
+.clubs-search-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
@@ -87,14 +87,14 @@
 }
 
 /* Desktop Filters Styles */
-.tours-desktop-filters {
+.clubs-desktop-filters {
   background-color: var(--text-white);
   border-bottom: 1px solid var(--border-color);
   padding: 1rem 0;
   display: none;
 }
 
-.tours-filters-container {
+.clubs-filters-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
@@ -105,7 +105,7 @@
 }
 
 /* Mobile Filter Button */
-.tours-mobile-filter-toggle {
+.clubs-mobile-filter-toggle {
   display: none;
   align-items: center;
   justify-content: center;
@@ -119,17 +119,17 @@
   height: 3rem;
 }
 
-.tours-mobile-filter-toggle:hover,
-.tours-mobile-filter-toggle.active {
+.clubs-mobile-filter-toggle:hover,
+.clubs-mobile-filter-toggle.active {
   border-color: var(--primary-color);
   color: var(--primary-color);
 }
 
-.tours-mobile-filter-toggle .material-icons-round {
+.clubs-mobile-filter-toggle .material-icons-round {
   font-size: 1.25rem;
 }
 
-.tours-search-input-wrapper {
+.clubs-search-input-wrapper {
   position: relative;
   flex: 1;
   max-width: 600px;
@@ -137,7 +137,7 @@
   width: 100%;
 }
 
-.tours-search-icon {
+.clubs-search-icon {
   position: absolute;
   left: 1rem;
   top: 50%;
@@ -146,7 +146,7 @@
   font-size: 1.25rem;
 }
 
-.tours-search-input {
+.clubs-search-input {
   width: 100%;
   padding: 0.875rem 1rem 0.875rem 3rem;
   border: 2px solid var(--border-color);
@@ -158,14 +158,14 @@
   outline: none;
 }
 
-.tours-search-input:focus {
+.clubs-search-input:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
   transform: translateY(-1px);
 }
 
-.tours-clear-search {
+.clubs-clear-search {
   position: absolute;
   right: 0.75rem;
   top: 50%;
@@ -184,13 +184,13 @@
   height: 1.5rem;
 }
 
-.tours-clear-search:hover {
+.clubs-clear-search:hover {
   background-color: rgba(255, 107, 157, 0.1);
   color: var(--primary-color);
   transform: scale(1.1);
 }
 
-.tours-filter-toggle {
+.clubs-filter-toggle {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -205,25 +205,25 @@
   min-width: fit-content;
 }
 
-.tours-filter-toggle:hover,
-.tours-filter-toggle.active {
+.clubs-filter-toggle:hover,
+.clubs-filter-toggle.active {
   border-color: var(--primary-color);
   color: var(--primary-color);
 }
 
-.tours-filter-toggle .material-icons-round {
+.clubs-filter-toggle .material-icons-round {
   font-size: 1.25rem;
 }
 
-/* Tour Types Menu */
-.tours-types-menu {
+/* Club Types Menu */
+.clubs-types-menu {
   background-color: var(--bg-light);
   border-bottom: 1px solid var(--border-color);
   padding: 0.5rem 0;
   overflow-x: auto;
 }
 
-.tours-types-container {
+.clubs-types-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
@@ -235,11 +235,11 @@
   -ms-overflow-style: none; /* IE and Edge */
 }
 
-.tours-types-container::-webkit-scrollbar {
+.clubs-types-container::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
 }
 
-.tours-type-btn {
+.clubs-type-btn {
   padding: 0.5rem 1rem;
   background-color: var(--text-white);
   border: 1px solid var(--border-color);
@@ -254,14 +254,14 @@
   flex-shrink: 0;
 }
 
-.tours-type-btn:hover {
+.clubs-type-btn:hover {
   border-color: var(--primary-color);
   color: var(--primary-color);
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(255, 107, 157, 0.2);
 }
 
-.tours-type-btn.active {
+.clubs-type-btn.active {
   background: linear-gradient(135deg, var(--primary-color), #ff6b9d);
   color: var(--text-white);
   border-color: var(--primary-color);
@@ -270,13 +270,13 @@
 }
 
 /* Content Styles */
-.tours-content {
+.clubs-content {
   padding: 2rem 0;
   width: 100%;
   box-sizing: border-box;
 }
 
-.tours-container {
+.clubs-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
@@ -285,7 +285,7 @@
 }
 
 /* Filter Options */
-.tours-filters-panel {
+.clubs-filters-panel {
   background-color: white;
   border: 1px solid #dee2e6;
   border-radius: 12px;
@@ -297,19 +297,19 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.tours-filter-group {
+.clubs-filter-group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.tours-filter-group label {
+.clubs-filter-group label {
   font-weight: 600;
   color: #495057;
   font-size: 0.875rem;
 }
 
-.tours-filter-group select {
+.clubs-filter-group select {
   padding: 0.75rem;
   border: 1px solid #dee2e6;
   border-radius: 8px;
@@ -318,13 +318,13 @@
   background: white;
 }
 
-.tours-filter-group select:focus {
+.clubs-filter-group select:focus {
   outline: none;
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.tours-clear-filters {
+.clubs-clear-filters {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -339,20 +339,20 @@
   transition: background-color 0.3s ease;
 }
 
-.tours-clear-filters:hover {
+.clubs-clear-filters:hover {
   background: #5a6268;
 }
 
 /* Results Info */
-.tours-results-info {
+.clubs-results-info {
   margin-bottom: 1.5rem;
   color: #6c757d;
   font-size: 0.875rem;
   font-weight: 500;
 }
 
-/* Tours Grid - Using Fleet Styles */
-.tours-grid {
+/* Clubs Grid - Using Fleet Styles */
+.clubs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
@@ -360,7 +360,7 @@
   width: 100%;
 }
 
-.tours-card {
+.clubs-card {
   background-color: var(--text-white);
   border-radius: 1rem;
   overflow: hidden;
@@ -373,12 +373,12 @@
   max-width: 100%;
 }
 
-.tours-card:hover {
+.clubs-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-.tours-image {
+.clubs-image {
   height: 12rem;
   background: linear-gradient(135deg, #dbeafe, #bfdbfe);
   position: relative;
@@ -389,14 +389,14 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.tours-image img {
+.clubs-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
 
-.tours-location {
+.clubs-location {
   position: absolute;
   top: 1rem;
   left: 1rem;
@@ -410,7 +410,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.tours-info {
+.clubs-info {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -418,7 +418,7 @@
   min-height: 0;
 }
 
-.tours-name {
+.clubs-name {
   font-size: 1.25rem;
   font-weight: 500;
   color: var(--text-dark);
@@ -427,7 +427,7 @@
   overflow-wrap: break-word;
 }
 
-.tours-specs {
+.clubs-specs {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -436,7 +436,7 @@
   width: 100%;
 }
 
-.tours-spec {
+.clubs-spec {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -445,12 +445,12 @@
   padding: 0.25rem 0;
 }
 
-.tours-spec .material-icons-round {
+.clubs-spec .material-icons-round {
   font-size: 1rem;
   color: var(--secondary-color);
 }
 
-.tours-characteristics {
+.clubs-characteristics {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -458,7 +458,7 @@
   width: 100%;
 }
 
-.tours-characteristic-tag {
+.clubs-characteristic-tag {
   background-color: var(--secondary-color);
   color: var(--text-white);
   padding: 0.25rem 0.75rem;
@@ -468,7 +468,7 @@
   white-space: nowrap;
 }
 
-.tours-characteristic-more {
+.clubs-characteristic-more {
   background-color: rgba(18, 45, 82, 0.1);
   color: var(--secondary-color);
   padding: 0.25rem 0.75rem;
@@ -478,7 +478,7 @@
   border: 1px solid var(--secondary-color);
 }
 
-.tours-footer {
+.clubs-footer {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -486,32 +486,32 @@
   flex-shrink: 0;
 }
 
-.tours-price {
+.clubs-price {
   font-size: 2rem;
   font-weight: 300;
   color: var(--secondary-color);
   text-align: center;
 }
 
-.tours-currency {
+.clubs-currency {
   font-size: 0.875rem;
   color: var(--text-light);
 }
 
-.tours-pricing {
+.clubs-pricing {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
-.tours-pricing-container {
+.clubs-pricing-container {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.tours-pricing-options {
+.clubs-pricing-options {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -519,7 +519,7 @@
   width: 100%;
 }
 
-.tours-pricing-option {
+.clubs-pricing-option {
   display: flex;
   align-items: center;
   padding: 0.375rem 0.75rem;
@@ -535,14 +535,14 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.tours-pricing-option:hover {
+.clubs-pricing-option:hover {
   border-color: var(--primary-color);
   color: var(--primary-color);
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(255, 107, 157, 0.2);
 }
 
-.tours-pricing-option.active {
+.clubs-pricing-option.active {
   background: linear-gradient(135deg, var(--primary-color), #ff6b9d);
   color: var(--text-white);
   border-color: var(--primary-color);
@@ -550,11 +550,11 @@
   transform: translateY(-1px);
 }
 
-.tours-option-persons {
+.clubs-option-hours {
   font-weight: 600;
 }
 
-.tours-selected-price {
+.clubs-selected-price {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -566,19 +566,19 @@
   box-shadow: 0 2px 8px rgba(255, 107, 157, 0.1);
 }
 
-.tours-price-amount {
+.clubs-price-amount {
   font-size: 1rem;
   font-weight: 700;
   color: var(--primary-color);
 }
 
-.tours-price-persons {
+.clubs-price-duration {
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-light);
 }
 
-.tours-actions {
+.clubs-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
@@ -586,7 +586,11 @@
   width: 100%;
 }
 
-.tours-action-btn {
+.clubs-actions .clubs-single-action {
+  grid-column: 1 / -1;
+}
+
+.clubs-action-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -604,25 +608,25 @@
   min-height: 2.75rem;
 }
 
-.tours-action-btn .material-icons-round {
+.clubs-action-btn .material-icons-round {
   font-size: 1.125rem;
 }
 
-.tours-view-btn {
+.clubs-view-btn {
   background: linear-gradient(135deg, #f8f9fa, #e9ecef);
   color: var(--text-dark);
   border: 1px solid #dee2e6;
   font-size: 0.875rem;
 }
 
-.tours-view-btn:hover {
+.clubs-view-btn:hover {
   background: linear-gradient(135deg, #e9ecef, #dee2e6);
   color: var(--text-dark);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.tours-reserve-btn {
+.clubs-reserve-btn {
   background: linear-gradient(135deg, var(--primary-color), #ff6b9d);
   color: var(--text-white);
   font-weight: 700;
@@ -631,14 +635,14 @@
   border: 1px solid var(--primary-color);
 }
 
-.tours-reserve-btn:hover {
+.clubs-reserve-btn:hover {
   background: linear-gradient(135deg, var(--primary-dark), #ff5a8a);
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
 }
 
 /* No Results */
-.tours-no-results {
+.clubs-no-results {
   text-align: center;
   padding: 4rem 2rem;
   color: var(--text-light);
@@ -649,24 +653,24 @@
   margin: 2rem 0;
 }
 
-.tours-no-results-icon {
+.clubs-no-results-icon {
   margin-bottom: 1.5rem;
 }
 
-.tours-no-results-icon .material-icons-round {
+.clubs-no-results-icon .material-icons-round {
   font-size: 4rem;
   color: var(--primary-color);
   opacity: 0.7;
 }
 
-.tours-no-results h3 {
+.clubs-no-results h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: var(--text-dark);
   font-weight: 600;
 }
 
-.tours-no-results p {
+.clubs-no-results p {
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
@@ -676,14 +680,14 @@
   margin-right: auto;
 }
 
-.tours-no-results-actions {
+.clubs-no-results-actions {
   display: flex;
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.tours-no-results-actions .btn {
+.clubs-no-results-actions .btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -692,17 +696,17 @@
   transition: all 0.3s ease;
 }
 
-.tours-no-results-actions .btn .material-icons-round {
+.clubs-no-results-actions .btn .material-icons-round {
   font-size: 1rem;
 }
 
-.tours-no-results-actions .btn:hover {
+.clubs-no-results-actions .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Pagination */
-.tours-pagination {
+.clubs-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -715,7 +719,7 @@
   border: 1px solid rgba(255, 107, 157, 0.1);
 }
 
-.tours-pagination-btn {
+.clubs-pagination-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -733,14 +737,14 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.tours-pagination-btn:hover:not(:disabled) {
+.clubs-pagination-btn:hover:not(:disabled) {
   border-color: var(--primary-color);
   color: var(--primary-color);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(255, 107, 157, 0.2);
 }
 
-.tours-pagination-btn.active {
+.clubs-pagination-btn.active {
   background: linear-gradient(135deg, var(--primary-color), #ff6b9d);
   color: var(--text-white);
   border-color: var(--primary-color);
@@ -748,14 +752,14 @@
   transform: translateY(-1px);
 }
 
-.tours-pagination-btn:disabled {
+.clubs-pagination-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
 }
 
-.tours-pagination-btn:disabled:hover {
+.clubs-pagination-btn:disabled:hover {
   transform: none;
   box-shadow: none;
   border-color: var(--border-color);
@@ -764,23 +768,23 @@
 
 /* Desktop Styles */
 @media (min-width: 769px) {
-  .tours-search-container {
+  .clubs-search-container {
     gap: 1.5rem;
   }
   
-  .tours-search-input-wrapper {
+  .clubs-search-input-wrapper {
     max-width: 700px;
   }
   
-  .tours-desktop-filters {
+  .clubs-desktop-filters {
     display: block;
   }
   
-  .tours-mobile-filter-toggle {
+  .clubs-mobile-filter-toggle {
     display: none;
   }
   
-  .tours-specs {
+  .clubs-specs {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1rem;
@@ -789,74 +793,74 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .tours-header-container {
+  .clubs-header-container {
     padding: 0 0.5rem;
     gap: 0.5rem;
   }
 
-  .tours-header-btn {
+  .clubs-header-btn {
     padding: 0.375rem 0.75rem;
     font-size: 0.75rem;
   }
 
-  .tours-search-container {
+  .clubs-search-container {
     flex-direction: row;
     align-items: center;
     gap: 0.75rem;
     padding: 0 0.5rem;
   }
 
-  .tours-search-input-wrapper {
+  .clubs-search-input-wrapper {
     flex: 1;
     max-width: none;
     min-width: 200px;
   }
 
-  .tours-search-input {
+  .clubs-search-input {
     font-size: 0.875rem;
     padding: 0.75rem 1rem 0.75rem 2.75rem;
   }
 
-  .tours-desktop-filters {
+  .clubs-desktop-filters {
     display: none;
   }
 
-  .tours-mobile-filter-toggle {
+  .clubs-mobile-filter-toggle {
     display: flex;
   }
 
-  .tours-types-container {
+  .clubs-types-container {
     padding: 0 0.5rem;
     gap: 0.375rem;
   }
 
-  .tours-type-btn {
+  .clubs-type-btn {
     padding: 0.375rem 0.75rem;
     font-size: 0.75rem;
   }
 
-  .tours-filters-panel {
+  .clubs-filters-panel {
     grid-template-columns: 1fr;
     margin: 0 0.5rem 1rem 0.5rem;
   }
 
-  .tours-grid {
+  .clubs-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
     padding: 0 0.5rem;
     width: 100%;
   }
 
-  .tours-card {
+  .clubs-card {
     margin: 0;
   }
   
-  .tours-actions {
+  .clubs-actions {
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
   }
   
-  .tours-action-btn {
+  .clubs-action-btn {
     padding: 0.75rem 0.75rem;
     font-size: 0.75rem;
     min-height: 2.5rem;
@@ -864,116 +868,116 @@
 }
 
 @media (max-width: 480px) {
-  .tours-header-container {
+  .clubs-header-container {
     height: 3.5rem;
     gap: 0.25rem;
   }
 
-  .tours-header-btn {
+  .clubs-header-btn {
     padding: 0.25rem 0.5rem;
     font-size: 0.6875rem;
   }
 
-  .tours-search-input {
+  .clubs-search-input {
     font-size: 0.875rem;
     padding: 0.625rem 0.875rem 0.625rem 2.5rem;
   }
 
-  .tours-info {
+  .clubs-info {
     padding: 1rem;
   }
 
-  .tours-name {
+  .clubs-name {
     font-size: 1.125rem;
   }
 
-  .tours-specs {
+  .clubs-specs {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 1rem;
   }
 
-  .tours-characteristics {
+  .clubs-characteristics {
     gap: 0.375rem;
   }
 
-  .tours-characteristic-tag,
-  .tours-characteristic-more {
+  .clubs-characteristic-tag,
+  .clubs-characteristic-more {
     font-size: 0.6875rem;
     padding: 0.1875rem 0.625rem;
   }
 
-  .tours-pricing-options {
+  .clubs-pricing-options {
     gap: 0.375rem;
   }
 
-  .tours-pricing-option {
+  .clubs-pricing-option {
     padding: 0.25rem 0.625rem;
     font-size: 0.6875rem;
   }
 
-  .tours-selected-price {
+  .clubs-selected-price {
     padding: 0.75rem;
   }
 
-  .tours-price-amount {
+  .clubs-price-amount {
     font-size: 1.125rem;
   }
 
-  .tours-actions {
+  .clubs-actions {
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
   }
 
-  .tours-action-btn {
+  .clubs-action-btn {
     padding: 0.625rem 0.5rem;
     font-size: 0.75rem;
     min-height: 2.5rem;
   }
 
-  .tours-action-btn .material-icons-round {
+  .clubs-action-btn .material-icons-round {
     font-size: 0.875rem;
   }
 
   /* Responsive para No Results */
-  .tours-no-results {
+  .clubs-no-results {
     padding: 2rem 1rem;
   }
 
-  .tours-no-results h3 {
+  .clubs-no-results h3 {
     font-size: 1.25rem;
   }
 
-  .tours-no-results p {
+  .clubs-no-results p {
     font-size: 0.875rem;
   }
 
-  .tours-no-results-actions {
+  .clubs-no-results-actions {
     flex-direction: column;
     gap: 0.75rem;
   }
 
-  .tours-no-results-actions .btn {
+  .clubs-no-results-actions .btn {
     width: 100%;
     justify-content: center;
   }
 
   /* Pagination responsive */
-  .tours-pagination {
+  .clubs-pagination {
     gap: 0.5rem;
     padding: 0.75rem;
   }
 
-  .tours-pagination-btn {
+  .clubs-pagination-btn {
     min-width: 2.5rem;
     height: 2.5rem;
     font-size: 0.75rem;
   }
 }
 
-/* Loading state for tour categories */
-.tours-categories-loading {
+/* Loading state for club categories */
+.clubs-categories-loading {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -985,13 +989,13 @@
   animation: pulse 1.5s ease-in-out infinite;
 }
 
-.tours-categories-loading .material-icons-round {
+.clubs-categories-loading .material-icons-round {
   font-size: 1rem;
   animation: spin 1s linear infinite;
 }
 
-/* Loading container for tours grid */
-.tours-loading-container {
+/* Loading container for clubs grid */
+.clubs-loading-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1018,14 +1022,14 @@
 }
 
 /* Swiper Carousel Styles */
-.tours-swiper {
+.clubs-swiper {
   width: 100%;
   height: 100%;
   border-radius: 0.75rem 0.75rem 0 0;
   overflow: hidden;
 }
 
-.tours-swiper .swiper-slide {
+.clubs-swiper .swiper-slide {
   width: 100%;
   height: 100%;
   display: flex;
@@ -1033,7 +1037,7 @@
   justify-content: center;
 }
 
-.tours-swiper .swiper-slide img {
+.clubs-swiper .swiper-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1041,8 +1045,8 @@
 }
 
 /* Swiper Navigation Buttons */
-.tours-swiper .swiper-button-next,
-.tours-swiper .swiper-button-prev {
+.clubs-swiper .swiper-button-next,
+.clubs-swiper .swiper-button-prev {
   color: var(--text-white);
   background-color: rgba(0, 0, 0, 0.5);
   width: 2rem;
@@ -1051,48 +1055,48 @@
   transition: all 0.3s ease;
 }
 
-.tours-swiper .swiper-button-next:hover,
-.tours-swiper .swiper-button-prev:hover {
+.clubs-swiper .swiper-button-next:hover,
+.clubs-swiper .swiper-button-prev:hover {
   background-color: rgba(0, 0, 0, 0.7);
   transform: scale(1.1);
 }
 
-.tours-swiper .swiper-button-next::after,
-.tours-swiper .swiper-button-prev::after {
+.clubs-swiper .swiper-button-next::after,
+.clubs-swiper .swiper-button-prev::after {
   font-size: 0.875rem;
   font-weight: bold;
 }
 
 /* Swiper Pagination */
-.tours-swiper .swiper-pagination {
+.clubs-swiper .swiper-pagination {
   bottom: 0.5rem;
 }
 
-.tours-swiper .swiper-pagination-bullet {
+.clubs-swiper .swiper-pagination-bullet {
   background-color: var(--text-white);
   opacity: 0.7;
   transition: all 0.3s ease;
 }
 
-.tours-swiper .swiper-pagination-bullet-active {
+.clubs-swiper .swiper-pagination-bullet-active {
   opacity: 1;
   background-color: var(--primary-color);
 }
 
 /* Responsive Swiper */
 @media (max-width: 768px) {
-  .tours-swiper .swiper-button-next,
-  .tours-swiper .swiper-button-prev {
+  .clubs-swiper .swiper-button-next,
+  .clubs-swiper .swiper-button-prev {
     width: 1.5rem;
     height: 1.5rem;
   }
   
-  .tours-swiper .swiper-button-next::after,
-  .tours-swiper .swiper-button-prev::after {
+  .clubs-swiper .swiper-button-next::after,
+  .clubs-swiper .swiper-button-prev::after {
     font-size: 0.75rem;
   }
   
-  .tours-swiper .swiper-pagination {
+  .clubs-swiper .swiper-pagination {
     bottom: 0.25rem;
   }
 }

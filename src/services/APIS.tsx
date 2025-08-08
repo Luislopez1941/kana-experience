@@ -111,9 +111,34 @@ const APIs = {
     /////////////Categories Tour ////////////
 
     getTourCategories: async () => {
-        const path = `tour-categories/get-all`;
+        const path = `tour-types/get-all`;
         return ConfigurationAPIs.get(path);
     },
+
+
+      /////////////Clubs ////////////
+
+      getClubByClubCategory: async (clubCategoryId: any) => {
+        const path = `clubs/by-category/${clubCategoryId}`;
+        return ConfigurationAPIs.get(path);
+    },
+
+    getClubsById: async (id: any) => {
+        const path = `clubs/get-club-by-id/${id}`;
+        return ConfigurationAPIs.get(path);
+    },
+
+
+
+    
+    /////////////Categories Clubs ////////////
+
+    getClubCategories: async () => {
+        const path = `club-types/get-all`;
+        return ConfigurationAPIs.get(path);
+    },
+
+
 
 
 
