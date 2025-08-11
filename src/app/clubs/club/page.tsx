@@ -102,10 +102,10 @@ const ClubDetailsPage = () => {
     price: 'Consultar precio',
     priceNumber: 0,
     image: club.images && club.images.length > 0 
-      ? `${url_server}${club.images[0].url}` 
+      ? club.images[0].url 
       : '/party.jpg',
     images: club.images && club.images.length > 0 
-      ? club.images.map(img => `${url_server}${img.url}`)
+      ? club.images.map(img => img.url)
       : ['/party.jpg'],
     features: club.characteristics || ['Ambiente exclusivo', 'Música en vivo', 'Bar completo'],
     type: club.type?.name || 'Club',

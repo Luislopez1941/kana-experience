@@ -104,10 +104,10 @@ const TourDetailsPage = () => {
       ? tour.pricing[0].precio 
       : 0,
     image: tour.images && tour.images.length > 0 
-      ? `${url_server}${tour.images[0].url}` 
+      ? tour.images[0].url 
       : '/tours_01.jpg',
     images: tour.images && tour.images.length > 0 
-      ? tour.images.map(img => `${url_server}${img.url}`)
+      ? tour.images.map(img => img.url)
       : ['/tours_01.jpg'],
     features: tour.characteristics ? tour.characteristics.map(c => c.name) : [],
     type: tour.tourCategory?.name || 'Tour',

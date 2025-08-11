@@ -14,7 +14,7 @@ interface Yacht {
   capacity: number;
   length: string;
   location: string;
-  pricing: Array<{ hora: number; precio: number }>;
+  pricing: Array<{ hours: number; price: number }>;
   characteristics: string[];
   features: string[];
   images: Array<{ url: string }>;
@@ -98,18 +98,18 @@ const YachtDetailsPage = () => {
     name: yacht.name,
     description: yacht.description,
     capacity: yacht.capacity,
-    price: yacht.pricing && yacht.pricing.length > 0 
-      ? `$${yacht.pricing[0].precio.toLocaleString()}` 
-      : 'Precio no disponible',
-    priceNumber: yacht.pricing && yacht.pricing.length > 0 
-      ? yacht.pricing[0].precio 
-      : 0,
-    image: yacht.images && yacht.images.length > 0 
-      ? `${url_server}${yacht.images[0].url}` 
-      : '/yacht_01.jpg',
-    images: yacht.images && yacht.images.length > 0 
-      ? yacht.images.map(img => `${url_server}${img.url}`)
-      : ['/yacht_01.jpg'],
+                    price: yacht.pricing && yacht.pricing.length > 0
+                  ? `$${yacht.pricing[0].price.toLocaleString()}`
+                  : 'Precio no disponible',
+                priceNumber: yacht.pricing && yacht.pricing.length > 0
+                  ? yacht.pricing[0].price
+                  : 0,
+                    image: yacht.images && yacht.images.length > 0
+                  ? yacht.images[0].url
+                  : '/yacht_01.jpg',
+                images: yacht.images && yacht.images.length > 0
+                  ? yacht.images.map(img => img.url)
+                  : ['/yacht_01.jpg'],
     features: [...(yacht.characteristics || []), ...(yacht.features || [])],
     length: yacht.length,
     type: yacht.yachtCategory?.name || 'Yacht',

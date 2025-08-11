@@ -27,7 +27,7 @@ interface Yacht {
   // Campos de la API real
   characteristics?: string[];
   images?: Array<{ url: string }>;
-  pricing?: Array<{ hora: number; precio: number }>;
+  pricing?: Array<{ hours: number; price: number }>;
   yachtCategory?: { id: number; name: string };
   yachtCategoryId: number;
   location: string;
@@ -136,7 +136,7 @@ const Yates: React.FC = () => {
         if (yacht.pricing && yacht.pricing.length > 0) {
           // Si no hay hora seleccionada para este yacht, usar la primera disponible
           if (!selectedHours[yacht.id]) {
-            newSelectedHours[yacht.id] = yacht.pricing[0].hora;
+            newSelectedHours[yacht.id] = yacht.pricing[0].hours;
           } else {
             // Mantener la hora ya seleccionada
             newSelectedHours[yacht.id] = selectedHours[yacht.id];
@@ -399,14 +399,14 @@ const Yates: React.FC = () => {
                       loop={true}
                       className="yacht-swiper"
                     >
-                      {yacht.images.map((image, index) => (
-                        <SwiperSlide key={index}>
-                          <img 
-                            src={`${url_server}${image.url}`} 
-                            alt={`${yacht.name} - Imagen ${index + 1}`} 
-                          />
-                        </SwiperSlide>
-                      ))}
+                                             {yacht.images.map((image, index) => (
+                         <SwiperSlide key={index}>
+                           <img 
+                             src={image.url} 
+                             alt={`${yacht.name} - Imagen ${index + 1}`} 
+                           />
+                         </SwiperSlide>
+                       ))}
                     </Swiper>
                   ) : (
                     <img src={yacht.image || '/yacht_01.jpg'} alt={yacht.name} />
@@ -464,18 +464,18 @@ const Yates: React.FC = () => {
                              {yacht.pricing.map((price, index) => (
                                <button
                                  key={index}
-                                 className={`pricing-option ${selectedHours[yacht.id] === price.hora ? 'active' : ''}`}
-                                 onClick={() => setSelectedHours(prev => ({ ...prev, [yacht.id]: price.hora }))}
+                                 className={`pricing-option ${selectedHours[yacht.id] === price.hours ? 'active' : ''}`}
+                                 onClick={() => setSelectedHours(prev => ({ ...prev, [yacht.id]: price.hours }))}
                                >
-                                 <span className="option-hours">{price.hora}h</span>
+                                 <span className="option-hours">{price.hours}h</span>
                                </button>
                              ))}
                            </div>
                            <div className="selected-price">
                              <span className="price-amount">
-                               ${yacht.pricing.find(p => p.hora === selectedHours[yacht.id])?.precio.toLocaleString() || 'N/A'}
+                               ${yacht.pricing.find(p => p.hours === selectedHours[yacht.id])?.price.toLocaleString() || 'N/A'}
                              </span>
-                             <span className="price-duration">/{selectedHours[yacht.id] || yacht.pricing[0]?.hora || 0}h</span>
+                             <span className="price-duration">/{selectedHours[yacht.id] || yacht.pricing[0]?.hours || 0}h</span>
                            </div>
                          </div>
                        ) : (

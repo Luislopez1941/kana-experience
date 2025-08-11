@@ -87,7 +87,7 @@ const APIs = {
 
 
     getYachtCategories: async () => {
-        const path = `yacht-types/get-all`;
+        const path = `yacht-categories/get-all`;
         return ConfigurationAPIs.get(path);
     },
 

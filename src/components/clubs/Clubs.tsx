@@ -55,7 +55,7 @@ const Clubs: React.FC = () => {
     priceRange: "",
     capacity: ""
   });
-  const { url_server } = useStore();
+
   const [filteredClubs, setFilteredClubs] = useState<Club[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
@@ -90,9 +90,8 @@ const Clubs: React.FC = () => {
       console.log('Clubs by category:', response);
       
       if (response && response.data) {
-        console.log('Clubs data received:', response.data);
-        console.log('First club images:', response.data[0]?.images);
-        console.log('url_server from store:', url_server);
+                    console.log('Clubs data received:', response.data);
+            console.log('First club images:', response.data[0]?.images);
         setClubs(response.data);
         // Usar la información de paginación del servidor
         if (response.pagination) {
@@ -181,15 +180,14 @@ const Clubs: React.FC = () => {
     fetchClubsByCategory(filters.typeId, page);
   };
 
-  console.log('Rendering Clubs component:', {
-    clubsCount: clubs.length,
-    filteredCount: filteredClubs.length,
-    currentCount: currentClubs.length,
-    loadingClubs,
-    filters,
-    url_server: url_server,
-    firstClub: clubs[0]
-  });
+              console.log('Rendering Clubs component:', {
+              clubsCount: clubs.length,
+              filteredCount: filteredClubs.length,
+              currentCount: currentClubs.length,
+              loadingClubs,
+              filters,
+              firstClub: clubs[0]
+            });
 
   return (
     <div className="clubs-page">
@@ -377,23 +375,18 @@ const Clubs: React.FC = () => {
                         loop={true}
                         className="clubs-swiper"
                       >
-                        {club.images.map((image, index) => {
-                          console.log('Club image URL:', `${url_server}${image.url}`);
-                          console.log('url_server:', url_server);
-                          console.log('image.url:', image.url);
-                          return (
-                            <SwiperSlide key={index}>
-                              <img 
-                                src={`${url_server}${image.url}`} 
-                                alt={`${club.name} - Imagen ${index + 1}`} 
-                                onError={(e) => {
-                                  console.log('Error loading image:', `${url_server}${image.url}`);
-                                  e.currentTarget.src = '/party.jpg';
-                                }}
-                              />
-                            </SwiperSlide>
-                          );
-                        })}
+                        {club.images.map((image, index) => (
+                          <SwiperSlide key={index}>
+                            <img 
+                              src={image.url} 
+                              alt={`${club.name} - Imagen ${index + 1}`} 
+                              onError={(e) => {
+                                console.log('Error loading club image:', image.url);
+                                e.currentTarget.src = '/party.jpg';
+                              }}
+                            />
+                          </SwiperSlide>
+                        ))}
                       </Swiper>
                     ) : (
                       <img src="/party.jpg" alt={club.name} />

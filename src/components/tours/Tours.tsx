@@ -52,7 +52,7 @@ const Tours: React.FC = () => {
     priceRange: "",
     location: ""
   });
-  const { url_server } = useStore();
+
   const [filteredTours, setFilteredTours] = useState<Tour[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
@@ -377,14 +377,14 @@ const Tours: React.FC = () => {
                         loop={true}
                         className="tours-swiper"
                       >
-                        {tour.images.map((image, index) => (
-                          <SwiperSlide key={index}>
-                            <img 
-                              src={`${url_server}${image.url}`} 
-                              alt={`${tour.name} - Imagen ${index + 1}`} 
-                            />
-                          </SwiperSlide>
-                        ))}
+                                               {tour.images.map((image, index) => (
+                         <SwiperSlide key={index}>
+                           <img 
+                             src={image.url} 
+                             alt={`${tour.name} - Imagen ${index + 1}`} 
+                           />
+                         </SwiperSlide>
+                       ))}
                       </Swiper>
                     ) : (
                       <img src="/tour_01.jpg" alt={tour.name} />

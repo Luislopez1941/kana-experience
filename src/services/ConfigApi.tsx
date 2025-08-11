@@ -3,8 +3,8 @@ import axios, { AxiosInstance, AxiosResponse } from 'axios';
 class ApiService {
   private axiosInstance: AxiosInstance;
 
-  // constructor(baseURL: string = 'https://jllc-back.com/kana-experience/') {
-  constructor(baseURL: string = 'http://localhost:3005/') {
+  // constructor(baseURL: string = 'https://crm-kana-experience-jet92.ondigitalocean.app/') {
+  constructor(baseURL: string = 'http://localhost:3000/') {
     this.axiosInstance = axios.create({
       baseURL,
       headers: {
