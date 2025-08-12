@@ -25,7 +25,6 @@ export const Destinations: React.FC = () => {
       description: "Celebración y diversión en alta mar",
       image: "/sections-main/party.jpg",
     }
-  
   ];
 
   return (
@@ -37,12 +36,9 @@ export const Destinations: React.FC = () => {
             Explora las diferentes experiencias que tenemos para ti en Cancún
           </p>
         </div>
-
         <div className="destinations-slider">
           <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={30}
-            slidesPerView={1}
+            modules={[Navigation, Pagination, Autoplay]} spaceBetween={20} slidesPerView={1}
             navigation={{
               nextEl: ".destinations-next",
               prevEl: ".destinations-prev",
@@ -52,18 +48,33 @@ export const Destinations: React.FC = () => {
               el: ".destinations-pagination",
             }}
             autoplay={{
-              delay: 3000,
+              delay: 4000,
               disableOnInteraction: false,
             }}
             breakpoints={{
+              375: {
+                slidesPerView: 1.2,
+                spaceBetween: 10,
+              },
+              480: {
+                slidesPerView: 1.3,
+                spaceBetween: 15,
+              },
               640: {
-                slidesPerView: 2,
+                slidesPerView: 1.4,
+                spaceBetween: 20,
               },
               768: {
-                slidesPerView: 3,
+                slidesPerView: 1.8,
+                spaceBetween: 25,
               },
               1024: {
-                slidesPerView: 3,
+                slidesPerView: 2.2,
+                spaceBetween: 30,
+              },
+              1280: {
+                slidesPerView: 2.5,
+                spaceBetween: 30,
               },
             }}
             className="destinations-swiper"

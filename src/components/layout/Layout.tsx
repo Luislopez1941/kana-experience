@@ -3,16 +3,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Header } from "../header/Header";
 import { Menu } from "../menu/Menu";
-import { gsap } from "gsap";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Link from "next/link";
+
 import { useRouter } from "next/navigation";
 import "./styles/Layout.css";
-// import yacht from '../../assets/yacht_01.jpg'
+
 
 interface SliderOption {
   id: number;
@@ -62,24 +62,11 @@ const sliderOptions: SliderOption[] = [
 
 export const Layout: React.FC = () => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const imageRef = useRef<HTMLImageElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<any>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    // Set initial visible state immediately
-    if (imageRef.current && contentRef.current) {
-      gsap.set([imageRef.current, contentRef.current], {
-        opacity: 1,
-        scale: 1,
-        x: 0
-      });
 
-      console.log('Layout mounted, activeSlide:', activeSlide);
-    }
-  }, []);
 
   useEffect(() => {
     console.log('Active slide changed to:', activeSlide);
@@ -105,19 +92,7 @@ export const Layout: React.FC = () => {
     // Immediately update the state
     setActiveSlide(index);
 
-    // Quick fade transition
-    gsap.to([imageRef.current, contentRef.current], {
-      opacity: 0.3,
-      duration: 0.2,
-      ease: "power2.out",
-      onComplete: () => {
-        gsap.to([imageRef.current, contentRef.current], {
-          opacity: 1,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      }
-    });
+
 
     // Navigate Swiper to match the selection
     if (swiperRef.current && swiperRef.current.activeIndex !== index) {
@@ -148,34 +123,6 @@ export const Layout: React.FC = () => {
       <div className="layout-content">
         <div className="layout-container">
           <div className="layout-grid">
-            {/* Left side - Image and content */}
-            <div className="layout-left">
-              <div className="layout-image-container">
-                <img
-                  ref={imageRef}
-                  src={sliderOptions[activeSlide].image}
-                  alt={sliderOptions[activeSlide].title}
-                  className="layout-image"
-                />
-                <div className="layout-image-overlay">
-                  <div ref={contentRef} className="layout-image-content">
-                    {/* <span className="layout-category">
-                      {sliderOptions[activeSlide].category}
-                    </span> */}
-                    <h2 className="layout-image-title">
-                      {sliderOptions[activeSlide].title}
-                    </h2>
-                    <p className="layout-image-description">
-                      {sliderOptions[activeSlide].description}
-                    </p>
-                    <Link href="/yachts" className="btn btn-primary layout-cta">
-                      Explorar Más
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Right side - Slider options */}
             <div className="layout-right">
               <div ref={sliderRef} className="layout-slider">
@@ -248,10 +195,18 @@ export const Layout: React.FC = () => {
               </div>
             </div>
           </div>
+          
+          {/* Contenedor inferior rectangular */}
+          <div className="layout-bottom-container">
+            <div className="layout-bottom-content">
+              <h4>Promociones Especiales</h4>
+              <p>Descubre nuestras ofertas exclusivas para tu próxima aventura</p>
+            </div>
+          </div>
         </div>
       </div>
       
-      <Menu />
+      {/* <Menu /> */}
     </section>
   );
 };
