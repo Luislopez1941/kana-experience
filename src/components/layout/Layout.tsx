@@ -101,10 +101,10 @@ export const Layout: React.FC = () => {
   };
 
   return (
-    <section className="layout">
-      <div className="layout-video-container">
+    <section className="kana-layout">
+      <div className="kana-layout-video-container">
         <video
-          className="layout-video"
+          className="kana-layout-video"
           autoPlay
           muted
           loop
@@ -115,20 +115,48 @@ export const Layout: React.FC = () => {
             type="video/mp4"
           />
         </video>
-        <div className="layout-overlay"></div>
+        <div className="kana-layout-overlay"></div>
       </div>
 
       <Header />
+      <div className="kana-layout-content">
+        <div className="kana-layout-container">
+          <div className="kana-layout-navigation-container">
+            {/* Barra de navegación horizontal */}
+            <div className="kana-layout-navigation-bar">
+              <div className="kana-layout-navigation-item" onClick={() => router.push('/tours')}>
+                <span>Todos los Tours</span>
+              </div>
+              <div className="kana-layout-navigation-separator"></div>
+              <div className="kana-layout-navigation-item" onClick={() => router.push('/tours')}>
+                <span>Tours en Catamarán</span>
+              </div>
+              <div className="kana-layout-navigation-separator"></div>
+              <div className="kana-layout-navigation-item" onClick={() => router.push('/yachts')}>
+                <span>Yates Privados</span>
+              </div>
+              <div className="kana-layout-navigation-separator"></div>
+              <div className="kana-layout-navigation-item" onClick={() => router.push('/clubs')}>
+                <span>Clubs Nocturnos</span>
+              </div>
+              <div className="kana-layout-navigation-separator"></div>
+              <div className="kana-layout-navigation-item" onClick={() => router.push('/about')}>
+                <span>Sobre Nosotros</span>
+              </div>
+              <div className="kana-layout-navigation-separator"></div>
+              <div className="kana-layout-navigation-item" onClick={() => router.push('/contact')}>
+                <span>Contacto</span>
+              </div>
+            </div>
+          </div>
 
-      <div className="layout-content">
-        <div className="layout-container">
-          <div className="layout-grid">
+          <div className="kana-layout-grid">
             {/* Right side - Slider options */}
-            <div className="layout-right">
-              <div ref={sliderRef} className="layout-slider">
-                <h3 className="layout-slider-title">Descubre Nuestras Experiencias</h3>
+            <div className="kana-layout-right">
+              <div ref={sliderRef} className="kana-layout-slider">
+                <h3 className="kana-layout-slider-title">Descubre Nuestras Experiencias</h3>
 
-                <div className="layout-carousel">
+                <div className="kana-layout-carousel">
                   <Swiper
                     modules={[Navigation, Pagination, Autoplay]}
                     spaceBetween={20}
@@ -137,12 +165,12 @@ export const Layout: React.FC = () => {
                     width={null}
                     watchSlidesProgress={true}
                     navigation={{
-                      nextEl: ".layout-carousel-next",
-                      prevEl: ".layout-carousel-prev",
+                      nextEl: ".kana-layout-carousel-next",
+                      prevEl: ".kana-layout-carousel-prev",
                     }}
                     pagination={{
                       clickable: true,
-                      el: ".layout-carousel-pagination",
+                      el: ".kana-layout-carousel-pagination",
                     }}
                     autoplay={{
                       delay: 4000,
@@ -150,16 +178,16 @@ export const Layout: React.FC = () => {
                     }}
                     onSwiper={(swiper) => { swiperRef.current = swiper; setTimeout(() => swiper.update(), 100); }}
                     onSlideChange={(swiper) => handleSlideChange(swiper.activeIndex)}
-                    className="layout-swiper"
+                    className="kana-layout-swiper"
                   >
                     {sliderOptions.map((option, index) => (
                       <SwiperSlide key={option.id}>
                         <div
-                          className={`layout-option ${index === activeSlide ? 'active' : ''}`}
+                          className={`kana-layout-option ${index === activeSlide ? 'active' : ''}`}
                           onClick={() => handleSlideChange(index)}
                         >
-                          <div className="layout-option-content">
-                            <div className="layout-option-icon">
+                          <div className="kana-layout-option-content">
+                            <div className="kana-layout-option-icon">
                               <span className="material-icons-round">
                                 {option.category === 'Flota' && 'directions_boat'}
                                 {option.category === 'Destinos' && 'place'}
@@ -168,11 +196,11 @@ export const Layout: React.FC = () => {
                                 {option.category === 'Eventos' && 'celebration'}
                               </span>
                             </div>
-                            <div className="layout-option-text">
-                              <h4 className="layout-option-title">{option.title}</h4>
-                              <p className="layout-option-description">{option.description}</p>
+                            <div className="kana-layout-option-text">
+                              <h4 className="kana-layout-option-title">{option.title}</h4>
+                              <p className="kana-layout-option-description">{option.description}</p>
                             </div>
-                            <div className="layout-option-arrow">
+                            <div className="kana-layout-option-arrow">
                               <span className="material-icons-round">arrow_forward</span>
                             </div>
                           </div>
@@ -182,12 +210,12 @@ export const Layout: React.FC = () => {
                   </Swiper>
 
                   {/* Carousel Controls */}
-                  <div className="layout-carousel-controls">
-                    <button className="layout-carousel-prev">
+                  <div className="kana-layout-carousel-controls">
+                    <button className="kana-layout-carousel-prev">
                       <span className="material-icons-round">arrow_back</span>
                     </button>
-                    <div className="layout-carousel-pagination"></div>
-                    <button className="layout-carousel-next">
+                    <div className="kana-layout-carousel-pagination"></div>
+                    <button className="kana-layout-carousel-next">
                       <span className="material-icons-round">arrow_forward</span>
                     </button>
                   </div>
@@ -195,17 +223,19 @@ export const Layout: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Contenedor inferior rectangular */}
-          <div className="layout-bottom-container">
-            <div className="layout-bottom-content">
-              <h4>Promociones Especiales</h4>
-              <p>Descubre nuestras ofertas exclusivas para tu próxima aventura</p>
+          <div className="kana-layout-bottom-container">
+            <div className="kana-layout-bottom-content-container">
+              <div className="kana-layout-bottom-content">
+                <h4>Promociones Especiales</h4>
+                <p>Descubre nuestras ofertas exclusivas para tu próxima aventura</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       {/* <Menu /> */}
     </section>
   );
