@@ -124,16 +124,13 @@ export const Layout: React.FC = () => {
           <div className="kana-layout-navigation-container">
             {/* Barra de navegación horizontal */}
             <div className="kana-layout-navigation-bar">
-              <div className="kana-layout-navigation-item" onClick={() => router.push('/tours')}>
-                <span>Todos los Tours</span>
-              </div>
-              <div className="kana-layout-navigation-separator"></div>
-              <div className="kana-layout-navigation-item" onClick={() => router.push('/tours')}>
-                <span>Tours en Catamarán</span>
-              </div>
               <div className="kana-layout-navigation-separator"></div>
               <div className="kana-layout-navigation-item" onClick={() => router.push('/yachts')}>
-                <span>Yates Privados</span>
+                <span>Yates</span>
+              </div>
+              <div className="kana-layout-navigation-separator"></div>
+              <div className="kana-layout-navigation-item" onClick={() => router.push('/tours')}>
+                <span>Tours</span>
               </div>
               <div className="kana-layout-navigation-separator"></div>
               <div className="kana-layout-navigation-item" onClick={() => router.push('/clubs')}>
