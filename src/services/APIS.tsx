@@ -68,9 +68,9 @@ const APIs = {
         return ConfigurationAPIs.post(path, data);
     },
 
-    getYachtByYachtType: async (yachtTypeId: any, page: number = 1) => {
-        const path = `yachts/by-category`;
-        return ConfigurationAPIs.post(path, { yachtCategoryId: yachtTypeId, page });
+    getYachtByYachtType: async (data: any) => {
+        const path = `yachts/by-categories`;
+        return ConfigurationAPIs.post(path, data);
     },
 
 
@@ -86,9 +86,9 @@ const APIs = {
     ////////CATEGORIAS DE YACHTS ////////////
 
 
-    getYachtCategories: async () => {
-        const path = `yacht-categories/get-all`;
-        return ConfigurationAPIs.get(path);
+    getYachtCategories: async (userId: any) => {
+        const path = `yacht-categories/get-categories`;
+        return ConfigurationAPIs.post(path, { userId });
     },
 
 

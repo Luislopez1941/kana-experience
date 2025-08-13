@@ -74,7 +74,7 @@ const Yates: React.FC = () => {
   const fetch = async () => {
     try {
       setLoadingCategories(true);
-      const response = await APIs.getYachtCategories();
+      const response = await APIs.getYachtCategories(1);
       console.log('Yacht Categories:', response);
       
       if (response && response.data) {
@@ -88,9 +88,14 @@ const Yates: React.FC = () => {
   }
 
   const fetchYachtsByCategory = async (categoryId: number, page: number = 1) => {
+    let data = {
+      userId: 1,
+      yachtCategoryId: categoryId,
+      page: page,
+    }
     try {
       setLoadingYachts(true);
-      const response = await APIs.getYachtByYachtType(categoryId, page);
+      const response = await APIs.getYachtByYachtType(data);
       console.log('Yachts by category:', response);
       
       if (response && response.data) {
@@ -126,6 +131,11 @@ const Yates: React.FC = () => {
     setCurrentPage(1); // Reset a página 1 cuando cambie categoría
     fetchYachtsByCategory(filters.typeId, 1);
   }, [filters.typeId]);
+
+  // Cargar yates iniciales
+  useEffect(() => {
+    fetchYachtsByCategory(0, 1); // Cargar "Todos" por defecto
+  }, []);
 
   // Actualizar las horas seleccionadas cuando cambien los yates
   useEffect(() => {
