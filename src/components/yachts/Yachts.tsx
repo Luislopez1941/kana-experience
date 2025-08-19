@@ -25,7 +25,7 @@ interface Yacht {
   length: string;
   type?: string;
   // Campos de la API real
-  characteristics?: string[];
+  characteristics?: Array<{ id: number; name: string; yachtId: number; createdAt: string; updatedAt: string }>;
   images?: Array<{ url: string }>;
   pricing?: Array<{ hours: number; price: number }>;
   yachtCategory?: { id: number; name: string };
@@ -447,7 +447,11 @@ const Yates: React.FC = () => {
                      {(() => {
                        const characteristics = Array.isArray(yacht.characteristics) ? yacht.characteristics : [];
                        const features = Array.isArray(yacht.features) ? yacht.features : [];
-                       const allFeatures = [...characteristics, ...features];
+                       
+                       // Extract name property from characteristics objects
+                       const characteristicNames = characteristics.map(char => char.name);
+                       
+                       const allFeatures = [...characteristicNames, ...features];
                        
                        return (
                          <>
