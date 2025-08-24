@@ -42,9 +42,7 @@ export const About: React.FC = () => {
               <strong>servicio impecable, atención personalizada y una vibra que no se encuentra en otro lugar.</strong>
             </p>
             
-            <p className="about-text">
-              Y fotografías de nosotros, obviamente más profesionales o casuales (esto dara confianza de ver una cara humana)
-            </p>
+      
           </div>
           <div className="about-image">
             <div className="about-carousel">

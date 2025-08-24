@@ -5,6 +5,28 @@
   overflow: hidden;
 }
 
+/* Difuminado en la transición entre olas y contenido */
+.kana-layout::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(0deg, 
+    rgba(255, 255, 255, 1) 0%, 
+    rgba(255, 255, 255, 0.95) 10%, 
+    rgba(255, 255, 255, 0.85) 25%, 
+
+    rgba(255, 255, 255, 0.4) 60%, 
+    rgba(255, 255, 255, 0.15) 80%, 
+    rgba(255, 255, 255, 0) 100%);
+  backdrop-filter: blur(2rem);
+  -webkit-backdrop-filter: blur(2rem);
+  z-index: 2;
+  pointer-events: none;
+}
+
 .kana-layout-video-container {
   position: absolute;
   top: 0;
@@ -36,15 +58,11 @@
   position: relative;
   z-index: 4;
   width: 100%;
-  height: 50px;
+  height: 60px;
   background: transparent;
-  /* border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
+  justify-content: center;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -52,18 +70,21 @@
   -webkit-overflow-scrolling: touch;
   padding: 0 1rem;
   box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .kana-layout-navigation-container {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 0;
   height: 100%;
   width: 100%;
-  max-width: 100%;
+  max-width: 800px;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
+  justify-content: center;
 }
 
 .kana-layout-navigation-bar::-webkit-scrollbar {
@@ -73,23 +94,24 @@
 .kana-layout-navigation-item {
   display: flex;
   align-items: center;
-  padding: 5px 1.25rem;
+  padding: 0.75rem 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   white-space: nowrap;
   min-width: max-content;
-  border-radius: 0.5rem;
-  margin: 0 0.25rem;
   user-select: none;
   flex-shrink: 0;
-  background: rgba(18, 45, 82, 0.3);
-  border: 1px solid rgba(18, 45, 82, 0.4);
+  background: transparent;
+  border: none;
+  color: var(--text-white);
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .kana-layout-navigation-item span {
   color: var(--text-white);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 500;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   white-space: nowrap;
@@ -99,10 +121,9 @@
 }
 
 .kana-layout-navigation-item:hover {
-  background: rgba(18, 45, 82, 0.6);
-  border-color: rgba(18, 45, 82, 0.7);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(18, 45, 82, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  border-radius: 0.5rem;
 }
 
 .kana-layout-navigation-item:hover span {
@@ -117,8 +138,8 @@
 
 .kana-layout-navigation-separator {
   width: 1px;
-  height: 25px;
-  background: linear-gradient(to bottom, transparent, rgba(18, 45, 82, 0.4), transparent);
+  height: 20px;
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 1px;
   margin: 0 0.5rem;
   flex-shrink: 0;
@@ -138,12 +159,14 @@
   padding: 80px 40px 0 40px;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
+  z-index: 3;
 }
 
 /* ===== RECTÁNGULO COMPLETO ===== */
 .kana-layout-full-rectangle {
   width: 100%;
-  height: 400px;
+  height: 250px;
   background: linear-gradient(135deg, rgba(18, 45, 82, 0.9) 0%, rgba(18, 45, 82, 0.8) 100%);
   backdrop-filter: blur(10px);
   display: flex;
@@ -200,8 +223,8 @@
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   align-items: start;
-  max-width: 1200px;
   margin: 0 auto;
+  padding-bottom: 100px;
 }
 
 /* ===== PANEL IZQUIERDO DE INFORMACIÓN ===== */
@@ -217,7 +240,7 @@
   background-repeat: no-repeat;
   border-radius: 1rem;
   position: relative;
-  min-height: 300px;
+  height: 200px;
   width: 100%;
 }
 
@@ -658,9 +681,7 @@
     padding: 0 10px;
   }
 
-  .kana-layout-swiper {
-    padding: 5px;
-  }
+
 
   .kana-layout-carousel-controls {
     gap: 0.75rem;
@@ -747,8 +768,21 @@
     padding: 80px 20px 0 20px;
   }
 
+  .kana-layout-navigation-bar {
+    height: 55px;
+
+  }
+
+  .kana-layout-navigation-item {
+    padding: 0.6rem 1.2rem;
+  }
+
+  .kana-layout-navigation-item span {
+    font-size: 0.9rem;
+  }
+
   .kana-layout-full-rectangle {
-    height: 350px;
+    height: 250px;
     margin: 1.5rem 0;
     padding: 20px;
   }
@@ -778,10 +812,34 @@
 }
 
 @media (max-width: 768px) {
+  .kana-layout-navigation-bar {
+    height: 50px;
+  
+    padding: 0 0.5rem;
+  }
+
+  .kana-layout-navigation-container {
+    max-width: 100%;
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  .kana-layout-navigation-item {
+    padding: 0.5rem 1rem;
+  }
+
+  .kana-layout-navigation-item span {
+    font-size: 0.85rem;
+  }
+
+  .kana-layout-navigation-separator {
+    height: 18px;
+    margin: 0 0.3rem;
+  }
  
 
   .kana-layout-full-rectangle {
-    height: 300px;
+    height: 200px;
     margin: 1rem 0;
     padding: 20px;
   }
@@ -819,7 +877,7 @@
 
   .kana-layout-navigation-bar {
     height: 60px;
-    margin-bottom: 1.5rem;
+   
   }
 
 
@@ -847,10 +905,7 @@
     padding: 0 5px;
   }
 
-  .kana-layout-swiper {
-    padding: 2px;
-  }
-
+ 
   .kana-layout-option {
     padding: 0.5rem;
     min-height: 60px;
@@ -910,7 +965,7 @@
   }
   
   .kana-layout-left {
-    min-height: 200px;
+    min-height: 150px;
     padding: 1rem;
   }
   
@@ -930,7 +985,7 @@
 
 @media (max-width: 480px) {
   .kana-layout-left {
-    min-height: 150px;
+    height: 150px;
     padding: 0.75rem;
   }
   

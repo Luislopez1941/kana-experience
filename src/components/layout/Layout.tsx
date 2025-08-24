@@ -181,7 +181,7 @@ export const Layout: React.FC = () => {
                   <p className="info-rectangle-description">{sliderOptions[activeSlide]?.description || 'Descripción de la experiencia'}</p>
                   <div className="info-rectangle-category">
                     <span className="material-icons-round">{sliderOptions[activeSlide]?.icon || 'star'}</span>
-                    <span>{sliderOptions[activeSlide]?.category || 'Categoría'}</span>
+           
                   </div>
                 </div>
               </div>
