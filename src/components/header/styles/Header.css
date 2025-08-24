@@ -62,6 +62,106 @@
   gap: 1rem;
 }
 
+.header-language-dropdown {
+  position: relative;
+}
+
+.header-language-btn {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: var(--text-white);
+  border: 2px solid var(--text-white);
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 80px;
+  justify-content: space-between;
+}
+
+.header-language-btn:hover {
+  background-color: var(--text-white);
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.language-flag {
+  font-size: 1.2rem;
+}
+
+.language-text {
+  font-weight: 600;
+}
+
+.dropdown-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  color: currentColor;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.language-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background-color: var(--text-white);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 1000;
+  min-width: 140px;
+  animation: dropdownFadeIn 0.2s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--primary-color);
+  font-weight: 500;
+  text-align: left;
+}
+
+.language-option:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.language-option.active {
+  background-color: var(--primary-color);
+  color: var(--text-white);
+}
+
+.language-option .language-flag {
+  font-size: 1.1rem;
+}
+
 .header-cta {
   padding: 0.5rem 1rem;
   background-color: var(--primary-color);
@@ -216,6 +316,21 @@
     z-index: 1001;
   }
 
+  .header-language-dropdown {
+    position: relative;
+  }
+
+  .header-language-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+
+  .language-dropdown-menu {
+    min-width: 120px;
+    right: -20px;
+  }
+
   .header-cta {
     padding: 0.4rem 0.8rem;
     font-size: 0.875rem;
@@ -238,6 +353,17 @@
   .header-cta {
     padding: 0.3rem 0.6rem;
     font-size: 0.8rem;
+  }
+
+  .header-language-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+    min-width: 65px;
+  }
+
+  .language-dropdown-menu {
+    min-width: 110px;
+    right: -15px;
   }
 
   .header-link {

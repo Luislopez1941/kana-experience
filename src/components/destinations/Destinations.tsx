@@ -31,7 +31,7 @@ export const Destinations: React.FC = () => {
     <section id="destinos" className="destinations">
       <div className="destinations-container">
         <div className="destinations-header">
-          <h2 className="destinations-title">Nuestros Servicios</h2>
+          <h2 className="destinations-title">Nuestras mejores experiencias</h2>
           <p className="destinations-description">
             Explora las diferentes experiencias que tenemos para ti en Cancún
           </p>

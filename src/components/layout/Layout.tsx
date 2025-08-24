@@ -15,49 +15,49 @@ import "./styles/Layout.css";
 
 
 interface SliderOption {
-  id: number;
   title: string;
   description: string;
-  image: any;
   category: string;
+  image: string;
+  icon: string;
 }
 
 const sliderOptions: SliderOption[] = [
   {
-    id: 1,
-    title: "Private Yachts",
-    description: "Navega por las hermosas aguas cristalinas del caribe mexicano",
-    image: "/yacht_01.jpg",
-    category: "Flota"
+    title: 'Flota de Yates',
+    description: 'Descubre nuestra exclusiva flota de yates de lujo, diseñados para ofrecerte la máxima comodidad y elegancia en el mar.',
+    category: 'Flota',
+    image: '/yacht_main.jpg',
+    icon: 'directions_boat'
   },
   {
-    id: 2,
-    title: "CLUBS",
-    description: "Los mejores Clubs Nocturnos de todo Cancún",
-    image: "https://venues.com.mx/wp-content/uploads/2024/03/Confessions-Cancun-2-1920x1536.jpeg",
-    category: "Destinos"
+    title: 'Destinos Únicos',
+    description: 'Explora los destinos más hermosos y exclusivos del Caribe, desde playas vírgenes hasta islas paradisíacas.',
+    category: 'Destinos',
+    image: '/tours_01.jpg',
+    icon: 'place'
   },
   {
-    id: 3,
-    title: "TOURS",
-    description: "Vive una nueva experiencia en Cancún y sus alrededores ",
-    image: "/tours_01.jpg",
-    category: "Gastronomía"
+    title: 'Experiencias Gastronómicas',
+    description: 'Disfruta de la mejor gastronomía local e internacional, preparada por chefs expertos a bordo de nuestros yates.',
+    category: 'Gastronomía',
+    image: '/party.jpg',
+    icon: 'restaurant'
   },
-  // {
-  //   id: 4,
-  //   title: "Aventuras Acuáticas",
-  //   description: "Deportes y actividades en aguas cristalinas",
-  //   image: "https://images.unsplash.com/photo-1544737151-6e4b01d6f167?w=800&h=600&fit=crop",
-  //   category: "Actividades"
-  // },
-  // {
-  //   id: 5,
-  //   title: "Eventos Especiales",
-  //   description: "Celebraciones únicas en el mar",
-  //   image: "https://images.unsplash.com/photo-1519167758481-83f29c8d8d61?w=800&h=600&fit=crop",
-  //   category: "Eventos"
-  // }
+  {
+    title: 'Actividades Acuáticas',
+    description: 'Sumérgete en emocionantes actividades acuáticas como buceo, snorkel, pesca deportiva y más.',
+    category: 'Actividades',
+    image: '/yacht_01.jpg',
+    icon: 'sports_handball'
+  },
+  {
+    title: 'Eventos Especiales',
+    description: 'Celebra momentos inolvidables como bodas, cumpleaños, aniversarios y eventos corporativos en el mar.',
+    category: 'Eventos',
+    image: '/yacht-main.jpg',
+    icon: 'celebration'
+  }
 ];
 
 export const Layout: React.FC = () => {
@@ -82,7 +82,20 @@ export const Layout: React.FC = () => {
       }
     }, 500);
 
-    return () => clearTimeout(timer);
+    // Add resize listener for responsive behavior
+    const handleResize = () => {
+      if (swiperRef.current) {
+        swiperRef.current.update();
+        swiperRef.current.updateSize();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const handleSlideChange = (index: number) => {
@@ -146,12 +159,38 @@ export const Layout: React.FC = () => {
               </div>
             </div>
           </div>
+          <div>
+            <div className="kana-layout-full-rectangle">
+              <div className="full-rectangle-content">
+                <h3 className="full-rectangle-title">Bienvenido a Kana Experience</h3>
+                <p className="full-rectangle-description">
+                  Descubre las mejores experiencias en el Caribe Mexicano
+                </p>
+              </div>
+            </div>
+          </div>
 
           <div className="kana-layout-grid">
+            {/* Left side - Simple Info Rectangle */}
+            <div className="kana-layout-left" style={{
+              backgroundImage: `url(${sliderOptions[activeSlide]?.image || '/kana.png'})`
+            }}>
+              <div className="kana-layout-info-rectangle">
+                <div className="info-rectangle-content">
+                  <h3 className="info-rectangle-title">{sliderOptions[activeSlide]?.title || 'Selecciona una Experiencia'}</h3>
+                  <p className="info-rectangle-description">{sliderOptions[activeSlide]?.description || 'Descripción de la experiencia'}</p>
+                  <div className="info-rectangle-category">
+                    <span className="material-icons-round">{sliderOptions[activeSlide]?.icon || 'star'}</span>
+                    <span>{sliderOptions[activeSlide]?.category || 'Categoría'}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Right side - Slider options */}
             <div className="kana-layout-right">
               <div ref={sliderRef} className="kana-layout-slider">
-                <h3 className="kana-layout-slider-title">Descubre Nuestras Experiencias</h3>
+          
 
                 <div className="kana-layout-carousel">
                   <Swiper
@@ -159,7 +198,6 @@ export const Layout: React.FC = () => {
                     spaceBetween={20}
                     slidesPerView={1}
                     direction="horizontal"
-                    width={null}
                     watchSlidesProgress={true}
                     navigation={{
                       nextEl: ".kana-layout-carousel-next",
@@ -173,12 +211,33 @@ export const Layout: React.FC = () => {
                       delay: 4000,
                       disableOnInteraction: true,
                     }}
-                    onSwiper={(swiper) => { swiperRef.current = swiper; setTimeout(() => swiper.update(), 100); }}
+                    breakpoints={{
+                      320: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                      },
+                      768: {
+                        slidesPerView: 1,
+                        spaceBetween: 15,
+                      },
+                      1024: {
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                      }
+                    }}
+                    onSwiper={(swiper) => { 
+                      swiperRef.current = swiper; 
+                      setTimeout(() => {
+                        swiper.update();
+                        swiper.updateSize();
+                      }, 100); 
+                    }}
                     onSlideChange={(swiper) => handleSlideChange(swiper.activeIndex)}
                     className="kana-layout-swiper"
+                    style={{ width: '100%' }}
                   >
                     {sliderOptions.map((option, index) => (
-                      <SwiperSlide key={option.id}>
+                      <SwiperSlide key={index}>
                         <div
                           className={`kana-layout-option ${index === activeSlide ? 'active' : ''}`}
                           onClick={() => handleSlideChange(index)}
@@ -221,15 +280,6 @@ export const Layout: React.FC = () => {
             </div>
           </div>
 
-          {/* Contenedor inferior rectangular */}
-          <div className="kana-layout-bottom-container">
-            <div className="kana-layout-bottom-content-container">
-              <div className="kana-layout-bottom-content">
-                <h4>Promociones Especiales</h4>
-                <p>Descubre nuestras ofertas exclusivas para tu próxima aventura</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 

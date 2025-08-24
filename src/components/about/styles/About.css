@@ -67,6 +67,141 @@
     position: relative;
   }
   
+  /* Estilos del carrusel */
+  .about-carousel {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-swiper {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .about-carousel-slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .about-carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  
+  .about-carousel-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+    color: var(--text-white);
+    padding: 2rem;
+    text-align: center;
+    z-index: 2;
+  }
+  
+  .about-carousel-overlay-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .about-carousel-overlay-text {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.4;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    opacity: 0.9;
+    margin: 0;
+  }
+  
+  /* Controles del carrusel */
+  .about-carousel-prev,
+  .about-carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-family: inherit;
+  }
+  
+  .about-carousel-prev {
+    left: 1rem;
+  }
+  
+  .about-carousel-next {
+    right: 1rem;
+  }
+  
+  .about-carousel-prev:hover,
+  .about-carousel-next:hover {
+    background-color: var(--text-white);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .about-carousel-prev .material-icons-round,
+  .about-carousel-next .material-icons-round {
+    font-size: 1.5rem;
+    pointer-events: none;
+  }
+  
+  /* Paginación del carrusel */
+  .about-carousel-pagination {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+  }
+  
+  .about-carousel-pagination .swiper-pagination-bullet {
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .about-carousel-pagination .swiper-pagination-bullet-active {
+    background-color: var(--text-white);
+    transform: scale(1.2);
+  }
+  
+  /* Asegurar que Swiper funcione correctamente */
+  .about-carousel .swiper-slide {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
   .image-placeholder {
     aspect-ratio: 1;
     background-image: url('../../../../public/yacht-main.jpg');
@@ -129,6 +264,10 @@
     .about-grid {
       gap: 3rem;
     }
+
+    .about-carousel {
+      height: 350px;
+    }
   }
   
   @media (max-width: 768px) {
@@ -143,6 +282,33 @@
   
     .about-image {
       grid-column: 1 / -1;
+    }
+
+    .about-carousel {
+      height: 300px;
+    }
+
+    .about-carousel-overlay {
+      padding: 1.5rem;
+    }
+
+    .about-carousel-overlay-title {
+      font-size: 1.25rem;
+    }
+
+    .about-carousel-overlay-text {
+      font-size: 0.9rem;
+    }
+
+    .about-carousel-prev,
+    .about-carousel-next {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .about-carousel-prev .material-icons-round,
+    .about-carousel-next .material-icons-round {
+      font-size: 1.25rem;
     }
 
     .image-overlay {
@@ -167,6 +333,22 @@
       padding: 3rem 0;
     }
 
+    .about-carousel {
+      height: 250px;
+    }
+
+    .about-carousel-overlay {
+      padding: 1rem;
+    }
+
+    .about-carousel-overlay-title {
+      font-size: 1.1rem;
+    }
+
+    .about-carousel-overlay-text {
+      font-size: 0.85rem;
+    }
+
     .overlay-logo {
       max-width: 100px;
     }
@@ -181,6 +363,33 @@
   }
   
   @media (max-width: 480px) {
+    .about-carousel {
+      height: 200px;
+    }
+
+    .about-carousel-overlay {
+      padding: 0.75rem;
+    }
+
+    .about-carousel-overlay-title {
+      font-size: 1rem;
+    }
+
+    .about-carousel-overlay-text {
+      font-size: 0.8rem;
+    }
+
+    .about-carousel-prev,
+    .about-carousel-next {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .about-carousel-prev .material-icons-round,
+    .about-carousel-next .material-icons-round {
+      font-size: 1rem;
+    }
+
     .overlay-logo {
       max-width: 80px;
     }

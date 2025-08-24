@@ -33,6 +33,7 @@ interface YachtDetailsProps {
     image: string;
     images?: string[];
     features: string[];
+    characteristics?: string[];
     length: string;
     type: string;
   };
@@ -181,10 +182,10 @@ const YachtDetails: React.FC<YachtDetailsProps> = ({ yacht }) => {
         <div className="yacht-details-container">
           <h2 className="section-title">Características Incluidas</h2>
           <div className="features-grid">
-            {yacht.features.map((feature, index) => (
+            {yacht.characteristics && yacht.characteristics.map((characteristic, index) => (
               <div key={index} className="feature-item">
                 <CheckCircle size={20} />
-                <span>{feature}</span>
+                <span>{characteristic}</span>
               </div>
             ))}
           </div>

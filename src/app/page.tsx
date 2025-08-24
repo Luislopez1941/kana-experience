@@ -1,7 +1,24 @@
-import HomeMain from "@/pages/home/Home";
+import React from 'react'
+import { Layout } from '@/components/layout/Layout'
+import { About } from '@/components/about/About'
+import { Destinations } from '@/components/destinations/Destinations'
+import { ExperiencePackages } from '@/components/experience-packages/ExperiencePackages'
+import { WhyChooseUs } from '@/components/wy-choose-us/WhyChooseUs'
+import { Fleet } from '@/components/fleet/Fleet'
+import { FAQ } from '@/components/faq/FAQ'
+import { Footer } from '@/components/footer/Footer'
 
 export default function Home() {
   return (
-    <HomeMain />
-  );
+    <div>
+        <Layout />
+        <About />
+        <Destinations />
+        <Fleet />
+        <WhyChooseUs />
+        {/* <ExperiencePackages /> */}
+        <FAQ />
+        <Footer />
+    </div>
+  )
 }
