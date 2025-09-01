@@ -278,7 +278,24 @@
     }
   
     .about-content {
+      display: block;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .about-title {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-content .about-text {
       display: none;
+    }
+
+    .about-content .about-text:nth-child(4) {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0;
     }
   
     .about-image {
