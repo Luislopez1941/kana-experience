@@ -69,49 +69,40 @@ export const About: React.FC = () => {
                 <SwiperSlide>
                   <div className="about-carousel-slide">
                     <img 
-                      src="/kana.png" 
-                      alt="Equipo Kaná 1" 
+                      src="/profiles/IMG_0755.jpg" 
+                      alt="Miembro del equipo Kaná" 
                       className="about-carousel-image"
                       onError={(e) => {
                         e.currentTarget.src = '/kana.png';
                       }}
                     />
-                    <div className="about-carousel-overlay">
-                      <h3 className="about-carousel-overlay-title">Nuestro Equipo</h3>
-                      <p className="about-carousel-overlay-text">Profesionales apasionados por el mar</p>
-                    </div>
+                  
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="about-carousel-slide">
                     <img 
-                      src="/yacht_01.jpg" 
-                      alt="Equipo Kaná 2" 
+                      src="/profiles/IMG_0788.jpg" 
+                      alt="Miembro del equipo Kaná" 
                       className="about-carousel-image"
                       onError={(e) => {
-                        e.currentTarget.src = '/yacht_01.jpg';
+                        e.currentTarget.src = '/kana.png';
                       }}
                     />
-                    <div className="about-carousel-overlay">
-                      <h3 className="about-carousel-overlay-title">Experiencias Únicas</h3>
-                      <p className="about-carousel-overlay-text">Creando momentos inolvidables</p>
-                    </div>
+                    
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="about-carousel-slide">
                     <img 
-                      src="/tours_01.jpg" 
-                      alt="Equipo Kaná 3" 
+                      src="/profiles/IMG_0776.jpg" 
+                      alt="Luis - Miembro del equipo Kaná" 
                       className="about-carousel-image"
                       onError={(e) => {
-                        e.currentTarget.src = '/tours_01.jpg';
+                        e.currentTarget.src = '/kana.png';
                       }}
                     />
-                    <div className="about-carousel-overlay">
-                      <h3 className="about-carousel-overlay-title">Pasión por el Servicio</h3>
-                      <p className="about-carousel-overlay-text">Dedicados a tu satisfacción</p>
-                    </div>
+                   
                   </div>
                 </SwiperSlide>
               </Swiper>
