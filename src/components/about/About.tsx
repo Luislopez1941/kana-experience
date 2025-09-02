@@ -15,7 +15,7 @@ export const About: React.FC = () => {
         <div className="about-grid">
           <div className="about-content">
             <h2 className="about-title">DETRÁS DE LA EXPERIENCIA</h2>
-            
+
             <p className="about-text">
               En Kaná Experience creemos que cada viaje no solo es un
               destino, sino una historia que se vive y se recuerda. Detrás
@@ -23,7 +23,7 @@ export const About: React.FC = () => {
               comparte la misma visión: hacer que disfrutes sin
               preocuparte por nada.
             </p>
-            
+
             <p className="about-text">
               Somos una mezcla de ideas, talentos y personalidades que
               se complementan. Nos une la pasión por el mar, la
@@ -31,18 +31,18 @@ export const About: React.FC = () => {
               memoria. Cada uno aporta algo único, y juntos formamos la
               energía que impulsa a Kaná.
             </p>
-            
+
             <p className="about-text">
               Más que un equipo, somos una familia que disfruta lo que
               hace, y eso se nota en cada sonrisa, cada recomendación y
               cada detalle que cuidamos para ti.
             </p>
-            
+
             <p className="about-text">
               <strong>servicio impecable, atención personalizada y una vibra que no se encuentra en otro lugar.</strong>
             </p>
-            
-      
+
+
           </div>
           <div className="about-image">
             <div className="about-carousel">
@@ -62,51 +62,33 @@ export const About: React.FC = () => {
                   delay: 4000,
                   disableOnInteraction: false,
                 }}
-                loop={true}
+                loop={false}
                 className="about-swiper"
                 style={{ width: '100%', height: '100%' }}
               >
                 <SwiperSlide>
                   <div className="about-carousel-slide">
-                    <img 
-                      src="/profiles/IMG_0755.jpg" 
-                      alt="Miembro del equipo Kaná" 
-                      className="about-carousel-image"
-                      onError={(e) => {
-                        e.currentTarget.src = '/kana.png';
-                      }}
-                    />
-                  
+                    <div className="about-carousel-image"></div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="about-carousel-slide">
-                    <img 
-                      src="/profiles/IMG_0788.jpg" 
-                      alt="Miembro del equipo Kaná" 
-                      className="about-carousel-image"
-                      onError={(e) => {
-                        e.currentTarget.src = '/kana.png';
-                      }}
-                    />
-                    
+                    <div className="about-carousel-image"></div>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="about-carousel-slide">
-                    <img 
-                      src="/profiles/IMG_0776.jpg" 
-                      alt="Luis - Miembro del equipo Kaná" 
-                      className="about-carousel-image"
-                      onError={(e) => {
-                        e.currentTarget.src = '/kana.png';
-                      }}
-                    />
-                   
+                    <div className="about-carousel-image"></div>
                   </div>
                 </SwiperSlide>
+                <SwiperSlide>
+                  <div className="about-carousel-slide">
+                    <div className="about-carousel-image"></div>
+                  </div>
+                </SwiperSlide>
+           
               </Swiper>
-              
+
               {/* Controles del carrusel */}
               <button className="about-carousel-prev" type="button">
                 <span className="material-icons-round">arrow_back</span>

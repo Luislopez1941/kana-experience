@@ -161,12 +161,7 @@ export const Layout: React.FC = () => {
           </div>
           <div>
             <div className="kana-layout-full-rectangle">
-              <div className="full-rectangle-content">
-                <h3 className="full-rectangle-title">Bienvenido a Kana Experience</h3>
-                <p className="full-rectangle-description">
-                  Descubre las mejores experiencias en el Caribe Mexicano
-                </p>
-              </div>
+              
             </div>
           </div>
 
