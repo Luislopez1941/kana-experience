@@ -1,7 +1,7 @@
 /* Clubs Page Styles */
 .clubs-page {
   min-height: 100vh;
-  background-color: var(--bg-light);
+  background-color: var(--secondary-dark);
   overflow-x: hidden; /* Evitar scroll horizontal */
   width: 100%;
   box-sizing: border-box;
@@ -9,7 +9,9 @@
 
 /* Header Styles */
 .clubs-header {
-  background-color: var(--text-white);
+  background-color: rgba(15, 22, 41, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
@@ -50,13 +52,26 @@
   font-size: 1rem;
 }
 
+/* Header buttons for dark theme */
+.clubs-back-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--text-white);
+}
+
+.clubs-back-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-white);
+}
+
 /* Estilos del botón Consultar Reserva igual al header principal */
 .clubs-reserve-btn {
-  padding: 0.5rem 1rem;
+  padding: 5px 10px;
+  font-size: 14px;
   background-color: var(--primary-color);
   color: var(--text-white);
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -71,8 +86,8 @@
 
 /* Search Row Styles */
 .clubs-search-row {
-  background-color: var(--text-white);
-  border-bottom: 1px solid var(--border-color);
+  background-color: rgba(15, 22, 41, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1rem 0;
 }
 
@@ -88,8 +103,8 @@
 
 /* Desktop Filters Styles */
 .clubs-desktop-filters {
-  background-color: var(--text-white);
-  border-bottom: 1px solid var(--border-color);
+  background-color: rgba(15, 22, 41, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1rem 0;
   display: none;
 }
@@ -110,13 +125,14 @@
   align-items: center;
   justify-content: center;
   padding: 0.75rem;
-  background-color: var(--text-white);
-  border: 2px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
   width: 3rem;
   height: 3rem;
+  color: var(--text-white);
 }
 
 .clubs-mobile-filter-toggle:hover,
@@ -142,20 +158,25 @@
   left: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--text-light);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 1.25rem;
 }
 
 .clubs-search-input {
   width: 100%;
   padding: 0.875rem 1rem 0.875rem 3rem;
-  border: 2px solid var(--border-color);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 0.75rem;
   font-size: 0.875rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: var(--text-white);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-white);
   box-sizing: border-box;
   outline: none;
+}
+
+.clubs-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .clubs-search-input:focus {
@@ -172,7 +193,7 @@
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: var(--text-light);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   padding: 0.375rem;
   border-radius: 50%;
@@ -217,8 +238,8 @@
 
 /* Club Types Menu */
 .clubs-types-menu {
-  background-color: var(--bg-light);
-  border-bottom: 1px solid var(--border-color);
+  background-color: rgba(15, 22, 41, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0.5rem 0;
   overflow-x: auto;
 }
@@ -241,16 +262,16 @@
 
 .clubs-type-btn {
   padding: 0.5rem 1rem;
-  background-color: var(--text-white);
-  border: 1px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 2rem;
-  color: var(--text-light);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
 }
 
@@ -286,15 +307,16 @@
 
 /* Filter Options */
 .clubs-filters-panel {
-  background-color: white;
-  border: 1px solid #dee2e6;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .clubs-filter-group {
@@ -305,23 +327,24 @@
 
 .clubs-filter-group label {
   font-weight: 600;
-  color: #495057;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.875rem;
 }
 
 .clubs-filter-group select {
   padding: 0.75rem;
-  border: 1px solid #dee2e6;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   font-size: 0.875rem;
   transition: border-color 0.3s ease;
-  background: white;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-white);
 }
 
 .clubs-filter-group select:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
 }
 
 .clubs-clear-filters {
@@ -346,7 +369,7 @@
 /* Results Info */
 .clubs-results-info {
   margin-bottom: 1.5rem;
-  color: #6c757d;
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.875rem;
   font-weight: 500;
 }
@@ -361,21 +384,23 @@
 }
 
 .clubs-card {
-  background-color: var(--text-white);
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   width: 100%;
   max-width: 100%;
+  backdrop-filter: blur(10px);
 }
 
 .clubs-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .clubs-image {
@@ -400,14 +425,15 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(15, 22, 41, 0.9);
   border-radius: 2rem;
   padding: 0.375rem 0.875rem;
   font-size: 0.75rem;
-  color: var(--text-light);
+  color: var(--text-white);
   font-weight: 600;
   backdrop-filter: blur(10px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .clubs-info {
@@ -421,7 +447,7 @@
 .clubs-name {
   font-size: 1.25rem;
   font-weight: 500;
-  color: var(--text-dark);
+  color: var(--text-white);
   margin-bottom: 1rem;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -441,13 +467,13 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: var(--text-light);
+  color: rgba(255, 255, 255, 0.8);
   padding: 0.25rem 0;
 }
 
 .clubs-spec .material-icons-round {
   font-size: 1rem;
-  color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .clubs-characteristics {
@@ -459,7 +485,7 @@
 }
 
 .clubs-characteristic-tag {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   color: var(--text-white);
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
@@ -469,13 +495,13 @@
 }
 
 .clubs-characteristic-more {
-  background-color: rgba(18, 45, 82, 0.1);
-  color: var(--secondary-color);
+  background-color: rgba(255, 107, 157, 0.1);
+  color: var(--primary-color);
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
   font-size: 0.75rem;
   font-weight: 500;
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--primary-color);
 }
 
 .clubs-footer {
@@ -613,40 +639,27 @@
 }
 
 .clubs-view-btn {
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-  color: var(--text-dark);
-  border: 1px solid #dee2e6;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   font-size: 0.875rem;
 }
 
 .clubs-view-btn:hover {
-  background: linear-gradient(135deg, #e9ecef, #dee2e6);
-  color: var(--text-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.clubs-reserve-btn {
-  background: linear-gradient(135deg, var(--primary-color), #ff6b9d);
+  background: rgba(255, 255, 255, 0.2);
   color: var(--text-white);
-  font-weight: 700;
-  padding: 0.875rem 1rem;
-  font-size: 0.875rem;
-  border: 1px solid var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
-.clubs-reserve-btn:hover {
-  background: linear-gradient(135deg, var(--primary-dark), #ff5a8a);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
-}
 
 /* No Results */
 .clubs-no-results {
   text-align: center;
   padding: 4rem 2rem;
-  color: var(--text-light);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 1.5rem;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -666,7 +679,7 @@
 .clubs-no-results h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: var(--text-dark);
+  color: var(--text-white);
   font-weight: 600;
 }
 
@@ -674,7 +687,7 @@
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
-  color: var(--text-light);
+  color: rgba(255, 255, 255, 0.7);
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
@@ -687,22 +700,49 @@
   flex-wrap: wrap;
 }
 
-.clubs-no-results-actions .btn {
+.clubs-no-results-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   font-weight: 500;
   transition: all 0.3s ease;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.clubs-no-results-actions .btn .material-icons-round {
+.clubs-no-results-btn .material-icons-round {
   font-size: 1rem;
 }
 
-.clubs-no-results-actions .btn:hover {
+.clubs-no-results-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.clubs-no-results-btn--primary {
+  background: linear-gradient(135deg, var(--primary-color), #ff6b9d);
+  color: var(--text-white);
+  border: 1px solid var(--primary-color);
+}
+
+.clubs-no-results-btn--primary:hover {
+  background: linear-gradient(135deg, var(--primary-dark), #ff5a8a);
+  color: var(--text-white);
+}
+
+.clubs-no-results-btn--outline {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.clubs-no-results-btn--outline:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-white);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Pagination */
@@ -799,7 +839,7 @@
   }
 
   .clubs-header-btn {
-    padding: 0.375rem 0.75rem;
+    padding: 5px 10px;
     font-size: 0.75rem;
   }
 
@@ -874,8 +914,8 @@
   }
 
   .clubs-header-btn {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.6875rem;
+    padding: 5px 10px;
+    font-size: 14px;
   }
 
   .clubs-search-input {

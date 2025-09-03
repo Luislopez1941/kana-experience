@@ -39,13 +39,9 @@ interface Filters {
   capacity: string;
 }
 
-interface ClubCategory {
-  id: number;
-  name: string;
-  createdAt?: string;
-}
 
-const ITEMS_PER_PAGE = 4;
+
+
 
 const Clubs: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -59,55 +55,30 @@ const Clubs: React.FC = () => {
   const [filteredClubs, setFilteredClubs] = useState<Club[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
-  const [clubCategories, setClubCategories] = useState<ClubCategory[]>([]);
-  const [loadingCategories, setLoadingCategories] = useState(true);
   const [clubs, setClubs] = useState<Club[]>([]);
   const [loadingClubs, setLoadingClubs] = useState(false);
 
   const [totalClubs, setTotalClubs] = useState<number>(0);
   const [serverTotalPages, setServerTotalPages] = useState<number>(0);
 
-  const fetch = async () => {
-    try {
-      setLoadingCategories(true);
-      const response = await APIs.getClubCategories();
-      console.log('Club Categories:', response);
-      
-      if (response && response.data) {
-        setClubCategories(response.data);
-      }
-    } catch (error) {
-      console.error('Error fetching club categories:', error);
-    } finally {
-      setLoadingCategories(false);
-    }
-  }
-
-  const fetchClubsByCategory = async (categoryId: number, page: number = 1) => {
+  const fetchAllClubs = async () => {
     try {
       setLoadingClubs(true);
-      const response = await APIs.getClubByClubCategory(categoryId);
-      console.log('Clubs by category:', response);
+      const response = await APIs.getClubAll();
+      console.log('All clubs:', response);
       
       if (response && response.data) {
-                    console.log('Clubs data received:', response.data);
-            console.log('First club images:', response.data[0]?.images);
+        console.log('Clubs data received:', response.data);
+        console.log('First club images:', response.data[0]?.images);
         setClubs(response.data);
-        // Usar la información de paginación del servidor
-        if (response.pagination) {
-          setTotalClubs(response.pagination.total);
-          setCurrentPage(response.pagination.page);
-          setServerTotalPages(response.pagination.totalPages);
-        } else {
-          setTotalClubs(response.data.length);
-          setServerTotalPages(1);
-        }
+        setTotalClubs(response.data.length);
+        setServerTotalPages(1);
       } else {
         setClubs([]);
         setTotalClubs(0);
       }
     } catch (error) {
-      console.error('Error fetching clubs by category:', error);
+      console.error('Error fetching all clubs:', error);
       setClubs([]);
       setTotalClubs(0);
     } finally {
@@ -116,14 +87,8 @@ const Clubs: React.FC = () => {
   }
 
   useEffect(() => {
-    fetch();
+    fetchAllClubs();
   }, []);
-
-  // Disparar petición cuando cambie la categoría seleccionada
-  useEffect(() => {
-    setCurrentPage(1); // Reset a página 1 cuando cambie categoría
-    fetchClubsByCategory(filters.typeId, 1);
-  }, [filters.typeId]);
 
 
 
@@ -158,11 +123,7 @@ const Clubs: React.FC = () => {
   };
 
   const handleCategoryChange = (categoryId: number, categoryName: string) => {
-    setFilters(prev => ({
-      ...prev,
-      type: categoryName,
-      typeId: categoryId
-    }));
+    // No hacer nada ya que no usamos categorías
   };
 
   const clearFilters = () => {
@@ -177,7 +138,7 @@ const Clubs: React.FC = () => {
 
   const goToPage = (page: number) => {
     setCurrentPage(page);
-    fetchClubsByCategory(filters.typeId, page);
+    // No necesitamos paginación ya que cargamos todos los clubs
   };
 
               console.log('Rendering Clubs component:', {
@@ -194,12 +155,12 @@ const Clubs: React.FC = () => {
       {/* Header Navigation */}
       <header className="clubs-header">
         <div className="clubs-header-container">
-          <Link href="/" className="btn btn-outline clubs-header-btn clubs-back-btn">
+          <Link href="/" className="clubs-header-btn clubs-back-btn">
             <span className="material-icons-round">arrow_back</span>
             Volver al Inicio
           </Link>
 
-          <Link href="/consult-reservation" className="btn btn-primary header-cta clubs-reserve-btn">
+          <Link href="/consult-reservation" className="clubs-reserve-btn">
             Consultar Reserva
           </Link>
         </div>
@@ -230,8 +191,7 @@ const Clubs: React.FC = () => {
           {/* Mobile Filter Button */}
           <button 
             onClick={() => setShowFilters(!showFilters)}
-            className={`clubs-mobile-filter-toggle ${showFilters ? 'active' : ''}`}
-          >
+            className={`clubs-mobile-filter-toggle ${showFilters ? 'active' : ''}`}>
             <span className="material-icons-round">tune</span>
           </button>
         </div>
@@ -275,37 +235,7 @@ const Clubs: React.FC = () => {
         </div>
       </div>
 
-      {/* Club Types Submenu */}
-      <div className="clubs-types-menu">
-        <div className="clubs-types-container">
-          {/* Botón "Todos" siempre presente */}
-          <button 
-            className={`clubs-type-btn ${filters.typeId === 0 ? 'active' : ''}`}
-            onClick={() => handleCategoryChange(0, '')}
-          >
-            Todos
-          </button>
-          
-          {/* Categorías dinámicas de la API */}
-          {loadingCategories ? (
-            <div className="clubs-categories-loading">
-              <span className="material-icons-round">refresh</span>
-              Cargando categorías...
-            </div>
-          ) : (
-            // Categorías dinámicas
-            clubCategories.map((category) => (
-              <button 
-                key={category.id}
-                className={`clubs-type-btn ${filters.typeId === category.id ? 'active' : ''}`}
-                onClick={() => handleCategoryChange(category.id, category.name)}
-              >
-                {category.name.toUpperCase()}
-              </button>
-            ))
-          )}
-        </div>
-      </div>
+
 
       <section className="clubs-content">
         <div className="clubs-container">
@@ -456,11 +386,11 @@ const Clubs: React.FC = () => {
               <h3>No hay clubs disponibles</h3>
               <p>En este momento no tenemos clubs que coincidan con tu búsqueda. Prueba con otros filtros o vuelve más tarde.</p>
               <div className="clubs-no-results-actions">
-                <button onClick={clearFilters} className="btn btn-primary">
+                <button onClick={clearFilters} className="clubs-no-results-btn clubs-no-results-btn--primary">
                   <span className="material-icons-round">refresh</span>
                   Limpiar Filtros
                 </button>
-                <button onClick={() => handleCategoryChange(0, '')} className="btn btn-outline">
+                <button onClick={clearFilters} className="clubs-no-results-btn clubs-no-results-btn--outline">
                   <span className="material-icons-round">home</span>
                   Ver Todos
                 </button>
@@ -468,36 +398,7 @@ const Clubs: React.FC = () => {
             </div>
           )}
 
-          {/* Pagination */}
-          {serverTotalPages > 0 && (
-            <div className="clubs-pagination">
-              <button 
-                onClick={() => goToPage(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="clubs-pagination-btn"
-              >
-                <span className="material-icons-round">chevron_left</span>
-              </button>
 
-              {Array.from({ length: serverTotalPages }, (_, i) => i + 1).map((page) => (
-                <button
-                  key={page}
-                  onClick={() => goToPage(page)}
-                  className={`clubs-pagination-btn ${currentPage === page ? 'active' : ''}`}
-                >
-                  {page}
-                </button>
-              ))}
-
-              <button 
-                onClick={() => goToPage(currentPage + 1)}
-                disabled={currentPage === serverTotalPages}
-                className="clubs-pagination-btn"
-              >
-                <span className="material-icons-round">chevron_right</span>
-              </button>
-            </div>
-          )}
         </div>
       </section>
       

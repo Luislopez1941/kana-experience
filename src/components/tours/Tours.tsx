@@ -40,6 +40,7 @@ interface Filters {
 interface TourCategory {
   id: number;
   name: string;
+  image?: string;
 }
 
 const ITEMS_PER_PAGE = 4;
@@ -109,8 +110,14 @@ const Tours: React.FC = () => {
 
   // Disparar petición cuando cambie la categoría seleccionada
   useEffect(() => {
-    setCurrentPage(1);
-    fetchToursByCategory(filters.typeId, 1);
+    if (filters.typeId > 0) {
+      setCurrentPage(1);
+      fetchToursByCategory(filters.typeId, 1);
+    } else {
+      // Si no hay categoría seleccionada, limpiar tours
+      setTours([]);
+      setFilteredTours([]);
+    }
   }, [filters.typeId]);
 
   // Actualizar las personas seleccionadas cuando cambien los tours
@@ -195,12 +202,12 @@ const Tours: React.FC = () => {
       {/* Header Navigation */}
       <header className="tours-header">
         <div className="tours-header-container">
-          <Link href="/" className="btn btn-outline tours-header-btn tours-back-btn">
+          <Link href="/" className="tours-header-btn tours-back-btn">
             <span className="material-icons-round">arrow_back</span>
             Volver al Inicio
           </Link>
 
-          <Link href="/consult-reservation" className="btn btn-primary header-cta tours-reserve-btn">
+          <Link href="/consult-reservation" className="tours-reserve-btn">
             Consultar Reserva
           </Link>
         </div>
@@ -348,22 +355,60 @@ const Tours: React.FC = () => {
           )}
 
           {/* Results Counter */}
-          <div className="tours-results-info">
-            <p>Mostrando {currentTours.length} de {filteredTours.length} tours {searchTerm && `(filtrados por "${searchTerm}")`}</p>
-          </div>
-
-          {/* Tours Grid */}
-          {loadingTours ? (
-            <div className="tours-loading-container">
-              <Loading 
-                size="large" 
-                text="Cargando tours..." 
-                className="loading-tours"
-              />
+          {filters.typeId > 0 && (
+            <div className="tours-results-info">
+              <p>Mostrando {currentTours.length} de {filteredTours.length} tours {searchTerm && `(filtrados por "${searchTerm}")`}</p>
             </div>
-          ) : (
-            <div className="tours-grid">
-              {currentTours.map((tour) => (
+          )}
+
+          {/* Categories Grid - Mostrar cuando no hay categoría seleccionada */}
+          {filters.typeId === 0 && !loadingCategories && (
+            <div className="tours-categories-grid">
+              <h2 className="tours-categories-title">Selecciona una categoría de tour</h2>
+              <div className="tours-grid">
+                {tourCategories.map((category) => (
+                  <div 
+                    key={category.id} 
+                    className="tours-category-card"
+                    onClick={() => handleCategoryChange(category.id, category.name)}
+                  >
+                    <div className="tours-category-image-container">
+                      {category.image ? (
+                        <img 
+                          src={category.image} 
+                          alt={category.name}
+                          className="tours-category-card-image"
+                        />
+                      ) : (
+                        <div className="tours-category-placeholder">
+                          <span className="material-icons-round">explore</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="tours-category-info">
+                      <h3 className="tours-category-name">{category.name}</h3>
+                      <p className="tours-category-description">Descubre los mejores tours de {category.name.toLowerCase()}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Tours Grid - Mostrar cuando hay categoría seleccionada */}
+          {filters.typeId > 0 && (
+            <>
+              {loadingTours ? (
+                <div className="tours-loading-container">
+                  <Loading 
+                    size="large" 
+                    text="Cargando tours..." 
+                    className="loading-tours"
+                  />
+                </div>
+              ) : (
+                <div className="tours-grid">
+                  {currentTours.map((tour) => (
                 <div key={tour.id} className="tours-card">
                   <div className="tours-image">
                     {tour.images && tour.images.length > 0 ? (
@@ -474,12 +519,14 @@ const Tours: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+                  ))}
+                </div>
+              )}
+            </>
           )}
 
           {/* No Results Message */}
-          {!loadingTours && filteredTours.length === 0 && (
+          {filters.typeId > 0 && !loadingTours && filteredTours.length === 0 && (
             <div className="tours-no-results">
               <div className="tours-no-results-icon">
                 <span className="material-icons-round">explore</span>
@@ -487,11 +534,11 @@ const Tours: React.FC = () => {
               <h3>No hay tours disponibles</h3>
               <p>En este momento no tenemos tours que coincidan con tu búsqueda. Prueba con otros filtros o vuelve más tarde.</p>
               <div className="tours-no-results-actions">
-                <button onClick={clearFilters} className="btn btn-primary">
+                <button onClick={clearFilters} className="tours-no-results-btn tours-no-results-btn--primary">
                   <span className="material-icons-round">refresh</span>
                   Limpiar Filtros
                 </button>
-                <button onClick={() => handleCategoryChange(0, '')} className="btn btn-outline">
+                <button onClick={() => handleCategoryChange(0, '')} className="tours-no-results-btn tours-no-results-btn--outline">
                   <span className="material-icons-round">home</span>
                   Ver Todos
                 </button>

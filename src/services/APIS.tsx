@@ -138,6 +138,12 @@ const APIs = {
         return ConfigurationAPIs.get(path);
     },
 
+    getClubAll: async () => {
+        const path = `clubs/get-all`;
+        return ConfigurationAPIs.get(path);
+    },
+
+
 
 
 
