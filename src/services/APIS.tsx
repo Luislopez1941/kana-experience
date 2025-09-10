@@ -87,6 +87,11 @@ const APIs = {
     return ConfigurationAPIs.post(path, data);
   },
 
+  searchReservationByFolio: async (data: any) => {
+    const path = `reservations/by-folio/${data.folio}`;
+    return ConfigurationAPIs.get(path);
+  },
+
 
 
     ////////CATEGORIAS DE YACHTS ////////////
