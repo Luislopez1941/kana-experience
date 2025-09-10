@@ -80,6 +80,12 @@ const APIs = {
     },
 
 
+    ///Reservations////
+
+  createReservation: async (data: any) => {
+    const path = `reservations/create`;
+    return ConfigurationAPIs.post(path, data);
+  },
 
 
 

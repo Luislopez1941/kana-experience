@@ -52,8 +52,8 @@ const ClubDetails: React.FC<ClubDetailsProps> = ({ club }) => {
   };
 
   const handleReserve = () => {
-    // Aquí iría la lógica de reserva
-    console.log('Reservar club:', club.id);
+    // Navegar al formulario de reserva con el ID del club
+    router.push(`/reservation?type=club&id=${club.id}`);
   };
 
   const openModal = (index: number) => {
@@ -157,9 +157,13 @@ const ClubDetails: React.FC<ClubDetailsProps> = ({ club }) => {
             </div>
 
             <div className="club-details-actions">
-              <button onClick={handleWhatsApp} className="club-btn-primary club-single-btn">
+              <button onClick={handleReserve} className="club-btn-primary">
+                <Calendar size={20} />
+                Reservar Ahora
+              </button>
+              <button onClick={handleWhatsApp} className="club-btn-secondary">
                 <MessageCircle size={20} />
-                Contactar por WhatsApp
+                WhatsApp
               </button>
             </div>
           </div>

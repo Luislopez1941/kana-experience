@@ -365,9 +365,13 @@ const Clubs: React.FC = () => {
                     
                     <div className="clubs-footer">
                       <div className="clubs-actions">
-                        <Link href="/clubs/club" className="clubs-action-btn clubs-view-btn clubs-single-action">
+                        <Link href="/clubs/club" className="clubs-action-btn clubs-view-btn">
                           <span className="material-icons-round">visibility</span>
-                          Ver Detalles
+                          Ver
+                        </Link>
+                        <Link href={`/reservation?type=club&id=${club.id}`} className="clubs-action-btn clubs-reserve-btn">
+                          <span className="material-icons-round">calendar_month</span>
+                          Reservar
                         </Link>
                       </div>
                     </div>

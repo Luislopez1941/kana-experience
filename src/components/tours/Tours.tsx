@@ -511,7 +511,7 @@ const Tours: React.FC = () => {
                           <span className="material-icons-round">visibility</span>
                           Ver
                         </Link>
-                        <Link href="/reservation" className="tours-action-btn tours-reserve-btn">
+                        <Link href={`/reservation?type=tour&id=${tour.id}`} className="tours-action-btn tours-reserve-btn">
                           <span className="material-icons-round">calendar_month</span>
                           Reservar
                         </Link>

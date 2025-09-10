@@ -53,8 +53,8 @@ const YachtDetails: React.FC<YachtDetailsProps> = ({ yacht }) => {
   };
 
   const handleReserve = () => {
-    // Aquí iría la lógica de reserva
-    console.log('Reservar yacht:', yacht.id);
+    // Navegar al formulario de reserva con el ID del yate
+    router.push(`/reservation?type=yacht&id=${yacht.id}`);
   };
 
   const openModal = (index: number) => {
@@ -86,132 +86,129 @@ const YachtDetails: React.FC<YachtDetailsProps> = ({ yacht }) => {
         </div>
       </header>
 
-      {/* Hero Section */}
+      <div className="yacht-details-navigation-container">
+        <div className="yacht-details-navigation-bar">
+          <div className="yacht-details-navigation-separator"></div>
+          <div className="yacht-details-navigation-item" onClick={() => router.push('/yachts')}>
+            <span>Yates</span>
+          </div>
+          <div className="yacht-details-navigation-separator"></div>
+          <div className="yacht-details-navigation-item" onClick={() => router.push('/tours')}>
+            <span>Tours</span>
+          </div>
+          <div className="yacht-details-navigation-separator"></div>
+          <div className="yacht-details-navigation-item" onClick={() => router.push('/clubs')}>
+            <span>Clubs Nocturnos</span>
+          </div>
+          <div className="yacht-details-navigation-separator"></div>
+          <div className="yacht-details-navigation-item" onClick={() => router.push('/about')}>
+            <span>Sobre Nosotros</span>
+          </div>
+          <div className="yacht-details-navigation-separator"></div>
+          <div className="yacht-details-navigation-item" onClick={() => router.push('/contact')}>
+            <span>Contacto</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Hero Section - Two Column Layout */}
       <section className="yacht-details-hero">
         <div className="yacht-details-container">
-          <div className="yacht-details-image">
-            <Swiper
-              modules={[Navigation, Pagination, Autoplay]}
-              spaceBetween={0}
-              slidesPerView={1}
-              navigation={{
-                nextEl: '.yacht-details-next',
-                prevEl: '.yacht-details-prev',
-              }}
-              pagination={{
-                clickable: true,
-                el: '.yacht-details-pagination',
-              }}
-              autoplay={{
-                delay: 4000,
-                disableOnInteraction: false,
-              }}
-              className="yacht-details-swiper"
-            >
-              {images.map((image, index) => (
-                <SwiperSlide key={index}>
-                  <img 
-                    src={image} 
-                    alt={`${yacht.name} - Imagen ${index + 1}`}
-                    onClick={() => openModal(index)}
-                    className="yacht-details-slide"
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            
-            {/* Controles del carrusel */}
-            {images.length > 1 && (
-              <>
-                <button className="yacht-details-prev yacht-details-nav">
-                  <ArrowLeft size={24} />
+          <div className="yacht-details-grid">
+            {/* Left Column - Main Image */}
+            <div className="yacht-details-image-column">
+              <div className="yacht-details-main-image">
+                <img 
+                  src={yacht.image} 
+                  alt={`${yacht.name} - Imagen principal`}
+                  onClick={() => openModal(0)}
+                  className="yacht-main-photo"
+                />
+                <div className="yacht-badge">{yacht.type}</div>
+                <button className="yacht-expand-btn" onClick={() => openModal(0)}>
+                  <Maximize2 size={24} />
                 </button>
-                <button className="yacht-details-next yacht-details-nav">
-                  <ArrowRight size={24} />
-                </button>
-                <div className="yacht-details-pagination"></div>
-              </>
-            )}
-            
-            <div className="yacht-badge">{yacht.type}</div>
-            <button className="yacht-expand-btn" onClick={() => openModal(0)}>
-              <Maximize2 size={24} />
-            </button>
-          </div>
-
-          <div className="yacht-details-info">
-            <h1 className="yacht-details-title">{yacht.name}</h1>
-            <p className="yacht-details-description">{yacht.description}</p>
-            
-            <div className="yacht-details-specs">
-              <div className="yacht-spec">
-                <Ruler size={20} />
-                <span>{yacht.length}</span>
-              </div>
-              <div className="yacht-spec">
-                <Users size={20} />
-                <span>{yacht.capacity} personas</span>
-              </div>
-              <div className="yacht-spec">
-                <MapPin size={20} />
-                <span>Puerto Banús</span>
               </div>
             </div>
 
-            <div className="yacht-details-price">
-              <span className="price-amount">{yacht.price}</span>
-              <span className="price-period">MXN/día</span>
-            </div>
+            {/* Right Column - Yacht Information */}
+            <div className="yacht-details-info-column">
+              <div className="yacht-details-info">
+                <h1 className="yacht-details-title">{yacht.name}</h1>
+                <p className="yacht-details-subtitle">Yates Cancun de lujo</p>
+                
+                <div className="yacht-details-specs">
+                  <div className="yacht-spec">
+                    <Ruler size={20} />
+                    <span>{yacht.length}</span>
+                  </div>
+                  <div className="yacht-spec">
+                    <Users size={20} />
+                    <span>{yacht.capacity} personas</span>
+                  </div>
+                  <div className="yacht-spec">
+                    <MapPin size={20} />
+                    <span>Puerto Banús</span>
+                  </div>
+                </div>
 
-            <div className="yacht-details-actions">
-              <button onClick={handleReserve} className="btn-primary">
-                <Calendar size={20} />
-                Reservar Ahora
-              </button>
-              <button onClick={handleWhatsApp} className="btn-secondary">
-                <MessageCircle size={20} />
-                WhatsApp
-              </button>
+                {/* Características horizontales */}
+                {yacht.characteristics && yacht.characteristics.length > 0 && (
+                  <div className="yacht-details-characteristics">
+                    <div className="characteristics-grid">
+                      {yacht.characteristics.map((characteristic, index) => (
+                        <div key={index} className="characteristic-item">
+                          <CheckCircle size={16} />
+                          <span>{characteristic}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="yacht-details-price">
+                  <span className="price-amount">{yacht.price}</span>
+                  <span className="price-period">MXN/día</span>
+                </div>
+
+                <div className="yacht-details-actions">
+                  <button onClick={handleReserve} className="btn-primary">
+                    <Calendar size={20} />
+                    Reservar Ahora
+                  </button>
+                  <button onClick={handleWhatsApp} className="btn-secondary">
+                    <MessageCircle size={20} />
+                    WhatsApp
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="yacht-details-features">
+      {/* Gallery Section */}
+      <section className="yacht-details-gallery">
         <div className="yacht-details-container">
-          <h2 className="section-title">Características Incluidas</h2>
-          <div className="features-grid">
-            {yacht.characteristics && yacht.characteristics.map((characteristic, index) => (
-              <div key={index} className="feature-item">
-                <CheckCircle size={20} />
-                <span>{characteristic}</span>
+          <div className="yacht-gallery-grid">
+            {images.slice(0, 4).map((image, index) => (
+              <div 
+                key={index} 
+                className="yacht-gallery-item"
+                onClick={() => openModal(index)}
+              >
+                <img 
+                  src={image} 
+                  alt={`${yacht.name} - Galería ${index + 1}`}
+                  className="gallery-image"
+                />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Additional Info */}
-      <section className="yacht-details-additional">
-        <div className="yacht-details-container">
-          <h2 className="section-title">Información Adicional</h2>
-          <div className="additional-info">
-            <div className="info-item">
-              <h3>Experiencia de Navegación</h3>
-              <p>Disfruta de una experiencia de navegación de lujo con nuestro capitán profesional y tripulación experta. Navegamos por las aguas cristalinas de Cancún y la Riviera Maya.</p>
-            </div>
-            <div className="info-item">
-              <h3>Servicios Incluidos</h3>
-              <p>Equipo de snorkel, toallas, bebidas no alcohólicas, música y todo lo necesario para una experiencia inolvidable en el mar.</p>
-            </div>
-            <div className="info-item">
-              <h3>Horarios Disponibles</h3>
-              <p>Salidas diarias desde las 9:00 AM hasta las 6:00 PM. Reservas con 24 horas de anticipación.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Modal para ver imagen en grande */}
       {showModal && (

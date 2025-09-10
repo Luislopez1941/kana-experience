@@ -62,6 +62,7 @@ const sliderOptions: SliderOption[] = [
 
 export const Layout: React.FC = () => {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isNavBarFixed, setIsNavBarFixed] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<any>(null);
   const router = useRouter();
@@ -71,6 +72,36 @@ export const Layout: React.FC = () => {
   useEffect(() => {
     console.log('Active slide changed to:', activeSlide);
   }, [activeSlide]);
+
+  // Manejar el scroll para hacer fija la barra de navegación
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const headerHeight = 80; // Altura del header
+      
+      // Si el scroll es mayor que la altura del header, hacer fija la barra
+      if (scrollTop > headerHeight) {
+        setIsNavBarFixed(true);
+      } else {
+        setIsNavBarFixed(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Aplicar padding dinámico cuando la barra esté fija
+  useEffect(() => {
+    const container = document.querySelector('.kana-layout-container') as HTMLElement;
+    if (container) {
+      if (isNavBarFixed) {
+        container.style.paddingTop = '140px'; // Compensar barra fija
+      } else {
+        container.style.paddingTop = ''; // Resetear padding
+      }
+    }
+  }, [isNavBarFixed]);
 
   useEffect(() => {
     // Force Swiper to recalculate after layout is ready
@@ -135,8 +166,8 @@ export const Layout: React.FC = () => {
       <div className="kana-layout-content">
         <div className="kana-layout-container">
           <div className="kana-layout-navigation-container">
-            {/* Barra de navegación horizontal */}
-            <div className="kana-layout-navigation-bar">
+            {/* Barra de navegación horizontal - Solo visible en responsive */}
+            <div className={`kana-layout-navigation-bar ${isNavBarFixed ? 'fixed' : ''}`}>
               <div className="kana-layout-navigation-separator"></div>
               <div className="kana-layout-navigation-item" onClick={() => router.push('/yachts')}>
                 <span>Yates</span>
@@ -250,9 +281,6 @@ export const Layout: React.FC = () => {
                             <div className="kana-layout-option-text">
                               <h4 className="kana-layout-option-title">{option.title}</h4>
                               <p className="kana-layout-option-description">{option.description}</p>
-                            </div>
-                            <div className="kana-layout-option-arrow">
-                              <span className="material-icons-round">arrow_forward</span>
                             </div>
                           </div>
                         </div>

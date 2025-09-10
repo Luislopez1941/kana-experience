@@ -655,6 +655,21 @@
   border-color: rgba(255, 255, 255, 0.4);
 }
 
+.clubs-reserve-btn {
+  background: linear-gradient(135deg, var(--primary-color), #ff6b9d);
+  color: var(--text-white);
+  font-weight: 700;
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--primary-color);
+}
+
+.clubs-reserve-btn:hover {
+  background: linear-gradient(135deg, var(--primary-dark), #ff5a8a);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+}
+
 
 /* No Results */
 .clubs-no-results {

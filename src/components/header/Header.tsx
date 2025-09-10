@@ -29,14 +29,20 @@ export const Header: React.FC = () => {
           <Link href="/" className="header-link">
             {t('header.home')}
           </Link>
-          <Link href="#flota" className="header-link">
-            {t('header.fleet')}
+          <Link href="/yachts" className="header-link">
+            Yates
           </Link>
-          <Link href="#destinos" className="header-link">
-            {t('header.destinations')}
+          <Link href="/tours" className="header-link">
+            Tours
           </Link>
-          <Link href="#experiencias" className="header-link">
-            {t('header.experiences')}
+          <Link href="/clubs" className="header-link">
+            Clubs Nocturnos
+          </Link>
+          <Link href="/about" className="header-link">
+            Sobre Nosotros
+          </Link>
+          <Link href="/contact" className="header-link">
+            Contacto
           </Link>
         </nav>
 
@@ -79,7 +85,7 @@ export const Header: React.FC = () => {
             )}
           </div>
           
-          <Link href="/reservation" className="header-cta">
+          <Link href="/consult-reservation" className="header-cta">
             {t('header.checkReservation')}
           </Link>
         </div>

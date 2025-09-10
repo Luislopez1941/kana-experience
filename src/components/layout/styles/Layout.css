@@ -1,7 +1,7 @@
 /* ===== LAYOUT PRINCIPAL ===== */
 .kana-layout {
   position: relative;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   overflow: hidden;
 }
 
@@ -51,14 +51,15 @@
   z-index: 2;
 }
 
-/* ===== BARRA DE NAVEGACIÓN HORIZONTAL ===== */
+
+/* ===== BARRA DE NAVEGACIÓN HORIZONTAL - SOLO RESPONSIVE ===== */
 .kana-layout-navigation-bar {
   position: relative;
   z-index: 4;
   width: 100%;
   height: 60px;
   background: transparent;
-  display: flex;
+  display: none; /* Oculto por defecto */
   align-items: center;
   justify-content: center;
   overflow-x: auto;
@@ -69,6 +70,22 @@
   padding: 0 1rem;
   box-sizing: border-box;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+/* Estado fijo cuando se hace scroll */
+.kana-layout-navigation-bar.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  margin-bottom: 0;
+  border-top: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -154,7 +171,7 @@
 .kana-layout-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 80px 40px 0 40px;
+  padding: 100px 40px 0 40px; /* Aumentado para compensar header fijo */
   width: 100%;
   box-sizing: border-box;
   position: relative;
@@ -296,10 +313,17 @@
 .kana-layout-carousel {
   position: relative;
   height: auto;
-  min-height: 120px;
+  min-height: 80px;
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
+}
+
+/* En desktop, limitar el ancho del carousel */
+@media (min-width: 1025px) {
+  .kana-layout-carousel {
+    max-width: 400px;
+  }
 }
 
 .kana-layout-swiper {
@@ -355,15 +379,15 @@
 .kana-layout-option {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
   backdrop-filter: blur(15px);
-  border-radius: 1rem;
-  padding: 1rem;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid rgba(255, 255, 255, 0.1);
   height: auto;
   width: 100%;
   
-  min-height: 80px;
+  min-height: 60px;
   
   /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
   user-select: none;
@@ -390,8 +414,8 @@
 }
 
 .kana-layout-option-icon {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
   border-radius: 50%;
   display: flex;
@@ -404,7 +428,7 @@
 
 .kana-layout-option-icon .material-icons-round {
   color: var(--text-white);
-  font-size: 1rem;
+  font-size: 0.875rem;
 }
 
 .kana-layout-option-text {
@@ -412,40 +436,23 @@
 }
 
 .kana-layout-option-title {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: var(--text-white);
   margin-bottom: 0.125rem;
 }
 
 .kana-layout-option-description {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.3;
-}
-
-.kana-layout-option-arrow {
-  flex-shrink: 0;
-  opacity: 0.5;
-  transition: all 0.3s ease;
-}
-
-.kana-layout-option:hover .kana-layout-option-arrow,
-.kana-layout-option.active .kana-layout-option-arrow {
-  opacity: 1;
-  transform: translateX(5px);
 }
 
 .kana-layout-option:hover .kana-layout-option-icon,
 .kana-layout-option.active .kana-layout-option-icon {
   opacity: 1;
-  transform: translateX(5px) scale(1.1);
+  transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(255, 45, 84, 0.4);
-}
-
-.kana-layout-option-arrow .material-icons-round {
-  color: var(--text-white);
-  font-size: 1.25rem;
 }
 
 /* ===== CONTROLES DEL CAROUSEL ===== */
@@ -456,6 +463,8 @@
   gap: 1.5rem;
   padding: 10px;
   margin-top: 1rem;
+  position: relative;
+  z-index: 10;
 }
 
 .kana-layout-carousel-prev,
@@ -497,6 +506,7 @@
   cursor: not-allowed;
   transform: none;
 }
+
 
 .kana-layout-carousel-pagination {
   display: flex;
@@ -582,14 +592,9 @@
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
   .kana-layout-navigation-bar {
-    height: 60px;
-    gap: 2rem;
+    display: flex; /* Mostrar en responsive */
   }
-  
-  .kana-layout-navigation-item span {
-    font-size: 0.9rem;
-  }
-  
+
   .kana-layout-grid {
     gap: 1.5rem;
     grid-template-columns: 1fr;
@@ -619,17 +624,17 @@
 @media (max-width: 768px) {
   .kana-layout-navigation-bar {
     height: 55px;
-    gap: 1.5rem;
+    margin-bottom: 1.5rem;
   }
-  
+
+  .kana-layout-navigation-item {
+    padding: 0.6rem 1.2rem;
+  }
+
   .kana-layout-navigation-item span {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
-  
-  .kana-layout-navigation-separator {
-    height: 30px;
-  }
-  
+
   .kana-layout-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -640,7 +645,7 @@
   }
 
   .kana-layout-carousel {
-    min-height: 100px;
+    min-height: 60px;
     width: 100%;
     max-width: 100%;
     padding: 0 10px;
@@ -687,15 +692,29 @@
 @media (max-width: 640px) {
   .kana-layout-navigation-bar {
     height: 50px;
-    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
   }
-  
-  
-  
+
+  .kana-layout-navigation-container {
+    max-width: 100%;
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  .kana-layout-navigation-item {
+    padding: 0.5rem 1rem;
+  }
+
   .kana-layout-navigation-item span {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
-  
+
+  .kana-layout-navigation-separator {
+    height: 18px;
+    margin: 0 0.3rem;
+  }
+
   .kana-layout-slider-title {
     font-size: 1.25rem;
     margin-bottom: 1.5rem;
@@ -730,21 +749,9 @@
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
   .kana-layout-container {
-    padding: 80px 20px 0 20px;
+    padding: 100px 20px 0 20px; /* Aumentado para compensar header fijo */
   }
 
-  .kana-layout-navigation-bar {
-    height: 55px;
-
-  }
-
-  .kana-layout-navigation-item {
-    padding: 0.6rem 1.2rem;
-  }
-
-  .kana-layout-navigation-item span {
-    font-size: 0.9rem;
-  }
 
   .kana-layout-full-rectangle {
     height: 250px;
@@ -777,30 +784,6 @@
 }
 
 @media (max-width: 768px) {
-  .kana-layout-navigation-bar {
-    height: 50px;
-  
-    padding: 0 0.5rem;
-  }
-
-  .kana-layout-navigation-container {
-    max-width: 100%;
-    justify-content: flex-start;
-    gap: 0;
-  }
-
-  .kana-layout-navigation-item {
-    padding: 0.5rem 1rem;
-  }
-
-  .kana-layout-navigation-item span {
-    font-size: 0.85rem;
-  }
-
-  .kana-layout-navigation-separator {
-    height: 18px;
-    margin: 0 0.3rem;
-  }
  
 
   .kana-layout-full-rectangle {
@@ -842,31 +825,18 @@
     max-width: 200px;
   }
 
-  .kana-layout-navigation-bar {
-    height: 60px;
-   
-  }
 
 
 }
 
 @media (max-width: 480px) {
-  .kana-layout-navigation-bar {
-    height: 50px;
-    gap: 1rem;
-  }
-  
-  .kana-layout-navigation-item span {
-    font-size: 0.8rem;
-  }
-  
   .kana-layout-slider-title {
     font-size: 1.25rem;
     margin-bottom: 1.5rem;
   }
   
   .kana-layout-carousel {
-    min-height: 80px;
+    min-height: 50px;
     width: 100%;
     max-width: 100%;
     padding: 0 5px;

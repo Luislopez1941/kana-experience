@@ -56,8 +56,8 @@ const TourDetails: React.FC<TourDetailsProps> = ({ tour }) => {
   };
 
   const handleReserve = () => {
-    // Aquí iría la lógica de reserva
-    console.log('Reservar tour:', tour.id);
+    // Navegar al formulario de reserva con el ID del tour
+    router.push(`/reservation?type=tour&id=${tour.id}`);
   };
 
   const openModal = (index: number) => {

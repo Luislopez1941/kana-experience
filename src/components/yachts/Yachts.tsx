@@ -504,7 +504,7 @@ const Yates: React.FC = () => {
                          <span className="material-icons-round">visibility</span>
                          Ver
                        </Link>
-                      <Link href="/reservation" className="yacht-action-btn yacht-reserve-btn">
+                      <Link href={`/reservation?type=yacht&id=${yacht.id}`} className="yacht-action-btn yacht-reserve-btn">
                         <span className="material-icons-round">calendar_month</span>
                         Reservar
                       </Link>
